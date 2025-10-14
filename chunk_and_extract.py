@@ -12,8 +12,8 @@ This file:
  - adds logging statements at every major stage for observability
 
 Usage:
-    python chunk_and_extract_with_logging.py build --input ./PDPA.docx --output_dir ./out --law_short PDPA
-
+    python chunk_and_extract.py build --input data/corpus/raw_pdpa.txt --output_dir data/corpus --filename corpus_subsection_v1
+    
 Dependencies:
     pip install python-docx beautifulsoup4 sentence-transformers transformers tqdm
 
