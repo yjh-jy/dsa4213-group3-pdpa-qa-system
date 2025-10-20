@@ -95,14 +95,14 @@ class HybridRetriever:
             section_id = section_info.get("section_id", "Unknown") if section_info else "Unknown"
             formatted.append((cid, score, section_id))
 
-        outpath = OUTDIR / "hybrid_results.json"
+        outpath = OUTDIR / "hybrid_topk.json"
         with open(outpath, "w", encoding="utf-8") as f:
             json.dump(
                 [{"chunk_id": cid, "score": score, "section_id": section_id} for cid, score, section_id in formatted],
                 f, ensure_ascii=False, indent=2
             )
         print(f"\nHybrid top k results saved to: {outpath}")
-        
+
         return formatted
 
 def main():
