@@ -14,10 +14,9 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 # --- Paths (auto) ---
-ROOT = Path(__file__).resolve().parents[0]      # repo root if script is at top-level
-DATA = ROOT / "data"
-CORPUS = DATA / "corpus" / "corpus_subsection_v1.jsonl"
-OUTDIR = DATA / "dense" / "pdpa_v1"
+ROOT = Path(__file__).resolve().parents[1]      # repo root (go up one level from dense_retrieval/)
+CORPUS = ROOT / "data" / "corpus" / "corpus_subsection_v1.jsonl"
+OUTDIR = Path(__file__).resolve().parents[0] / "data" / "dense" / "pdpa_v1"  # dense_retrieval/data/dense/pdpa_v1
 OUTDIR.mkdir(parents=True, exist_ok=True)
 
 # --- Model configuration ---
