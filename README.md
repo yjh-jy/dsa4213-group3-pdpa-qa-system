@@ -1,5 +1,3 @@
-# dsa4263-group3-pdpa-qa-system
-
 ## PDPA-Grounded Question Answering via Citation-Constrained RAG with Abstention
 
 **Authors:** Group 3 (Ashley Toh Ke Wei, Sybella Chloe Enriquez Tan, Choy Qi Hui, Yoong Jun Han)
