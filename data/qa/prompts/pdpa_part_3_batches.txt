@@ -1,0 +1,18 @@
+# PDPA Part 3 — Smart batches for ChatGPT (v3 prompt)
+
+---
+PART: 3
+SECTIONS INCLUDED: PDPA s.11(1), PDPA s.11(2), PDPA s.11(3), PDPA s.11(4), PDPA s.11(5), PDPA s.11(5A), PDPA s.11(6), PDPA s.12(0)
+TEXT EXCERPTS:
+"""
+PDPA s.11(1): Compliance with Act In meeting its responsibilities under this Act, an organisation must consider what a reasonable person would consider appropriate in the circumstances.
+PDPA s.11(2): Compliance with Act An organisation is responsible for personal data in its possession or under its control.
+PDPA s.11(3): Compliance with Act An organisation must designate one or more individuals to be responsible for ensuring that the organisation complies with this Act.
+PDPA s.11(4): Compliance with Act An individual designated under subsection (3) may delegate to another individual the responsibility conferred by that designation.
+PDPA s.11(5): Compliance with Act An organisation must make available to the public the business contact information of at least one of the individuals designated under subsection (3) or delegated under subsection (4).
+PDPA s.11(5A): Compliance with Act Without limiting subsection (5), an organisation is deemed to have satisfied that subsection if the organisation makes available the business contact information of any individual mentioned in subsection (3) in any prescribed manner.
+PDPA s.11(6): Compliance with Act The designation of an individual by an organisation under subsection (3) does not relieve the organisation of any of its obligations under this Act. Policies and practices
+PDPA s.12(0): Policies and practices An organisation must — (a) develop and implement policies and practices that are necessary for the organisation to meet the obligations of the organisation under this Act; (b) develop a process to receive and respond to complaints that may arise with respect to the application of this Act; (c) communicate to its staff information about the organisation’s policies and practices mentioned in paragraph (a); and (d) make information available on request about — (i) the policies and practices mentioned in paragraph (a); and (ii) the complaint process mentioned in paragraph (b).
+"""
+
+# Suggestion: In the prompt, set N between 8 and 32.
