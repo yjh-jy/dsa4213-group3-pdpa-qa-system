@@ -4,23 +4,25 @@
 """
 dense_indexer.py — Build dense embedding index for PDPA corpus
 - Reads:  data/corpus/corpus_subsection_v1.jsonl
-- Writes: data/dense/pdpa_v1/{embeddings.npz, meta.json, sections.map.json, snapshot.txt}
+- Writes: data/dense/pdpa_v1/{embeddings.npz, meta.json, sections.map.json}
 """
 
-import hashlib, json, time
+import hashlib
+import json
+import time
 from pathlib import Path
-from typing import List, Dict, Tuple
+from typing import Dict, List, Tuple
+
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
-# --- Paths (auto) ---
-ROOT = Path(__file__).resolve().parents[1]      # repo root (go up one level from dense_retrieval/)
-CORPUS = ROOT / "data" / "corpus" / "corpus_subsection_v1.jsonl"
-OUTDIR = Path(__file__).resolve().parents[0] / "data" / "dense" / "pdpa_v1"  # dense_retrieval/data/dense/pdpa_v1
-OUTDIR.mkdir(parents=True, exist_ok=True)
+# Configuration
+MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"  # 384-dim embeddings
 
-# --- Model configuration ---
-MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"  # 384-dim
+# Paths
+ROOT = Path(__file__).resolve().parents[1]  # repo root (go up one level from dense_retrieval/)
+CORPUS = ROOT / "data" / "corpus" / "corpus_subsection_v1.jsonl"
+OUTDIR = Path(__file__).resolve().parents[0] / "data" / "dense" / "pdpa_v1"
 
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
@@ -93,18 +95,31 @@ def build_index(corpus_path: Path) -> Tuple[Dict, Dict]:
     return {"dense": dense_blob, "meta": meta}, sections_map
 
 def main():
+    """Build dense embedding index for PDPA corpus."""
     if not CORPUS.exists():
         raise SystemExit(f"Corpus not found at {CORPUS}")
+    
+    # Ensure output directory exists
+    OUTDIR.mkdir(parents=True, exist_ok=True)
+    
+    # Build index
     artifacts, sections_map = build_index(CORPUS)
+    
+    # Save artifacts
     np.savez_compressed(OUTDIR / "embeddings.npz", **artifacts["dense"])
-    (OUTDIR / "meta.json").write_text(json.dumps(artifacts["meta"], ensure_ascii=False, indent=2), encoding="utf-8")
-    (OUTDIR / "sections.map.json").write_text(json.dumps(sections_map, ensure_ascii=False, indent=2), encoding="utf-8")
-    snap = artifacts["meta"]["version"] + "_" + artifacts["meta"]["corpus_sha256"][:6]
-    (OUTDIR / "snapshot.txt").write_text(snap, encoding="utf-8")
-    print(f" Dense index built: {artifacts['meta']['n_docs']} chunks")
-    print(f" Embedding dimension: {artifacts['meta']['embedding_dim']}")
-    print(f" Saved to: {OUTDIR}")
-    print(f" Snapshot: {snap}")
+    (OUTDIR / "meta.json").write_text(
+        json.dumps(artifacts["meta"], ensure_ascii=False, indent=2), 
+        encoding="utf-8"
+    )
+    (OUTDIR / "sections.map.json").write_text(
+        json.dumps(sections_map, ensure_ascii=False, indent=2), 
+        encoding="utf-8"
+    )
+    
+    # Print summary
+    print(f"Dense index built: {artifacts['meta']['n_docs']} chunks")
+    print(f"Embedding dimension: {artifacts['meta']['embedding_dim']}")
+    print(f"Saved to: {OUTDIR}")
 
 if __name__ == "__main__":
     main()

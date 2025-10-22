@@ -9,12 +9,13 @@ evaluate_dense_retrieval.py — Comprehensive evaluation of dense retrieval syst
 """
 
 import json
-import time
 import statistics
-from pathlib import Path
-from typing import List, Dict, Set, Tuple
-import numpy as np
+import time
 from collections import defaultdict
+from pathlib import Path
+from typing import Dict, List, Set
+
+import numpy as np
 
 from dense_retriever import DenseRetriever
 
@@ -27,11 +28,22 @@ class RetrievalEvaluator:
         
     def _load_qa_dataset(self) -> List[Dict]:
         """Load QA dataset from JSONL file."""
+        if not self.qa_dataset_path.exists():
+            raise FileNotFoundError(f"QA dataset not found at {self.qa_dataset_path}")
+        
         qa_data = []
         with self.qa_dataset_path.open("r", encoding="utf-8") as f:
             for line in f:
                 if line.strip():
-                    qa_data.append(json.loads(line))
+                    try:
+                        qa_data.append(json.loads(line))
+                    except json.JSONDecodeError as e:
+                        print(f"Warning: Skipping invalid JSON line: {e}")
+                        continue
+        
+        if not qa_data:
+            raise ValueError("No valid QA pairs found in dataset")
+        
         print(f"Loaded {len(qa_data)} QA pairs from {self.qa_dataset_path}")
         return qa_data
     

@@ -11,7 +11,8 @@ dense_retriever.py — Dense retrieval system for PDPA corpus
 import json
 import time
 from pathlib import Path
-from typing import List, Dict, Tuple, Optional
+from typing import Dict, List, Optional
+
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -46,11 +47,15 @@ class DenseRetriever:
         
         # Load metadata
         meta_path = self.index_dir / "meta.json"
+        if not meta_path.exists():
+            raise FileNotFoundError(f"Metadata file not found at {meta_path}")
         with meta_path.open("r", encoding="utf-8") as f:
             self.meta = json.load(f)
         
         # Load sections mapping
         sections_path = self.index_dir / "sections.map.json"
+        if not sections_path.exists():
+            raise FileNotFoundError(f"Sections mapping not found at {sections_path}")
         with sections_path.open("r", encoding="utf-8") as f:
             self.sections_map = json.load(f)
         
@@ -63,7 +68,7 @@ class DenseRetriever:
         """Encode a single query into embedding vector."""
         return self.model.encode([query], normalize_embeddings=True).astype(np.float32)
     
-    def search(self, query: str, top_k: int = 10) -> List[Dict]:
+    def search(self, query: str, top_k: int = 10) -> Dict:
         """
         Search for relevant chunks using dense retrieval.
         
@@ -72,7 +77,7 @@ class DenseRetriever:
             top_k: Number of results to return
             
         Returns:
-            List of results with chunk_id, score, text, and metadata
+            Dict containing results list and search metadata
         """
         start_time = time.time()
         
