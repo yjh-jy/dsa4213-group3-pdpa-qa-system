@@ -15,17 +15,26 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 import numpy as np
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
 
 # Paths
-ROOT = Path(__file__).resolve().parents[0]  # repo root if script is at top-level
+ROOT = Path(__file__).resolve().parents[1]  
 DATA = ROOT / "data"
 CORPUS = DATA / "corpus" / "corpus_subsection_v1.jsonl"
 OUTDIR = DATA / "bm25" / "pdpa_v1"
 
-def simple_tokenize(text: str) -> List[str]:
+nltk.download('stopwords', quiet=True)
+STOPWORDS = set(stopwords.words('english'))
+STEMMER = PorterStemmer()
+
+def simple_tokenize(text):
     text = text.lower()
-    text = re.sub(r"[^\w\s]", " ", text)
-    return [t for t in text.split() if t]
+    text = re.sub(r"[^a-z0-9\s]", " ", text)  # keep alphanumeric
+    toks = [t for t in text.split() if t and t not in STOPWORDS]
+    toks = [STEMMER.stem(t) for t in toks]  
+    return toks
 
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
