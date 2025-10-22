@@ -4,20 +4,23 @@
 """
 bm25_indexer.py — Build BM25 index for PDPA corpus
 - Reads:  data/corpus/corpus_subsection_v1.jsonl
-- Writes: data/bm25/pdpa_v1/{bm25_index.npz, meta.json, sections.map.json, snapshot.txt}
+- Writes: data/bm25/pdpa_v1/{bm25_index.npz, meta.json, sections.map.json}
 """
 
-import hashlib, json, re, time
+import hashlib
+import json
+import re
+import time
 from pathlib import Path
-from typing import List, Dict, Tuple
+from typing import Dict, List, Tuple
+
 import numpy as np
 
-# --- Paths (auto) ---
-ROOT = Path(__file__).resolve().parents[0]      # repo root if script is at top-level
+# Paths
+ROOT = Path(__file__).resolve().parents[0]  # repo root if script is at top-level
 DATA = ROOT / "data"
 CORPUS = DATA / "corpus" / "corpus_subsection_v1.jsonl"
 OUTDIR = DATA / "bm25" / "pdpa_v1"
-OUTDIR.mkdir(parents=True, exist_ok=True)
 
 def simple_tokenize(text: str) -> List[str]:
     text = text.lower()
@@ -83,17 +86,30 @@ def build_index(corpus_path: Path) -> Tuple[Dict, Dict]:
     return {"bm25": bm25_blob, "meta": meta}, sections_map
 
 def main():
+    """Build BM25 index for PDPA corpus."""
     if not CORPUS.exists():
         raise SystemExit(f"Corpus not found at {CORPUS}")
+    
+    # Ensure output directory exists
+    OUTDIR.mkdir(parents=True, exist_ok=True)
+    
+    # Build index
     artifacts, sections_map = build_index(CORPUS)
+    
+    # Save artifacts
     np.savez_compressed(OUTDIR / "bm25_index.npz", **artifacts["bm25"])
-    (OUTDIR / "meta.json").write_text(json.dumps(artifacts["meta"], ensure_ascii=False, indent=2), encoding="utf-8")
-    (OUTDIR / "sections.map.json").write_text(json.dumps(sections_map, ensure_ascii=False, indent=2), encoding="utf-8")
-    snap = artifacts["meta"]["version"] + "_" + artifacts["meta"]["corpus_sha256"][:6]
-    (OUTDIR / "snapshot.txt").write_text(snap, encoding="utf-8")
-    print(f" BM25 index built: {artifacts['meta']['n_docs']} chunks")
-    print(f" Saved to: {OUTDIR}")
-    print(f" Snapshot: {snap}")
+    (OUTDIR / "meta.json").write_text(
+        json.dumps(artifacts["meta"], ensure_ascii=False, indent=2), 
+        encoding="utf-8"
+    )
+    (OUTDIR / "sections.map.json").write_text(
+        json.dumps(sections_map, ensure_ascii=False, indent=2), 
+        encoding="utf-8"
+    )
+    
+    # Print summary
+    print(f"BM25 index built: {artifacts['meta']['n_docs']} chunks")
+    print(f"Saved to: {OUTDIR}")
 
 if __name__ == "__main__":
     main()

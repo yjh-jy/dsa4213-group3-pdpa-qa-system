@@ -1,0 +1,27 @@
+{
+  "dataset": "pdpa_qa_500",
+  "version": "1.0.0",
+  "global_seed": 424242,
+  "model": "gpt-5-thinking",
+  "decoding": {
+    "temperature": 0.2,
+    "top_p": 0.9,
+    "max_tokens": 450
+  },
+  "quotas": {
+    "1": 20,
+    "2": 20,
+    "3": 24,
+    "4": 48,
+    "5": 22,
+    "6": 39,
+    "9": 207,
+    "10": 120
+  },
+  "qa_type_mix": {
+    "pure-definitive": 0.55,
+    "definitive-with-conditions": 0.25,
+    "scenario-ambiguous": 0.15,
+    "pure-abstain": 0.05
+  }
+}

@@ -1,0 +1,35 @@
+# PDPA Part 5 — Smart batches for ChatGPT (v3 prompt)
+
+---
+PART: 5
+SECTIONS INCLUDED: PDPA s.21(1), PDPA s.21(2), PDPA s.21(3), PDPA s.21(3A), PDPA s.21(4), PDPA s.21(5), PDPA s.21(6), PDPA s.21(7), PDPA s.22(1)
+TEXT EXCERPTS:
+"""
+PDPA s.21(1): Access to personal data Subject to subsections (2), (3) and (4), on request of an individual, an organisation must, as soon as reasonably possible, provide the individual with — (a) personal data about the individual that is in the possession or under the control of the organisation; and (b) information about the ways in which the personal data mentioned in paragraph (a) has been or may have been used or disclosed by the organisation within a year before the date of the request.
+PDPA s.21(2): Access to personal data An organisation is not required to provide an individual with the individual’s personal data or other information under subsection (1) in respect of the matters specified in the Fifth Schedule.
+PDPA s.21(3): Access to personal data Subject to subsection (3A), an organisation must not provide an individual with the individual’s personal data or other information under subsection (1) if the provision of that personal data or other information (as the case may be) could reasonably be expected to — (a) threaten the safety or physical or mental health of an individual other than the individual who made the request; (b) cause immediate or grave harm to the safety or to the physical or mental health of the individual who made the request; (c) reveal personal data about another individual; (d) reveal the identity of an individual who has provided personal data about another individual and the individual providing the personal data does not consent to the disclosure of his or her identity; or (e) be contrary to the national interest.
+PDPA s.21(3A): Access to personal data Subsection (3)(c) and (d) does not apply to any user activity data about, or any user provided data from, the individual who made the request despite such data containing personal data about another individual.
+PDPA s.21(4): Access to personal data An organisation must not inform any individual under subsection (1)(b) that the organisation has disclosed personal data about the individual to a prescribed law enforcement agency if the disclosure was made under this Act or any other written law without the individual’s consent.
+PDPA s.21(5): Access to personal data If an organisation is able to provide the individual with the individual’s personal data and other information requested under subsection (1) without the personal data or other information excluded under subsections (2), (3) and (4), the organisation must provide the individual with access to the personal data and other information without the personal data or other information excluded under subsections (2), (3) and (4).
+PDPA s.21(6): Access to personal data Where — (a) an individual makes a request under subsection (1) to an organisation on or after 1 February 2021; and (b) the organisation, by reason of subsection (2) or (3), does not provide an individual with the individual’s personal data or other information requested under subsection (1), the organisation must, within the prescribed time and in accordance with the prescribed requirements, notify the individual of the rejection.
+PDPA s.21(7): Access to personal data Where — (a) an individual makes a request under subsection (1) to an organisation on or after 1 February 2021; and (b) the organisation provides the individual, in accordance with subsection (5), with the individual’s personal data or other information requested under subsection (1), the organisation must notify the individual of the exclusion, under subsection (2) or (3), of any of the personal data or other information so requested. Correction of personal data
+PDPA s.22(1): Correction of personal data An individual may request an organisation to correct an error or omission in the personal data about the individual that is in the possession or under the control of the organisation.
+"""
+
+# Suggestion: In the prompt, set N between 9 and 36.
+---
+PART: 5
+SECTIONS INCLUDED: PDPA s.22(2), PDPA s.22(3), PDPA s.22(4), PDPA s.22(5), PDPA s.22(6), PDPA s.22(7), PDPA s.22A(1), PDPA s.22A(2)
+TEXT EXCERPTS:
+"""
+PDPA s.22(2): Correction of personal data Unless the organisation is satisfied on reasonable grounds that a correction should not be made, the organisation must — (a) correct the personal data as soon as practicable; and (b) subject to subsection (3), send the corrected personal data to every other organisation to which the personal data was disclosed by the organisation within a year before the date the correction was made, unless that other organisation does not need the corrected personal data for any legal or business purpose.
+PDPA s.22(3): Correction of personal data An organisation (not being a credit bureau) may, if the individual consents, send the corrected personal data only to specific organisations to which the personal data was disclosed by the organisation within a year before the date the correction was made.
+PDPA s.22(4): Correction of personal data When an organisation is notified under subsection (2)(b) or (3) of a correction of personal data, the organisation must correct the personal data in its possession or under its control unless the organisation is satisfied on reasonable grounds that the correction should not be made.
+PDPA s.22(5): Correction of personal data If no correction is made under subsection (2)(a) or (4), the organisation must annotate the personal data in its possession or under its control with the correction that was requested but not made.
+PDPA s.22(6): Correction of personal data Nothing in this section requires an organisation to correct or otherwise alter an opinion, including a professional or an expert opinion.
+PDPA s.22(7): Correction of personal data An organisation is not required to comply with this section in respect of the matters specified in the Sixth Schedule. Preservation of copies of personal data
+PDPA s.22A(1): Preservation of copies of personal data Where — (a) an individual, on or after 1 February 2021, makes a request under section 21(1)(a) to an organisation to provide personal data about the individual that is in the possession or under the control of the organisation; and (b) the organisation refuses to provide that personal data, the organisation must preserve, for not less than the prescribed period, a copy of the personal data concerned.
+PDPA s.22A(2): Preservation of copies of personal data The organisation must ensure that the copy of the personal data it preserves for the purposes of subsection (1) is a complete and accurate copy of the personal data concerned.
+"""
+
+# Suggestion: In the prompt, set N between 8 and 32.
