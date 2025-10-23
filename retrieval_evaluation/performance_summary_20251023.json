@@ -1,5 +1,5 @@
 {
-  "evaluation_date": "2025-10-23 08:23:31",
+  "evaluation_date": "2025-10-23 08:44:57",
   "total_queries": 500,
   "performance_metrics": {
     "Dense": {
@@ -16,7 +16,7 @@
       "precision@10": 0.0934,
       "ndcg@10": 0.6761,
       "mrr": 0.6128,
-      "search_time_ms": 15.6088
+      "search_time_ms": 14.2522
     },
     "BM25": {
       "recall@1": 0.4767,
@@ -32,23 +32,23 @@
       "precision@10": 0.0896,
       "ndcg@10": 0.6687,
       "mrr": 0.6126,
-      "search_time_ms": 0.3227
+      "search_time_ms": 0.3095
     },
     "Hybrid": {
-      "recall@1": 0.5527,
-      "precision@1": 0.57,
-      "ndcg@1": 0.57,
+      "recall@1": 0.5417,
+      "precision@1": 0.558,
+      "ndcg@1": 0.558,
       "recall@3": 0.7923,
       "precision@3": 0.2753,
-      "ndcg@3": 0.6993,
-      "recall@5": 0.8527,
-      "precision@5": 0.1788,
-      "ndcg@5": 0.7244,
-      "recall@10": 0.9217,
-      "precision@10": 0.0972,
-      "ndcg@10": 0.7474,
-      "mrr": 0.6961,
-      "search_time_ms": 14.0846
+      "ndcg@3": 0.6947,
+      "recall@5": 0.8507,
+      "precision@5": 0.1784,
+      "ndcg@5": 0.7189,
+      "recall@10": 0.9197,
+      "precision@10": 0.097,
+      "ndcg@10": 0.742,
+      "mrr": 0.6891,
+      "search_time_ms": 14.3471
     }
   }
 }

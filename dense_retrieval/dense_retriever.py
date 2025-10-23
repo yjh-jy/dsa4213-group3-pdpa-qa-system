@@ -22,32 +22,75 @@ from torch.utils.data import DataLoader
 from sklearn.metrics.pairwise import cosine_similarity
 
 class DenseRetriever:
-    def __init__(self, index_dir: Optional[Path] = None, model_name: str = "sentence-transformers/all-mpnet-base-v2"):
-        """Initialize dense retriever with pre-built index or for training.
+    def __init__(self, model_name: str = "sentence-transformers/all-mpnet-base-v2"):
+        """Initialize dense retriever with fine-tuned model.
         
         Args:
-            index_dir: Directory containing pre-built index (optional for training mode)
-            model_name: Model name for training or inference
+            model_name: Model name for inference (will use fine-tuned model if available)
         """
-        if index_dir is None:
-            index_dir = Path(__file__).resolve().parents[0] / "indexer_results" / "pdpa_v1"
-        
-        self.index_dir = Path(index_dir)
         self.model_name = model_name
-        self.model = None
-        self.embeddings = None
-        self.chunk_ids = None
-        self.texts = None
-        self.sections_map = None
-        self.meta = None
         self.device = self._get_device()
         
-        # Try to load index, but don't fail if not available (training mode)
-        try:
-            self._load_index()
-        except FileNotFoundError as e:
-            print(f"Index not found: {e}. Running in training mode.")
+        # Check for fine-tuned model first
+        fine_tuned_path = Path(__file__).resolve().parents[0] / "fine_tuned_model"
+        if fine_tuned_path.exists():
+            print(f"Loading fine-tuned model from: {fine_tuned_path}")
+            self.model = SentenceTransformer(str(fine_tuned_path), device=self.device)
+        else:
+            print(f"Fine-tuned model not found, using base model: {self.model_name}")
             self.model = SentenceTransformer(self.model_name, device=self.device)
+        
+        print(f"Using device: {self.device}")
+        
+        # Load corpus data
+        self._load_corpus()
+        
+        # Pre-compute corpus embeddings for efficiency
+        self._precompute_embeddings()
+    
+    def _load_corpus(self):
+        """Load corpus data for dynamic embedding computation."""
+        corpus_path = Path(__file__).resolve().parents[1] / "data" / "corpus" / "corpus_subsection_v1.jsonl"
+        
+        if not corpus_path.exists():
+            raise FileNotFoundError(f"Corpus not found at {corpus_path}")
+        
+        self.chunk_ids = []
+        self.texts = []
+        self.sections_map = {}
+        
+        with corpus_path.open("r", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    chunk = json.loads(line)
+                    chunk_id = chunk["chunk_id"]
+                    text = chunk["text"]
+                    
+                    self.chunk_ids.append(chunk_id)
+                    self.texts.append(text)
+                    
+                    # Store section metadata
+                    self.sections_map[chunk_id] = {
+                        "canonical_citation": chunk.get("canonical_citation", ""),
+                        "doc_id": chunk.get("doc_id", ""),
+                        "part": chunk.get("part", ""),
+                        "section": chunk.get("section", ""),
+                        "subsection": chunk.get("subsection", ""),
+                        "text": text
+                    }
+        
+        print(f"Loaded corpus: {len(self.chunk_ids)} chunks")
+    
+    def _precompute_embeddings(self):
+        """Pre-compute corpus embeddings using the fine-tuned model for efficiency."""
+        print("Pre-computing corpus embeddings...")
+        self.corpus_embeddings = self.model.encode(
+            self.texts, 
+            normalize_embeddings=True, 
+            show_progress_bar=True,
+            batch_size=32
+        )
+        print(f"Pre-computed embeddings: {self.corpus_embeddings.shape}")
     
     def _get_device(self) -> str:
         """Get the best available device (MPS > CUDA > CPU)."""
@@ -58,50 +101,7 @@ class DenseRetriever:
         else:
             return "cpu"
     
-    def _load_index(self):
-        """Load the pre-built dense index and metadata."""
-        # Load embeddings and data
-        embeddings_path = self.index_dir / "embeddings.npz"
-        if not embeddings_path.exists():
-            raise FileNotFoundError(f"Dense index not found at {embeddings_path}")
-        
-        data = np.load(embeddings_path, allow_pickle=True)
-        self.embeddings = data["embeddings"]
-        self.chunk_ids = data["chunk_ids"]
-        self.texts = data["texts"]
-        
-        # Load metadata
-        meta_path = self.index_dir / "meta.json"
-        if not meta_path.exists():
-            raise FileNotFoundError(f"Metadata file not found at {meta_path}")
-        with meta_path.open("r", encoding="utf-8") as f:
-            self.meta = json.load(f)
-        
-        # Load sections mapping
-        sections_path = self.index_dir / "sections.map.json"
-        if not sections_path.exists():
-            raise FileNotFoundError(f"Sections mapping not found at {sections_path}")
-        with sections_path.open("r", encoding="utf-8") as f:
-            self.sections_map = json.load(f)
-        
-        # Initialize model
-        model_name = self.meta.get("model", self.model_name)
-        
-        # Check if it's a local path relative to this directory
-        if not model_name.startswith("sentence-transformers/") and not model_name.startswith("/"):
-            # Try relative to the dense_retrieval directory (same level as indexer_results)
-            local_model_path = self.index_dir.parent.parent / model_name
-            if local_model_path.exists():
-                model_name = str(local_model_path)
-                print(f"Loading fine-tuned model from: {model_name}")
-            else:
-                print(f"Fine-tuned model not found at {local_model_path}, using default: {self.model_name}")
-                model_name = self.model_name
-        
-        self.model = SentenceTransformer(model_name, device=self.device)
-        
-        print(f"Loaded dense index: {len(self.chunk_ids)} chunks, {self.meta['embedding_dim']}D embeddings")
-        print(f"Using device: {self.device}")
+
     
     def encode_query(self, query: str) -> np.ndarray:
         """Encode a single query into embedding vector."""
@@ -120,11 +120,11 @@ class DenseRetriever:
         """
         start_time = time.time()
         
-        # Encode query
+        # Encode query using fine-tuned model
         query_embedding = self.encode_query(query)
         
-        # Compute similarities
-        similarities = cosine_similarity(query_embedding, self.embeddings)[0]
+        # Use pre-computed corpus embeddings
+        similarities = cosine_similarity(query_embedding, self.corpus_embeddings)[0]
         
         # Get top-k indices
         top_indices = np.argsort(similarities)[-top_k:][::-1]
@@ -154,7 +154,7 @@ class DenseRetriever:
             "query": query,
             "total_results": len(results),
             "search_time_ms": search_time * 1000,
-            "model": self.meta["model"]
+            "model": self.model_name
         }
     
     def batch_search(self, queries: List[str], top_k: int = 10) -> List[Dict]:

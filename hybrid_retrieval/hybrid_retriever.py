@@ -20,7 +20,6 @@ from sentence_transformers import SentenceTransformer
 # --- Paths ---
 ROOT = Path(__file__).resolve().parents[1]      # repo root (go up one level from hybrid_retrieval/)
 BM25_DIR = ROOT / "bm25_retrieval" / "indexer_results" / "pdpa_v1"
-DENSE_DIR = ROOT / "dense_retrieval" / "indexer_results" / "pdpa_v1"
 OUTDIR = Path(__file__).resolve().parents[0] / "indexer_results" / "pdpa_v1"
 OUTDIR.mkdir(parents=True, exist_ok=True)
 
@@ -40,22 +39,28 @@ def load_bm25_index() -> Tuple[BM25Okapi, List[str], Dict]:
         bm25_sections = json.load(f)
     return bm25, chunk_ids, bm25_sections
 
-# --- Load dense embeddings ---
-def load_dense_index() -> Tuple[np.ndarray, List[str], Dict]:
-    dense_idx = np.load(DENSE_DIR / "embeddings.npz", allow_pickle=True)
-    embeddings = dense_idx["embeddings"]
-    chunk_ids = dense_idx["chunk_ids"]
-    with open(DENSE_DIR / "sections.map.json", "r", encoding="utf-8") as f:
-        dense_sections = json.load(f)
-    return embeddings, chunk_ids, dense_sections
+# --- Load dense retriever (using fine-tuned model) ---
+def load_dense_retriever():
+    """Load the fine-tuned dense retriever instead of static embeddings."""
+    import sys
+    sys.path.append(str(ROOT / "dense_retrieval"))
+    from dense_retriever import DenseRetriever
+    
+    # Initialize dense retriever (will automatically use fine-tuned model if available)
+    dense_retriever = DenseRetriever()
+    return dense_retriever
 
 # --- Hybrid retriever ---
 class HybridRetriever:
-    def __init__(self, bm25, bm25_chunk_ids, bm25_sections, dense_emb, dense_chunk_ids, dense_sections, 
+    def __init__(self, bm25, bm25_chunk_ids, bm25_sections, dense_retriever, 
                  alpha=ALPHA, fusion_method="linear", rrf_k=RRF_K):
         """Initialize hybrid retriever with multiple fusion methods.
         
         Args:
+            bm25: BM25 index
+            bm25_chunk_ids: BM25 chunk IDs
+            bm25_sections: BM25 sections mapping
+            dense_retriever: Fine-tuned dense retriever instance
             fusion_method: "linear" for weighted combination, "rrf" for reciprocal rank fusion
             alpha: Weight for linear combination (BM25 weight, Dense weight = 1-alpha)
             rrf_k: Constant for RRF formula
@@ -64,14 +69,11 @@ class HybridRetriever:
         self.bm25_chunk_ids = bm25_chunk_ids
         self.bm25_sections = bm25_sections
 
-        self.dense_emb = dense_emb
-        self.dense_chunk_ids = dense_chunk_ids
-        self.dense_sections = dense_sections
-
+        self.dense_retriever = dense_retriever
+        
         self.alpha = alpha
         self.fusion_method = fusion_method
         self.rrf_k = rrf_k
-        self.model = SentenceTransformer(MODEL_NAME)
 
     # --- BM25 retrieval ---
     def retrieve_bm25(self, query: str, top_k=20) -> Dict[str, float]:
@@ -105,11 +107,9 @@ class HybridRetriever:
 
     # --- Dense retrieval ---
     def retrieve_dense(self, query: str, top_k=20) -> Dict[str, float]:
-        """Retrieve using dense embeddings."""
-        query_emb = self.model.encode([query], normalize_embeddings=True)
-        scores = np.dot(self.dense_emb, query_emb.T).squeeze()
-        top_idx = np.argsort(scores)[::-1][:top_k]
-        return {str(self.dense_chunk_ids[i]): float(scores[i]) for i in top_idx}
+        """Retrieve using fine-tuned dense retriever."""
+        result = self.dense_retriever.search(query, top_k=top_k)
+        return {item["chunk_id"]: item["score"] for item in result["results"]}
 
     def retrieve_dense_ranked(self, query: str, top_k=20) -> List[Tuple[str, int]]:
         """Retrieve dense results with ranks for RRF."""
@@ -141,7 +141,7 @@ class HybridRetriever:
         top_results = sorted(combined.items(), key=lambda x: x[1], reverse=True)[:top_k]
         formatted = []
         for cid, score in top_results:
-            section_info = self.dense_sections.get(cid) or self.bm25_sections.get(cid)
+            section_info = self.bm25_sections.get(cid)
             section_id = section_info.get("section_id", "Unknown") if section_info else "Unknown"
             formatted.append((cid, score, section_id))
 
@@ -180,7 +180,7 @@ class HybridRetriever:
         
         formatted = []
         for cid, score in top_results:
-            section_info = self.dense_sections.get(cid) or self.bm25_sections.get(cid)
+            section_info = self.bm25_sections.get(cid)
             section_id = section_info.get("section_id", "Unknown") if section_info else "Unknown"
             formatted.append((cid, score, section_id))
 
@@ -197,7 +197,7 @@ class HybridRetriever:
         # Format for evaluation framework
         formatted_results = []
         for rank, (chunk_id, score, section_id) in enumerate(results, 1):
-            section_info = self.dense_sections.get(chunk_id) or self.bm25_sections.get(chunk_id, {})
+            section_info = self.bm25_sections.get(chunk_id, {})
             result = {
                 "chunk_id": chunk_id,
                 "score": float(score),
@@ -411,8 +411,8 @@ def create_hybrid_retriever(alpha=ALPHA, fusion_method=DEFAULT_FUSION, rrf_k=RRF
     """Create a HybridRetriever instance with loaded indices."""
     try:
         bm25, bm25_chunk_ids, bm25_sections = load_bm25_index()
-        dense_emb, dense_chunk_ids, dense_sections = load_dense_index()
-        return HybridRetriever(bm25, bm25_chunk_ids, bm25_sections, dense_emb, dense_chunk_ids, dense_sections, 
+        dense_retriever = load_dense_retriever()
+        return HybridRetriever(bm25, bm25_chunk_ids, bm25_sections, dense_retriever, 
                              alpha=alpha, fusion_method=fusion_method, rrf_k=rrf_k)
     except Exception as e:
         raise RuntimeError(f"Failed to initialize hybrid retriever: {e}")
