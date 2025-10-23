@@ -17,12 +17,12 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 # Configuration
-MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"  # 384-dim embeddings
+MODEL_NAME = "sentence-transformers/all-mpnet-base-v2"  # 768-dim embeddings (better performance)
 
 # Paths
 ROOT = Path(__file__).resolve().parents[1]  # repo root (go up one level from dense_retrieval/)
 CORPUS = ROOT / "data" / "corpus" / "corpus_subsection_v1.jsonl"
-OUTDIR = Path(__file__).resolve().parents[0] / "data" / "dense" / "pdpa_v1"
+OUTDIR = Path(__file__).resolve().parents[0] / "indexer_results" / "pdpa_v1"
 
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
@@ -95,15 +95,38 @@ def build_index(corpus_path: Path) -> Tuple[Dict, Dict]:
     return {"dense": dense_blob, "meta": meta}, sections_map
 
 def main():
-    """Build dense embedding index for PDPA corpus."""
+    """Build dense index for PDPA corpus."""
+    import sys
+    
+    # Check for custom model path
+    global MODEL_NAME
+    model_name = MODEL_NAME
+    if len(sys.argv) > 1:
+        custom_model_path = Path(sys.argv[1])
+        if custom_model_path.exists():
+            model_name = str(custom_model_path)
+            print(f"Using custom trained model: {model_name}")
+        else:
+            print(f"Custom model path not found: {custom_model_path}")
+            print(f"Using default model: {MODEL_NAME}")
+    
     if not CORPUS.exists():
         raise SystemExit(f"Corpus not found at {CORPUS}")
     
     # Ensure output directory exists
     OUTDIR.mkdir(parents=True, exist_ok=True)
     
-    # Build index
-    artifacts, sections_map = build_index(CORPUS)
+    # Build index with specified model
+    print(f"Building index with model: {model_name}")
+    
+    # Temporarily update the global MODEL_NAME for build_index
+    original_model = MODEL_NAME
+    MODEL_NAME = model_name
+    
+    try:
+        artifacts, sections_map = build_index(CORPUS)
+    finally:
+        MODEL_NAME = original_model
     
     # Save artifacts
     np.savez_compressed(OUTDIR / "embeddings.npz", **artifacts["dense"])
@@ -119,7 +142,13 @@ def main():
     # Print summary
     print(f"Dense index built: {artifacts['meta']['n_docs']} chunks")
     print(f"Embedding dimension: {artifacts['meta']['embedding_dim']}")
+    print(f"Model used: {artifacts['meta']['model']}")
     print(f"Saved to: {OUTDIR}")
+    
+    print("\n" + "="*60)
+    print("USAGE:")
+    print("  python3 dense_indexer.py                    # Use default model")
+    print("  python3 dense_indexer.py /path/to/model     # Use custom trained model")
 
 if __name__ == "__main__":
     main()
