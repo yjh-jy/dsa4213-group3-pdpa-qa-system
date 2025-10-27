@@ -285,11 +285,14 @@ class DenseRetriever:
         # Train the model
         print(f"Training for {epochs} epochs ({num_train_steps} steps)...")
         
+        # Set evaluation steps based on whether evaluator is available
+        eval_steps = len(train_dataloader) // 2 if evaluator else None
+        
         self.model.fit(
             train_objectives=[(train_dataloader, train_loss)],
             evaluator=evaluator,
             epochs=epochs,
-            evaluation_steps=len(train_dataloader) // 2,  # Evaluate twice per epoch
+            evaluation_steps=eval_steps,
             warmup_steps=warmup_steps,
             output_path=str(output_dir),
             save_best_model=True,
@@ -314,6 +317,122 @@ class DenseRetriever:
             print(f"   {metric}: {value:.4f}")
         
         return results
+    
+    def k_fold_cross_validation(self, 
+                               training_data_dir: Path,
+                               k_folds: int = 5,
+                               epochs: int = 3,
+                               batch_size: int = 16,
+                               learning_rate: float = 2e-5,
+                               warmup_steps: int = 100) -> Dict:
+        """
+        Perform k-fold cross-validation to evaluate model performance without data leakage.
+        
+        Args:
+            training_data_dir: Directory containing fold_1, fold_2, ..., fold_k subdirectories
+            k_folds: Number of folds to use (default: 5)
+            epochs: Number of training epochs per fold
+            batch_size: Training batch size
+            learning_rate: Learning rate for training
+            warmup_steps: Number of warmup steps
+            
+        Returns:
+            Dictionary containing average metrics across all folds
+        """
+        print(f"=== K-Fold Cross-Validation (k={k_folds}) ===")
+        
+        all_fold_results = []
+        corpus_path = training_data_dir / "corpus.jsonl"
+        
+        if not corpus_path.exists():
+            raise FileNotFoundError(f"Corpus file not found: {corpus_path}")
+        
+        for fold in range(1, k_folds + 1):
+            print(f"\n--- Fold {fold}/{k_folds} ---")
+            
+            # Paths for current fold
+            fold_dir = training_data_dir / f"fold_{fold}"
+            train_triples_path = fold_dir / "train_triples.jsonl"
+            test_queries_path = fold_dir / "test_queries.jsonl"
+            
+            if not train_triples_path.exists() or not test_queries_path.exists():
+                print(f"Skipping fold {fold}: missing data files")
+                continue
+            
+            # Create a fresh model for this fold (reset to base model)
+            print(f"Initializing fresh model for fold {fold}")
+            self.model = SentenceTransformer(self.model_name, device=self.device)
+            
+            # Create temporary output directory for this fold
+            temp_output_dir = Path(__file__).resolve().parents[0] / f"temp_fold_{fold}_model"
+            temp_output_dir.mkdir(parents=True, exist_ok=True)
+            
+            try:
+                # Fine-tune on training data for this fold
+                print(f"Training on fold {fold} data...")
+                self.fine_tune(
+                    training_data_path=train_triples_path,
+                    output_dir=temp_output_dir,
+                    test_queries_path=None,  # Don't evaluate during training
+                    corpus_path=None,
+                    epochs=epochs,
+                    batch_size=batch_size,
+                    learning_rate=learning_rate,
+                    warmup_steps=warmup_steps
+                )
+                
+                # Load the fine-tuned model for this fold
+                self.model = SentenceTransformer(str(temp_output_dir), device=self.device)
+                
+                # Reload corpus and recompute embeddings with fine-tuned model
+                self._load_corpus(corpus_path)
+                self._precompute_embeddings()
+                
+                # Evaluate on test data for this fold
+                print(f"Evaluating fold {fold}...")
+                fold_results = self.evaluate_model(test_queries_path, corpus_path)
+                all_fold_results.append(fold_results)
+                
+                print(f"Fold {fold} Results:")
+                for metric, value in fold_results.items():
+                    print(f"   {metric}: {value:.4f}")
+                
+            except Exception as e:
+                print(f"Error in fold {fold}: {e}")
+                continue
+            
+            finally:
+                # Clean up temporary model directory
+                import shutil
+                if temp_output_dir.exists():
+                    shutil.rmtree(temp_output_dir)
+        
+        if not all_fold_results:
+            raise RuntimeError("No folds completed successfully")
+        
+        # Calculate average metrics across all folds
+        print(f"\n=== K-Fold Cross-Validation Results (k={k_folds}) ===")
+        
+        # Get all metric names from first fold
+        metric_names = list(all_fold_results[0].keys())
+        average_results = {}
+        std_results = {}
+        
+        for metric in metric_names:
+            values = [fold_results[metric] for fold_results in all_fold_results]
+            average_results[metric] = np.mean(values)
+            std_results[metric] = np.std(values)
+            
+            print(f"{metric}:")
+            print(f"   Mean: {average_results[metric]:.4f}")
+            print(f"   Std:  {std_results[metric]:.4f}")
+            print(f"   Folds: {[f'{v:.4f}' for v in values]}")
+        
+        # Add summary statistics
+        average_results['_fold_count'] = len(all_fold_results)
+        average_results['_std_results'] = std_results
+        
+        return average_results
 
 def train_dense_retriever():
     """Train a dense retriever on PDPA data."""
@@ -388,6 +507,65 @@ def evaluate_trained_model():
     else:
         print("Test data not found. Please generate training data first.")
 
+def k_fold_evaluate_dense_retriever():
+    """Perform k-fold cross-validation evaluation of dense retriever."""
+    print("=== K-Fold Cross-Validation Evaluation ===")
+    
+    # Paths
+    root_dir = Path(__file__).resolve().parents[1]
+    training_data_dir = root_dir / "data" / "dense_training"
+    
+    if not training_data_dir.exists():
+        print(f"Training data directory not found: {training_data_dir}")
+        print("Please run dense_chunk_and_extract.py first to generate training data.")
+        return
+    
+    # Initialize retriever with base model (will be reset for each fold)
+    retriever = DenseRetriever(model_name="sentence-transformers/all-mpnet-base-v2")
+    
+    # Perform k-fold cross-validation
+    try:
+        results = retriever.k_fold_cross_validation(
+            training_data_dir=training_data_dir,
+            k_folds=5,
+            epochs=5,
+            batch_size=8,  # Smaller batch size for MPS
+            learning_rate=2e-5,
+            warmup_steps=100
+        )
+        
+        print(f"\n=== Final K-Fold Results ===")
+        print(f"Completed {results['_fold_count']} folds successfully")
+        
+        # Save results to file
+        results_dir = Path(__file__).resolve().parents[0] / "results"
+        results_dir.mkdir(exist_ok=True)
+        
+        import datetime
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        results_file = results_dir / f"k_fold_evaluation_{timestamp}.json"
+        
+        # Convert numpy types to regular Python types for JSON serialization
+        json_results = {}
+        for key, value in results.items():
+            if key == '_std_results':
+                json_results[key] = {k: float(v) for k, v in value.items()}
+            elif isinstance(value, (np.float64, np.float32)):
+                json_results[key] = float(value)
+            else:
+                json_results[key] = value
+        
+        with open(results_file, 'w') as f:
+            json.dump(json_results, f, indent=2)
+        
+        print(f"Results saved to: {results_file}")
+        
+        return results
+        
+    except Exception as e:
+        print(f"K-fold evaluation failed: {e}")
+        return None
+
 def demo_retriever():
     """Demo usage of dense retriever."""
     try:
@@ -415,25 +593,23 @@ def demo_retriever():
             print(f"   Text: {hit['text'][:100]}...")
 
 def main():
-    """Main function with training and evaluation options."""
-    import sys
+    """Main function for command-line usage."""
+    import argparse
     
-    if len(sys.argv) > 1:
-        if sys.argv[1] == "train":
-            train_dense_retriever()
-            return
-        elif sys.argv[1] == "evaluate":
-            evaluate_trained_model()
-            return
+    parser = argparse.ArgumentParser(description="Dense Retriever Training and Evaluation")
+    parser.add_argument("--mode", choices=["train", "evaluate", "k_fold", "demo"], 
+                       default="demo", help="Mode to run")
     
-    # Default demo
-    demo_retriever()
+    args = parser.parse_args()
     
-    print("\n" + "="*60)
-    print("USAGE:")
-    print("  python3 dense_retriever.py          # Demo retrieval")
-    print("  python3 dense_retriever.py train    # Train model on PDPA data")
-    print("  python3 dense_retriever.py evaluate # Evaluate trained model")
+    if args.mode == "train":
+        train_dense_retriever()
+    elif args.mode == "evaluate":
+        evaluate_trained_model()
+    elif args.mode == "k_fold":
+        k_fold_evaluate_dense_retriever()
+    elif args.mode == "demo":
+        demo_retriever()
 
 if __name__ == "__main__":
     main()

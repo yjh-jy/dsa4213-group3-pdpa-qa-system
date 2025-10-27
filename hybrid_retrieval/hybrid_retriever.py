@@ -407,11 +407,22 @@ class HybridHyperparameterOptimizer:
         return results
 
 # Convenience function for easy initialization
-def create_hybrid_retriever(alpha=ALPHA, fusion_method=DEFAULT_FUSION, rrf_k=RRF_K):
-    """Create a HybridRetriever instance with loaded indices."""
+def create_hybrid_retriever(alpha=ALPHA, fusion_method=DEFAULT_FUSION, rrf_k=RRF_K, dense_retriever=None):
+    """Create a HybridRetriever instance with loaded indices.
+    
+    Args:
+        alpha: Weight for linear combination
+        fusion_method: "linear" or "rrf"
+        rrf_k: RRF constant
+        dense_retriever: Pre-trained DenseRetriever instance (optional)
+    """
     try:
         bm25, bm25_chunk_ids, bm25_sections = load_bm25_index()
-        dense_retriever = load_dense_retriever()
+        
+        # Use provided dense retriever or load default one
+        if dense_retriever is None:
+            dense_retriever = load_dense_retriever()
+        
         return HybridRetriever(bm25, bm25_chunk_ids, bm25_sections, dense_retriever, 
                              alpha=alpha, fusion_method=fusion_method, rrf_k=rrf_k)
     except Exception as e:
