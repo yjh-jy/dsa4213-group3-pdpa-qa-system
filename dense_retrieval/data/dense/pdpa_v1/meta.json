@@ -1,8 +1,0 @@
-{
-  "n_docs": 315,
-  "created_at": "2025-10-22T02:25:59Z",
-  "model": "sentence-transformers/all-MiniLM-L6-v2",
-  "embedding_dim": 384,
-  "corpus_sha256": "d70c8d9d9f7233e85763ca1a79e74301c3ee7a467aa8904404995646b0e4a515",
-  "version": "pdpa_v1"
-}

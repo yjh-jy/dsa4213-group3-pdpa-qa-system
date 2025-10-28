@@ -20,10 +20,9 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 
 # Paths
-ROOT = Path(__file__).resolve().parents[1]  
-DATA = ROOT / "data"
-CORPUS = DATA / "corpus" / "corpus_subsection_v1.jsonl"
-OUTDIR = DATA / "bm25" / "pdpa_v1"
+ROOT = Path(__file__).resolve().parents[1]  # repo root (go up one level from bm25_retrieval/)
+CORPUS = ROOT / "data" / "corpus" / "corpus_subsection_v1.jsonl"
+OUTDIR = Path(__file__).resolve().parents[0] / "indexer_results" / "pdpa_v1"
 
 nltk.download('stopwords', quiet=True)
 STOPWORDS = set(stopwords.words('english'))

@@ -2,67 +2,106 @@
 # -*- coding: utf-8 -*-
 
 """
-dense_retriever.py — Dense retrieval system for PDPA corpus
+dense_retriever.py — Trainable Dense retrieval system for PDPA corpus
 - Loads pre-built dense index from dense_indexer.py
 - Provides search functionality with similarity scoring
-- Supports batch queries for evaluation
+- Supports fine-tuning with MPS acceleration
+- Implements training pipeline for sentence transformers
 """
 
 import json
 import time
+import torch
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer, InputExample, losses
+from sentence_transformers.evaluation import InformationRetrievalEvaluator
+from torch.utils.data import DataLoader
 from sklearn.metrics.pairwise import cosine_similarity
 
 class DenseRetriever:
-    def __init__(self, index_dir: Optional[Path] = None):
-        """Initialize dense retriever with pre-built index."""
-        if index_dir is None:
-            index_dir = Path(__file__).resolve().parents[0] / "data" / "dense" / "pdpa_v1"
+    def __init__(self, model_name: str = "sentence-transformers/all-mpnet-base-v2"):
+        """Initialize dense retriever with fine-tuned model.
         
-        self.index_dir = Path(index_dir)
-        self.model = None
-        self.embeddings = None
-        self.chunk_ids = None
-        self.texts = None
-        self.sections_map = None
-        self.meta = None
+        Args:
+            model_name: Model name for inference (will use fine-tuned model if available)
+        """
+        self.model_name = model_name
+        self.device = self._get_device()
         
-        self._load_index()
+        # Check for fine-tuned model first
+        fine_tuned_path = Path(__file__).resolve().parents[0] / "fine_tuned_model"
+        if fine_tuned_path.exists():
+            print(f"Loading fine-tuned model from: {fine_tuned_path}")
+            self.model = SentenceTransformer(str(fine_tuned_path), device=self.device)
+        else:
+            print(f"Fine-tuned model not found, using base model: {self.model_name}")
+            self.model = SentenceTransformer(self.model_name, device=self.device)
+        
+        print(f"Using device: {self.device}")
+        
+        # Load corpus data
+        self._load_corpus()
+        
+        # Pre-compute corpus embeddings for efficiency
+        self._precompute_embeddings()
     
-    def _load_index(self):
-        """Load the pre-built dense index and metadata."""
-        # Load embeddings and data
-        embeddings_path = self.index_dir / "embeddings.npz"
-        if not embeddings_path.exists():
-            raise FileNotFoundError(f"Dense index not found at {embeddings_path}")
+    def _load_corpus(self):
+        """Load corpus data for dynamic embedding computation."""
+        corpus_path = Path(__file__).resolve().parents[1] / "data" / "corpus" / "corpus_subsection_v1.jsonl"
         
-        data = np.load(embeddings_path, allow_pickle=True)
-        self.embeddings = data["embeddings"]
-        self.chunk_ids = data["chunk_ids"]
-        self.texts = data["texts"]
+        if not corpus_path.exists():
+            raise FileNotFoundError(f"Corpus not found at {corpus_path}")
         
-        # Load metadata
-        meta_path = self.index_dir / "meta.json"
-        if not meta_path.exists():
-            raise FileNotFoundError(f"Metadata file not found at {meta_path}")
-        with meta_path.open("r", encoding="utf-8") as f:
-            self.meta = json.load(f)
+        self.chunk_ids = []
+        self.texts = []
+        self.sections_map = {}
         
-        # Load sections mapping
-        sections_path = self.index_dir / "sections.map.json"
-        if not sections_path.exists():
-            raise FileNotFoundError(f"Sections mapping not found at {sections_path}")
-        with sections_path.open("r", encoding="utf-8") as f:
-            self.sections_map = json.load(f)
+        with corpus_path.open("r", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    chunk = json.loads(line)
+                    chunk_id = chunk["chunk_id"]
+                    text = chunk["text"]
+                    
+                    self.chunk_ids.append(chunk_id)
+                    self.texts.append(text)
+                    
+                    # Store section metadata
+                    self.sections_map[chunk_id] = {
+                        "canonical_citation": chunk.get("canonical_citation", ""),
+                        "doc_id": chunk.get("doc_id", ""),
+                        "part": chunk.get("part", ""),
+                        "section": chunk.get("section", ""),
+                        "subsection": chunk.get("subsection", ""),
+                        "text": text
+                    }
         
-        # Initialize model
-        self.model = SentenceTransformer(self.meta["model"])
-        
-        print(f"Loaded dense index: {len(self.chunk_ids)} chunks, {self.meta['embedding_dim']}D embeddings")
+        print(f"Loaded corpus: {len(self.chunk_ids)} chunks")
+    
+    def _precompute_embeddings(self):
+        """Pre-compute corpus embeddings using the fine-tuned model for efficiency."""
+        print("Pre-computing corpus embeddings...")
+        self.corpus_embeddings = self.model.encode(
+            self.texts, 
+            normalize_embeddings=True, 
+            show_progress_bar=True,
+            batch_size=32
+        )
+        print(f"Pre-computed embeddings: {self.corpus_embeddings.shape}")
+    
+    def _get_device(self) -> str:
+        """Get the best available device (MPS > CUDA > CPU)."""
+        if torch.backends.mps.is_available():
+            return "mps"
+        elif torch.cuda.is_available():
+            return "cuda"
+        else:
+            return "cpu"
+    
+
     
     def encode_query(self, query: str) -> np.ndarray:
         """Encode a single query into embedding vector."""
@@ -81,11 +120,11 @@ class DenseRetriever:
         """
         start_time = time.time()
         
-        # Encode query
+        # Encode query using fine-tuned model
         query_embedding = self.encode_query(query)
         
-        # Compute similarities
-        similarities = cosine_similarity(query_embedding, self.embeddings)[0]
+        # Use pre-computed corpus embeddings
+        similarities = cosine_similarity(query_embedding, self.corpus_embeddings)[0]
         
         # Get top-k indices
         top_indices = np.argsort(similarities)[-top_k:][::-1]
@@ -115,7 +154,7 @@ class DenseRetriever:
             "query": query,
             "total_results": len(results),
             "search_time_ms": search_time * 1000,
-            "model": self.meta["model"]
+            "model": self.model_name
         }
     
     def batch_search(self, queries: List[str], top_k: int = 10) -> List[Dict]:
@@ -134,10 +173,406 @@ class DenseRetriever:
             result = self.search(query, top_k)
             results.append(result)
         return results
+    
+    def load_training_data(self, training_data_path: Path) -> List[InputExample]:
+        """Load training triples and convert to InputExample format."""
+        examples = []
+        
+        with training_data_path.open("r", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    triple = json.loads(line)
+                    
+                    # Create InputExample for contrastive learning
+                    example = InputExample(
+                        texts=[triple["query"], triple["pos_text"], triple["neg_text"]],
+                        label=1.0  # Positive similarity for query-positive pair
+                    )
+                    examples.append(example)
+        
+        print(f"Loaded {len(examples)} training examples from {training_data_path}")
+        return examples
+    
+    def create_evaluation_data(self, test_queries_path: Path, corpus_path: Path) -> InformationRetrievalEvaluator:
+        """Create evaluation data for training monitoring."""
+        # Load test queries
+        queries = {}
+        relevant_docs = {}
+        
+        with test_queries_path.open("r", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    query_data = json.loads(line)
+                    qid = query_data["qid"]
+                    queries[qid] = query_data["query"]
+                    relevant_docs[qid] = set(query_data["pos_ids"])
+        
+        # Load corpus
+        corpus = {}
+        with corpus_path.open("r", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    chunk = json.loads(line)
+                    corpus[chunk["chunk_id"]] = chunk["text"]
+        
+        # Create evaluator
+        evaluator = InformationRetrievalEvaluator(
+            queries=queries,
+            corpus=corpus,
+            relevant_docs=relevant_docs,
+            name="pdpa_eval"
+        )
+        
+        return evaluator
+    
+    def fine_tune(self, 
+                  training_data_path: Path,
+                  output_dir: Path,
+                  test_queries_path: Optional[Path] = None,
+                  corpus_path: Optional[Path] = None,
+                  epochs: int = 3,
+                  batch_size: int = 16,
+                  learning_rate: float = 2e-5,
+                  warmup_steps: int = 100) -> str:
+        """
+        Fine-tune the dense retriever on PDPA data.
+        
+        Args:
+            training_data_path: Path to training triples JSONL file
+            output_dir: Directory to save the fine-tuned model
+            test_queries_path: Path to test queries for evaluation (optional)
+            corpus_path: Path to corpus for evaluation (optional)
+            epochs: Number of training epochs
+            batch_size: Training batch size
+            learning_rate: Learning rate for training
+            warmup_steps: Number of warmup steps
+            
+        Returns:
+            Path to the saved fine-tuned model
+        """
+        print(f"Starting fine-tuning on device: {self.device}")
+        print(f"Training parameters:")
+        print(f"   - Epochs: {epochs}")
+        print(f"   - Batch size: {batch_size}")
+        print(f"   - Learning rate: {learning_rate}")
+        print(f"   - Warmup steps: {warmup_steps}")
+        
+        # Load training data
+        train_examples = self.load_training_data(training_data_path)
+        
+        # Create data loader
+        train_dataloader = DataLoader(train_examples, shuffle=True, batch_size=batch_size)
+        
+        # Define loss function (Multiple Negatives Ranking Loss)
+        train_loss = losses.MultipleNegativesRankingLoss(self.model)
+        
+        # Create evaluator if test data is provided
+        evaluator = None
+        if test_queries_path and corpus_path and test_queries_path.exists() and corpus_path.exists():
+            try:
+                evaluator = self.create_evaluation_data(test_queries_path, corpus_path)
+                print(f"Created evaluator with test data")
+            except Exception as e:
+                print(f"Could not create evaluator: {e}")
+        
+        # Set up output directory
+        output_dir = Path(output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Configure training
+        num_train_steps = len(train_dataloader) * epochs
+        
+        # Train the model
+        print(f"Training for {epochs} epochs ({num_train_steps} steps)...")
+        
+        # Set evaluation steps based on whether evaluator is available
+        eval_steps = len(train_dataloader) // 2 if evaluator else None
+        
+        self.model.fit(
+            train_objectives=[(train_dataloader, train_loss)],
+            evaluator=evaluator,
+            epochs=epochs,
+            evaluation_steps=eval_steps,
+            warmup_steps=warmup_steps,
+            output_path=str(output_dir),
+            save_best_model=True,
+            optimizer_params={'lr': learning_rate},
+            show_progress_bar=True
+        )
+        
+        print(f"Fine-tuning completed!")
+        print(f"Model saved to: {output_dir}")
+        
+        return str(output_dir)
+    
+    def evaluate_model(self, test_queries_path: Path, corpus_path: Path) -> Dict:
+        """Evaluate the current model on test data."""
+        evaluator = self.create_evaluation_data(test_queries_path, corpus_path)
+        
+        print("Evaluating model...")
+        results = evaluator(self.model)
+        
+        print("Evaluation Results:")
+        for metric, value in results.items():
+            print(f"   {metric}: {value:.4f}")
+        
+        return results
+    
+    def k_fold_cross_validation(self, 
+                               training_data_dir: Path,
+                               k_folds: int = 5,
+                               epochs: int = 3,
+                               batch_size: int = 16,
+                               learning_rate: float = 2e-5,
+                               warmup_steps: int = 100) -> Dict:
+        """
+        Perform k-fold cross-validation to evaluate model performance without data leakage.
+        
+        Args:
+            training_data_dir: Directory containing fold_1, fold_2, ..., fold_k subdirectories
+            k_folds: Number of folds to use (default: 5)
+            epochs: Number of training epochs per fold
+            batch_size: Training batch size
+            learning_rate: Learning rate for training
+            warmup_steps: Number of warmup steps
+            
+        Returns:
+            Dictionary containing average metrics across all folds
+        """
+        print(f"=== K-Fold Cross-Validation (k={k_folds}) ===")
+        
+        all_fold_results = []
+        corpus_path = training_data_dir / "corpus.jsonl"
+        
+        if not corpus_path.exists():
+            raise FileNotFoundError(f"Corpus file not found: {corpus_path}")
+        
+        for fold in range(1, k_folds + 1):
+            print(f"\n--- Fold {fold}/{k_folds} ---")
+            
+            # Paths for current fold
+            fold_dir = training_data_dir / f"fold_{fold}"
+            train_triples_path = fold_dir / "train_triples.jsonl"
+            test_queries_path = fold_dir / "test_queries.jsonl"
+            
+            if not train_triples_path.exists() or not test_queries_path.exists():
+                print(f"Skipping fold {fold}: missing data files")
+                continue
+            
+            # Create a fresh model for this fold (reset to base model)
+            print(f"Initializing fresh model for fold {fold}")
+            self.model = SentenceTransformer(self.model_name, device=self.device)
+            
+            # Create temporary output directory for this fold
+            temp_output_dir = Path(__file__).resolve().parents[0] / f"temp_fold_{fold}_model"
+            temp_output_dir.mkdir(parents=True, exist_ok=True)
+            
+            try:
+                # Fine-tune on training data for this fold
+                print(f"Training on fold {fold} data...")
+                self.fine_tune(
+                    training_data_path=train_triples_path,
+                    output_dir=temp_output_dir,
+                    test_queries_path=None,  # Don't evaluate during training
+                    corpus_path=None,
+                    epochs=epochs,
+                    batch_size=batch_size,
+                    learning_rate=learning_rate,
+                    warmup_steps=warmup_steps
+                )
+                
+                # Load the fine-tuned model for this fold
+                self.model = SentenceTransformer(str(temp_output_dir), device=self.device)
+                
+                # Reload corpus and recompute embeddings with fine-tuned model
+                self._load_corpus(corpus_path)
+                self._precompute_embeddings()
+                
+                # Evaluate on test data for this fold
+                print(f"Evaluating fold {fold}...")
+                fold_results = self.evaluate_model(test_queries_path, corpus_path)
+                all_fold_results.append(fold_results)
+                
+                print(f"Fold {fold} Results:")
+                for metric, value in fold_results.items():
+                    print(f"   {metric}: {value:.4f}")
+                
+            except Exception as e:
+                print(f"Error in fold {fold}: {e}")
+                continue
+            
+            finally:
+                # Clean up temporary model directory
+                import shutil
+                if temp_output_dir.exists():
+                    shutil.rmtree(temp_output_dir)
+        
+        if not all_fold_results:
+            raise RuntimeError("No folds completed successfully")
+        
+        # Calculate average metrics across all folds
+        print(f"\n=== K-Fold Cross-Validation Results (k={k_folds}) ===")
+        
+        # Get all metric names from first fold
+        metric_names = list(all_fold_results[0].keys())
+        average_results = {}
+        std_results = {}
+        
+        for metric in metric_names:
+            values = [fold_results[metric] for fold_results in all_fold_results]
+            average_results[metric] = np.mean(values)
+            std_results[metric] = np.std(values)
+            
+            print(f"{metric}:")
+            print(f"   Mean: {average_results[metric]:.4f}")
+            print(f"   Std:  {std_results[metric]:.4f}")
+            print(f"   Folds: {[f'{v:.4f}' for v in values]}")
+        
+        # Add summary statistics
+        average_results['_fold_count'] = len(all_fold_results)
+        average_results['_std_results'] = std_results
+        
+        return average_results
 
-def main():
+def train_dense_retriever():
+    """Train a dense retriever on PDPA data."""
+    print("=== Dense Retriever Training ===")
+    
+    # Paths
+    root_dir = Path(__file__).resolve().parents[1]
+    training_data_dir = root_dir / "data" / "dense_training"
+    
+    # Check if training data exists
+    full_train_path = training_data_dir / "full_train_triples.jsonl"
+    if not full_train_path.exists():
+        print(f"Training data not found at {full_train_path}")
+        print("Please run dense_chunk_and_extract.py first to generate training data.")
+        return
+    
+    # Initialize retriever in training mode
+    retriever = DenseRetriever(index_dir=None, model_name="sentence-transformers/all-mpnet-base-v2")
+    
+    # Set up training
+    output_dir = Path(__file__).resolve().parents[0] / "fine_tuned_model"
+    corpus_path = training_data_dir / "corpus.jsonl"
+    
+    # Use fold 1 for validation if available
+    test_queries_path = training_data_dir / "fold_1" / "test_queries.jsonl"
+    if not test_queries_path.exists():
+        test_queries_path = None
+        corpus_path = None
+    
+    # Fine-tune the model
+    model_path = retriever.fine_tune(
+        training_data_path=full_train_path,
+        output_dir=output_dir,
+        test_queries_path=test_queries_path,
+        corpus_path=corpus_path,
+        epochs=3,
+        batch_size=8,  # Smaller batch size for MPS
+        learning_rate=2e-5,
+        warmup_steps=100
+    )
+    
+    print(f"Training completed! Model saved to: {model_path}")
+    
+    # Evaluate if test data is available
+    if test_queries_path and corpus_path:
+        print("\nEvaluating fine-tuned model...")
+        results = retriever.evaluate_model(test_queries_path, corpus_path)
+
+def evaluate_trained_model():
+    """Evaluate a trained dense retriever."""
+    print("=== Dense Retriever Evaluation ===")
+    
+    # Paths
+    root_dir = Path(__file__).resolve().parents[1]
+    model_dir = Path(__file__).resolve().parents[0] / "fine_tuned_model"
+    training_data_dir = root_dir / "data" / "dense_training"
+    
+    if not model_dir.exists():
+        print(f"Trained model not found at {model_dir}")
+        print("Please run training first.")
+        return
+    
+    # Load trained model
+    retriever = DenseRetriever(index_dir=None, model_name=str(model_dir))
+    
+    # Evaluate on test data
+    test_queries_path = training_data_dir / "fold_1" / "test_queries.jsonl"
+    corpus_path = training_data_dir / "corpus.jsonl"
+    
+    if test_queries_path.exists() and corpus_path.exists():
+        results = retriever.evaluate_model(test_queries_path, corpus_path)
+    else:
+        print("Test data not found. Please generate training data first.")
+
+def k_fold_evaluate_dense_retriever():
+    """Perform k-fold cross-validation evaluation of dense retriever."""
+    print("=== K-Fold Cross-Validation Evaluation ===")
+    
+    # Paths
+    root_dir = Path(__file__).resolve().parents[1]
+    training_data_dir = root_dir / "data" / "dense_training"
+    
+    if not training_data_dir.exists():
+        print(f"Training data directory not found: {training_data_dir}")
+        print("Please run dense_chunk_and_extract.py first to generate training data.")
+        return
+    
+    # Initialize retriever with base model (will be reset for each fold)
+    retriever = DenseRetriever(model_name="sentence-transformers/all-mpnet-base-v2")
+    
+    # Perform k-fold cross-validation
+    try:
+        results = retriever.k_fold_cross_validation(
+            training_data_dir=training_data_dir,
+            k_folds=5,
+            epochs=5,
+            batch_size=8,  # Smaller batch size for MPS
+            learning_rate=2e-5,
+            warmup_steps=100
+        )
+        
+        print(f"\n=== Final K-Fold Results ===")
+        print(f"Completed {results['_fold_count']} folds successfully")
+        
+        # Save results to file
+        results_dir = Path(__file__).resolve().parents[0] / "results"
+        results_dir.mkdir(exist_ok=True)
+        
+        import datetime
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        results_file = results_dir / f"k_fold_evaluation_{timestamp}.json"
+        
+        # Convert numpy types to regular Python types for JSON serialization
+        json_results = {}
+        for key, value in results.items():
+            if key == '_std_results':
+                json_results[key] = {k: float(v) for k, v in value.items()}
+            elif isinstance(value, (np.float64, np.float32)):
+                json_results[key] = float(value)
+            else:
+                json_results[key] = value
+        
+        with open(results_file, 'w') as f:
+            json.dump(json_results, f, indent=2)
+        
+        print(f"Results saved to: {results_file}")
+        
+        return results
+        
+    except Exception as e:
+        print(f"K-fold evaluation failed: {e}")
+        return None
+
+def demo_retriever():
     """Demo usage of dense retriever."""
-    retriever = DenseRetriever()
+    try:
+        retriever = DenseRetriever()
+    except FileNotFoundError:
+        print("No pre-built index found. Please run dense_indexer.py first or train a model.")
+        return
     
     # Example queries
     test_queries = [
@@ -156,6 +591,25 @@ def main():
             print(f"{i}. [{hit['chunk_id']}] Score: {hit['score']:.3f}")
             print(f"   Citation: {hit.get('canonical_citation', 'N/A')}")
             print(f"   Text: {hit['text'][:100]}...")
+
+def main():
+    """Main function for command-line usage."""
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="Dense Retriever Training and Evaluation")
+    parser.add_argument("--mode", choices=["train", "evaluate", "k_fold", "demo"], 
+                       default="demo", help="Mode to run")
+    
+    args = parser.parse_args()
+    
+    if args.mode == "train":
+        train_dense_retriever()
+    elif args.mode == "evaluate":
+        evaluate_trained_model()
+    elif args.mode == "k_fold":
+        k_fold_evaluate_dense_retriever()
+    elif args.mode == "demo":
+        demo_retriever()
 
 if __name__ == "__main__":
     main()
