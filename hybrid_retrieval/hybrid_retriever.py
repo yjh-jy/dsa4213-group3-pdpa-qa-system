@@ -39,15 +39,31 @@ def load_bm25_index() -> Tuple[BM25Okapi, List[str], Dict]:
         bm25_sections = json.load(f)
     return bm25, chunk_ids, bm25_sections
 
-# --- Load dense retriever (using fine-tuned model) ---
-def load_dense_retriever():
-    """Load the fine-tuned dense retriever instead of static embeddings."""
+# --- Load dense retriever (using fine-tuned model or checkpoint) ---
+def load_dense_retriever(checkpoint_path=None):
+    """Load the fine-tuned dense retriever instead of static embeddings.
+    
+    Args:
+        checkpoint_path: Optional path to specific checkpoint to load
+    """
     import sys
     sys.path.append(str(ROOT / "dense_retrieval"))
     from dense_retriever import DenseRetriever
     
-    # Initialize dense retriever (will automatically use fine-tuned model if available)
-    dense_retriever = DenseRetriever()
+    # Initialize dense retriever with optional checkpoint
+    if checkpoint_path:
+        from pathlib import Path
+        checkpoint_path = Path(checkpoint_path)
+        if checkpoint_path.exists():
+            print(f"Loading dense retriever from checkpoint: {checkpoint_path}")
+            dense_retriever = DenseRetriever(checkpoint_path=checkpoint_path)
+        else:
+            print(f"Checkpoint not found: {checkpoint_path}, using default model")
+            dense_retriever = DenseRetriever()
+    else:
+        # Initialize dense retriever (will automatically use fine-tuned model if available)
+        dense_retriever = DenseRetriever()
+    
     return dense_retriever
 
 # --- Hybrid retriever ---
@@ -407,7 +423,7 @@ class HybridHyperparameterOptimizer:
         return results
 
 # Convenience function for easy initialization
-def create_hybrid_retriever(alpha=ALPHA, fusion_method=DEFAULT_FUSION, rrf_k=RRF_K, dense_retriever=None):
+def create_hybrid_retriever(alpha=ALPHA, fusion_method=DEFAULT_FUSION, rrf_k=RRF_K, dense_retriever=None, checkpoint_path=None):
     """Create a HybridRetriever instance with loaded indices.
     
     Args:
@@ -415,13 +431,14 @@ def create_hybrid_retriever(alpha=ALPHA, fusion_method=DEFAULT_FUSION, rrf_k=RRF
         fusion_method: "linear" or "rrf"
         rrf_k: RRF constant
         dense_retriever: Pre-trained DenseRetriever instance (optional)
+        checkpoint_path: Path to dense retriever checkpoint (optional)
     """
     try:
         bm25, bm25_chunk_ids, bm25_sections = load_bm25_index()
         
-        # Use provided dense retriever or load default one
+        # Use provided dense retriever or load one (with optional checkpoint)
         if dense_retriever is None:
-            dense_retriever = load_dense_retriever()
+            dense_retriever = load_dense_retriever(checkpoint_path=checkpoint_path)
         
         return HybridRetriever(bm25, bm25_chunk_ids, bm25_sections, dense_retriever, 
                              alpha=alpha, fusion_method=fusion_method, rrf_k=rrf_k)

@@ -22,23 +22,29 @@ from torch.utils.data import DataLoader
 from sklearn.metrics.pairwise import cosine_similarity
 
 class DenseRetriever:
-    def __init__(self, model_name: str = "sentence-transformers/all-mpnet-base-v2"):
+    def __init__(self, model_name: str = "sentence-transformers/all-mpnet-base-v2", checkpoint_path: Optional[Path] = None):
         """Initialize dense retriever with fine-tuned model.
         
         Args:
             model_name: Model name for inference (will use fine-tuned model if available)
+            checkpoint_path: Specific checkpoint path to load from (overrides auto-detection)
         """
         self.model_name = model_name
         self.device = self._get_device()
         
-        # Check for fine-tuned model first
-        fine_tuned_path = Path(__file__).resolve().parents[0] / "fine_tuned_model"
-        if fine_tuned_path.exists():
-            print(f"Loading fine-tuned model from: {fine_tuned_path}")
-            self.model = SentenceTransformer(str(fine_tuned_path), device=self.device)
+        # Load model from checkpoint, fine-tuned model, or base model
+        if checkpoint_path and checkpoint_path.exists():
+            print(f"Loading model from checkpoint: {checkpoint_path}")
+            self.model = SentenceTransformer(str(checkpoint_path), device=self.device)
         else:
-            print(f"Fine-tuned model not found, using base model: {self.model_name}")
-            self.model = SentenceTransformer(self.model_name, device=self.device)
+            # Check for fine-tuned model first
+            fine_tuned_path = Path(__file__).resolve().parents[0] / "fine_tuned_model"
+            if fine_tuned_path.exists():
+                print(f"Loading fine-tuned model from: {fine_tuned_path}")
+                self.model = SentenceTransformer(str(fine_tuned_path), device=self.device)
+            else:
+                print(f"Fine-tuned model not found, using base model: {self.model_name}")
+                self.model = SentenceTransformer(self.model_name, device=self.device)
         
         print(f"Using device: {self.device}")
         
@@ -233,7 +239,9 @@ class DenseRetriever:
                   epochs: int = 3,
                   batch_size: int = 16,
                   learning_rate: float = 2e-5,
-                  warmup_steps: int = 100) -> str:
+                  warmup_steps: int = 100,
+                  save_checkpoints: bool = True,
+                  checkpoint_frequency: int = 1) -> str:
         """
         Fine-tune the dense retriever on PDPA data.
         
@@ -246,6 +254,8 @@ class DenseRetriever:
             batch_size: Training batch size
             learning_rate: Learning rate for training
             warmup_steps: Number of warmup steps
+            save_checkpoints: Whether to save intermediate checkpoints
+            checkpoint_frequency: Save checkpoint every N epochs
             
         Returns:
             Path to the saved fine-tuned model
@@ -279,6 +289,12 @@ class DenseRetriever:
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)
         
+        # Set up checkpoints directory if needed
+        checkpoints_dir = None
+        if save_checkpoints:
+            checkpoints_dir = output_dir / "checkpoints"
+            checkpoints_dir.mkdir(exist_ok=True)
+        
         # Configure training
         num_train_steps = len(train_dataloader) * epochs
         
@@ -288,22 +304,94 @@ class DenseRetriever:
         # Set evaluation steps based on whether evaluator is available
         eval_steps = len(train_dataloader) // 2 if evaluator else None
         
-        self.model.fit(
-            train_objectives=[(train_dataloader, train_loss)],
-            evaluator=evaluator,
-            epochs=epochs,
-            evaluation_steps=eval_steps,
-            warmup_steps=warmup_steps,
-            output_path=str(output_dir),
-            save_best_model=True,
-            optimizer_params={'lr': learning_rate},
-            show_progress_bar=True
-        )
+        # Custom training loop with checkpointing
+        if save_checkpoints and checkpoint_frequency > 0:
+            print(f"Checkpointing enabled: saving every {checkpoint_frequency} epoch(s)")
+            
+            # Train epoch by epoch to enable checkpointing
+            for epoch in range(epochs):
+                print(f"\nEpoch {epoch + 1}/{epochs}")
+                
+                # Train for one epoch
+                self.model.fit(
+                    train_objectives=[(train_dataloader, train_loss)],
+                    evaluator=evaluator if (epoch + 1) % checkpoint_frequency == 0 else None,
+                    epochs=1,
+                    evaluation_steps=eval_steps,
+                    warmup_steps=warmup_steps if epoch == 0 else 0,  # Only warmup in first epoch
+                    output_path=None,  # Don't save automatically
+                    save_best_model=False,
+                    optimizer_params={'lr': learning_rate},
+                    show_progress_bar=True
+                )
+                
+                # Save checkpoint
+                if (epoch + 1) % checkpoint_frequency == 0:
+                    checkpoint_path = checkpoints_dir / f"checkpoint_epoch_{epoch + 1}"
+                    checkpoint_path.mkdir(exist_ok=True)
+                    self.model.save(str(checkpoint_path))
+                    print(f"Checkpoint saved: {checkpoint_path}")
+            
+            # Save final model
+            self.model.save(str(output_dir))
+        else:
+            # Standard training without checkpointing
+            self.model.fit(
+                train_objectives=[(train_dataloader, train_loss)],
+                evaluator=evaluator,
+                epochs=epochs,
+                evaluation_steps=eval_steps,
+                warmup_steps=warmup_steps,
+                output_path=str(output_dir),
+                save_best_model=True,
+                optimizer_params={'lr': learning_rate},
+                show_progress_bar=True
+            )
         
         print(f"Fine-tuning completed!")
         print(f"Model saved to: {output_dir}")
         
         return str(output_dir)
+    
+    @staticmethod
+    def list_checkpoints(model_dir: Path) -> List[Path]:
+        """List available checkpoints in a model directory.
+        
+        Args:
+            model_dir: Directory containing checkpoints
+            
+        Returns:
+            List of checkpoint paths sorted by epoch number
+        """
+        checkpoints_dir = Path(model_dir) / "checkpoints"
+        if not checkpoints_dir.exists():
+            return []
+        
+        checkpoints = []
+        for checkpoint_path in checkpoints_dir.iterdir():
+            if checkpoint_path.is_dir() and checkpoint_path.name.startswith("checkpoint_epoch_"):
+                checkpoints.append(checkpoint_path)
+        
+        # Sort by epoch number
+        checkpoints.sort(key=lambda x: int(x.name.split("_")[-1]))
+        return checkpoints
+    
+    @staticmethod
+    def load_from_checkpoint(checkpoint_path: Path, corpus_path: Optional[Path] = None) -> 'DenseRetriever':
+        """Load a DenseRetriever from a specific checkpoint.
+        
+        Args:
+            checkpoint_path: Path to the checkpoint directory
+            corpus_path: Optional path to corpus (uses default if not provided)
+            
+        Returns:
+            DenseRetriever instance loaded from checkpoint
+        """
+        retriever = DenseRetriever(checkpoint_path=checkpoint_path)
+        if corpus_path:
+            retriever._load_corpus(corpus_path)
+            retriever._precompute_embeddings()
+        return retriever
     
     def evaluate_model(self, test_queries_path: Path, corpus_path: Path) -> Dict:
         """Evaluate the current model on test data."""

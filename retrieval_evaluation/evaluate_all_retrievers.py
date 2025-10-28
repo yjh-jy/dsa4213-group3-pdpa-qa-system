@@ -89,14 +89,7 @@ class UnifiedRetrievalEvaluator:
         hits = len(retrieved_at_k.intersection(relevant_chunks))
         return hits / len(relevant_chunks)
     
-    def compute_precision_at_k(self, retrieved_chunks: List[str], relevant_chunks: Set[str], k: int) -> float:
-        """Compute Precision@k metric."""
-        if k == 0:
-            return 0.0
-        
-        retrieved_at_k = set(retrieved_chunks[:k])
-        hits = len(retrieved_at_k.intersection(relevant_chunks))
-        return hits / min(k, len(retrieved_chunks))
+
     
     def compute_mrr(self, retrieved_chunks: List[str], relevant_chunks: Set[str]) -> float:
         """Compute Mean Reciprocal Rank (MRR)."""
@@ -151,7 +144,6 @@ class UnifiedRetrievalEvaluator:
             for k in [1, 3, 5, 10]:
                 if k <= top_k:
                     metrics[f"recall@{k}"] = self.compute_recall_at_k(retrieved_chunks, relevant_chunks, k)
-                    metrics[f"precision@{k}"] = self.compute_precision_at_k(retrieved_chunks, relevant_chunks, k)
                     metrics[f"ndcg@{k}"] = self.compute_ndcg_at_k(retrieved_chunks, relevant_chunks, k)
             
             metrics["mrr"] = self.compute_mrr(retrieved_chunks, relevant_chunks)
@@ -315,7 +307,6 @@ class UnifiedRetrievalEvaluator:
                     for k in [1, 3, 5, 10]:
                         if k <= top_k:
                             metrics[f"recall@{k}"] = self.compute_recall_at_k(retrieved_chunks, relevant_chunks, k)
-                            metrics[f"precision@{k}"] = self.compute_precision_at_k(retrieved_chunks, relevant_chunks, k)
                             metrics[f"ndcg@{k}"] = self.compute_ndcg_at_k(retrieved_chunks, relevant_chunks, k)
                     
                     metrics["mrr"] = self.compute_mrr(retrieved_chunks, relevant_chunks)
@@ -529,7 +520,6 @@ class UnifiedRetrievalEvaluator:
                     for k in [1, 3, 5, 10]:
                         if k <= top_k:
                             metrics[f"recall@{k}"] = self.compute_recall_at_k(retrieved_chunks, relevant_chunks, k)
-                            metrics[f"precision@{k}"] = self.compute_precision_at_k(retrieved_chunks, relevant_chunks, k)
                             metrics[f"ndcg@{k}"] = self.compute_ndcg_at_k(retrieved_chunks, relevant_chunks, k)
                     
                     metrics["mrr"] = self.compute_mrr(retrieved_chunks, relevant_chunks)
@@ -582,7 +572,7 @@ class UnifiedRetrievalEvaluator:
         print("="*80)
         
         # Key metrics to compare
-        key_metrics = ["recall@1", "recall@5", "recall@10", "precision@1", "precision@5", 
+        key_metrics = ["recall@1", "recall@5", "recall@10", 
                       "mrr", "ndcg@5", "ndcg@10", "search_time_ms"]
         
         # Print header
