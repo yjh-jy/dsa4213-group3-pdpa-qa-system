@@ -3,7 +3,7 @@
 
 """
 main.py — End-to-end PDPA QA System Pipeline
-- Dense retriever training (8 epochs on test dataset)
+- Dense retriever training
 - Hybrid retriever integration and tuning (validation set)
 - Final evaluation (test set) with multiple retrievers
 - Outputs consolidated results to artifacts/results.json
@@ -179,7 +179,7 @@ class PDPAPipeline:
         # Set output directory
         model_output_dir = self.artifacts_dir / "dense_retriever"
         
-        print(f"Training dense retriever for 8 epochs...")
+        print(f"Training dense retriever...")
         print(f"Training data: {train_triples_path}")
         print(f"Output directory: {model_output_dir}")
         
@@ -381,6 +381,44 @@ class PDPAPipeline:
         hybrid_optimized_result = evaluator.evaluate_retriever(hybrid_optimized, "Hybrid_Optimized", top_k=20)
         eval_results["hybrid_optimized"] = hybrid_optimized_result
         
+        # 4. Evaluate BM25 retriever with hyperparameter optimization
+        print("Evaluating BM25 retriever with hyperparameter optimization...")
+        sys.path.append(str(self.root / "bm25_retrieval"))
+        from bm25_retriever import BM25Retriever, BM25HyperparameterOptimizer
+        
+        # Run hyperparameter optimization on validation set for BM25
+        val_triples_path = self.training_data_dir / "stratified_splits" / "val_triples.jsonl"
+        if val_triples_path.exists():
+            print(f"Using validation triples for BM25 hyperparameter tuning: {val_triples_path}")
+            bm25_optimizer = BM25HyperparameterOptimizer(val_triples_path)
+            
+            # Run grid search with smaller parameter space for speed
+            k1_values = [0.5, 1.0, 1.2, 1.5, 2.0]
+            b_values = [0.0, 0.3, 0.5, 0.75, 1.0]
+            print(f"Running BM25 grid search: {len(k1_values)} k1 × {len(b_values)} b = {len(k1_values) * len(b_values)} combinations")
+            
+            bm25_results = bm25_optimizer.grid_search(k1_values=k1_values, b_values=b_values, sample_size=100)
+            
+            if bm25_results:
+                best_bm25_params = bm25_results[0]
+                print(f"Best BM25 parameters: k1={best_bm25_params['k1']}, b={best_bm25_params['b']}")
+                print(f"Best BM25 validation score: {best_bm25_params['composite_score']:.4f}")
+                
+                # Create BM25 retriever with optimized parameters
+                bm25_retriever = BM25Retriever(k1=best_bm25_params['k1'], b=best_bm25_params['b'])
+            else:
+                print("BM25 optimization failed, using default parameters")
+                bm25_retriever = BM25Retriever()
+                best_bm25_params = {"k1": 0.5, "b": 1.0}
+        else:
+            print("Validation triples not found, using default BM25 parameters")
+            bm25_retriever = BM25Retriever()
+            best_bm25_params = {"k1": 0.5, "b": 1.0}
+        
+        # Evaluate BM25 on test set
+        bm25_result = evaluator.evaluate_retriever(bm25_retriever, "BM25", top_k=20)
+        eval_results["bm25"] = bm25_result
+        
         # Save individual evaluation results
         eval_file = self.artifacts_dir / "eval" / "evaluation_results.json"
         with open(eval_file, "w") as f:
@@ -388,7 +426,7 @@ class PDPAPipeline:
         
         print(f"Evaluation results saved to: {eval_file}")
         
-        return eval_results
+        return eval_results, best_bm25_params
     
     def compute_metrics(self, eval_result: Dict) -> Dict:
         """Extract and compute metrics from evaluation result."""
@@ -436,7 +474,7 @@ class PDPAPipeline:
             best_hybrid_config = self.tune_hybrid_retriever(dense_model_path)
             
             # Step 3: Evaluate all retrievers
-            eval_results = self.evaluate_retrievers(dense_model_path, best_hybrid_config)
+            eval_results, best_bm25_params = self.evaluate_retrievers(dense_model_path, best_hybrid_config)
             
             # Step 4: Compile final results
             print("=" * 60)
@@ -471,6 +509,11 @@ class PDPAPipeline:
             self.results["hybrid_optimized"] = {
                 "best_params": optimized_params,
                 "metrics": self.compute_metrics(eval_results["hybrid_optimized"])
+            }
+            
+            self.results["bm25"] = {
+                "best_params": best_bm25_params,
+                "metrics": self.compute_metrics(eval_results["bm25"])
             }
             
             # Save final consolidated results
