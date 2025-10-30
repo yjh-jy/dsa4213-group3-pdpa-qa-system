@@ -73,11 +73,19 @@ class UnifiedRetrievalEvaluator:
         return qa_data
     
     def _extract_relevant_chunks(self, qa_item: Dict) -> Set[str]:
-        """Extract ground truth relevant chunk IDs from QA item."""
+        """Extract ground truth relevant chunk IDs from QA item or triples format."""
         relevant_chunks = set()
-        for link in qa_item.get("corpus_links", []):
-            if "chunk_id" in link:
-                relevant_chunks.add(link["chunk_id"])
+        
+        # Handle QA dataset format (with corpus_links)
+        if "corpus_links" in qa_item:
+            for link in qa_item.get("corpus_links", []):
+                if "chunk_id" in link:
+                    relevant_chunks.add(link["chunk_id"])
+        
+        # Handle triples format (with pos_id directly)
+        elif "pos_id" in qa_item:
+            relevant_chunks.add(qa_item["pos_id"])
+        
         return relevant_chunks
     
     def compute_recall_at_k(self, retrieved_chunks: List[str], relevant_chunks: Set[str], k: int) -> float:
@@ -122,7 +130,14 @@ class UnifiedRetrievalEvaluator:
             if (i + 1) % 100 == 0:
                 print(f"  Processed {i + 1}/{len(self.qa_data)} queries...")
             
-            query = qa_item["question_user"]
+            # Handle both QA dataset format and triples format
+            if "question_user" in qa_item:
+                query = qa_item["question_user"]  # QA dataset format
+            elif "query" in qa_item:
+                query = qa_item["query"]  # Triples format
+            else:
+                continue  # Skip invalid items
+                
             relevant_chunks = self._extract_relevant_chunks(qa_item)
             
             # Perform retrieval
@@ -149,8 +164,16 @@ class UnifiedRetrievalEvaluator:
             metrics["mrr"] = self.compute_mrr(retrieved_chunks, relevant_chunks)
             metrics["search_time_ms"] = search_time * 1000
             
+            # Handle both QA dataset format and triples format for ID field
+            if "id" in qa_item:
+                qa_id = qa_item["id"]  # QA dataset format
+            elif "qid" in qa_item:
+                qa_id = qa_item["qid"]  # Triples format
+            else:
+                qa_id = f"unknown_{i}"  # Fallback
+            
             all_results.append({
-                "qa_id": qa_item["id"],
+                "qa_id": qa_id,
                 "query": query,
                 "relevant_chunks": list(relevant_chunks),
                 "retrieved_chunks": retrieved_chunks,

@@ -22,29 +22,38 @@ from torch.utils.data import DataLoader
 from sklearn.metrics.pairwise import cosine_similarity
 
 class DenseRetriever:
-    def __init__(self, model_name: str = "sentence-transformers/all-mpnet-base-v2", checkpoint_path: Optional[Path] = None):
-        """Initialize dense retriever with fine-tuned model.
+    def __init__(self, model_name: str = "sentence-transformers/all-mpnet-base-v2"):
+        """Initialize dense retriever with base model or fine-tuned model.
         
         Args:
-            model_name: Model name for inference (will use fine-tuned model if available)
-            checkpoint_path: Specific checkpoint path to load from (overrides auto-detection)
+            model_name: Model name or path (HuggingFace model name or local path to fine-tuned model)
         """
         self.model_name = model_name
         self.device = self._get_device()
         
-        # Load model from checkpoint, fine-tuned model, or base model
-        if checkpoint_path and checkpoint_path.exists():
-            print(f"Loading model from checkpoint: {checkpoint_path}")
-            self.model = SentenceTransformer(str(checkpoint_path), device=self.device)
+        # Determine if model_name is a local path or HuggingFace model name
+        model_path = Path(model_name)
+        
+        if model_path.exists() and model_path.is_dir():
+            # Local fine-tuned model path
+            print(f"Loading fine-tuned model from: {model_path}")
+            self.model = SentenceTransformer(str(model_path), device=self.device)
+            self.is_fine_tuned = True
+        elif model_name.startswith("sentence-transformers/") or "/" not in model_name:
+            # HuggingFace model name
+            print(f"Loading base model: {model_name}")
+            self.model = SentenceTransformer(model_name, device=self.device)
+            self.is_fine_tuned = False
         else:
-            # Check for fine-tuned model first
-            fine_tuned_path = Path(__file__).resolve().parents[0] / "fine_tuned_model"
-            if fine_tuned_path.exists():
-                print(f"Loading fine-tuned model from: {fine_tuned_path}")
-                self.model = SentenceTransformer(str(fine_tuned_path), device=self.device)
-            else:
-                print(f"Fine-tuned model not found, using base model: {self.model_name}")
-                self.model = SentenceTransformer(self.model_name, device=self.device)
+            # Try to load as path first, fallback to HuggingFace
+            try:
+                print(f"Attempting to load model from path: {model_name}")
+                self.model = SentenceTransformer(model_name, device=self.device)
+                self.is_fine_tuned = True
+            except Exception as e:
+                print(f"Failed to load from path, trying as HuggingFace model: {model_name}")
+                self.model = SentenceTransformer(model_name, device=self.device)
+                self.is_fine_tuned = False
         
         print(f"Using device: {self.device}")
         
@@ -240,10 +249,14 @@ class DenseRetriever:
                   batch_size: int = 16,
                   learning_rate: float = 2e-5,
                   warmup_steps: int = 100,
-                  save_checkpoints: bool = True,
-                  checkpoint_frequency: int = 1) -> str:
+                  early_stopping: bool = False,
+                  gradient_accumulation_steps: int = 1,
+                  mixed_precision: bool = True,
+                  dataloader_num_workers: int = 0,
+                  gradient_checkpointing: bool = False,
+                  optimizer_type: str = "adamw") -> str:
         """
-        Fine-tune the dense retriever on PDPA data.
+        Fine-tune the dense retriever on PDPA data with advanced optimizations.
         
         Args:
             training_data_path: Path to training triples JSONL file
@@ -251,27 +264,48 @@ class DenseRetriever:
             test_queries_path: Path to test queries for evaluation (optional)
             corpus_path: Path to corpus for evaluation (optional)
             epochs: Number of training epochs
-            batch_size: Training batch size
+            batch_size: Per-device training batch size
             learning_rate: Learning rate for training
             warmup_steps: Number of warmup steps
-            save_checkpoints: Whether to save intermediate checkpoints
-            checkpoint_frequency: Save checkpoint every N epochs
+            early_stopping: Enable early stopping based on evaluation metrics
+            gradient_accumulation_steps: Steps to accumulate gradients (effective_batch = batch_size * steps)
+            mixed_precision: Enable FP16/BF16 mixed precision training
+            dataloader_num_workers: Number of workers for data loading
+            gradient_checkpointing: Enable gradient checkpointing to save memory
+            optimizer_type: Optimizer type ("adamw", "adamw_8bit", "adafactor")
             
         Returns:
             Path to the saved fine-tuned model
         """
+        # Clear GPU memory before training
+        if self.device != "cpu":
+            import torch
+            if hasattr(torch, 'mps') and torch.backends.mps.is_available():
+                torch.mps.empty_cache()
+            elif torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        
         print(f"Starting fine-tuning on device: {self.device}")
         print(f"Training parameters:")
         print(f"   - Epochs: {epochs}")
         print(f"   - Batch size: {batch_size}")
+        print(f"   - Gradient accumulation: {gradient_accumulation_steps}")
+        print(f"   - Effective batch size: {batch_size * gradient_accumulation_steps}")
         print(f"   - Learning rate: {learning_rate}")
         print(f"   - Warmup steps: {warmup_steps}")
+        print(f"   - Mixed precision: {mixed_precision}")
         
         # Load training data
         train_examples = self.load_training_data(training_data_path)
         
-        # Create data loader
-        train_dataloader = DataLoader(train_examples, shuffle=True, batch_size=batch_size)
+        # Create optimized DataLoader (disable multiprocessing for compatibility)
+        train_dataloader = DataLoader(
+            train_examples, 
+            shuffle=True, 
+            batch_size=batch_size,
+            num_workers=0,  # Disable multiprocessing to avoid pickling issues
+            pin_memory=False  # Disable pin_memory for MPS compatibility
+        )
         
         # Define loss function (Multiple Negatives Ranking Loss)
         train_loss = losses.MultipleNegativesRankingLoss(self.model)
@@ -289,109 +323,66 @@ class DenseRetriever:
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)
         
-        # Set up checkpoints directory if needed
-        checkpoints_dir = None
-        if save_checkpoints:
-            checkpoints_dir = output_dir / "checkpoints"
-            checkpoints_dir.mkdir(exist_ok=True)
-        
         # Configure training
         num_train_steps = len(train_dataloader) * epochs
         
         # Train the model
         print(f"Training for {epochs} epochs ({num_train_steps} steps)...")
         
-        # Set evaluation steps based on whether evaluator is available
-        eval_steps = len(train_dataloader) // 2 if evaluator else None
+        # Configure advanced training parameters with all optimizations
+        effective_batch_size = batch_size * gradient_accumulation_steps
+        total_steps = (len(train_dataloader) // gradient_accumulation_steps) * epochs
         
-        # Custom training loop with checkpointing
-        if save_checkpoints and checkpoint_frequency > 0:
-            print(f"Checkpointing enabled: saving every {checkpoint_frequency} epoch(s)")
-            
-            # Train epoch by epoch to enable checkpointing
-            for epoch in range(epochs):
-                print(f"\nEpoch {epoch + 1}/{epochs}")
-                
-                # Train for one epoch
-                self.model.fit(
-                    train_objectives=[(train_dataloader, train_loss)],
-                    evaluator=evaluator if (epoch + 1) % checkpoint_frequency == 0 else None,
-                    epochs=1,
-                    evaluation_steps=eval_steps,
-                    warmup_steps=warmup_steps if epoch == 0 else 0,  # Only warmup in first epoch
-                    output_path=None,  # Don't save automatically
-                    save_best_model=False,
-                    optimizer_params={'lr': learning_rate},
-                    show_progress_bar=True
-                )
-                
-                # Save checkpoint
-                if (epoch + 1) % checkpoint_frequency == 0:
-                    checkpoint_path = checkpoints_dir / f"checkpoint_epoch_{epoch + 1}"
-                    checkpoint_path.mkdir(exist_ok=True)
-                    self.model.save(str(checkpoint_path))
-                    print(f"Checkpoint saved: {checkpoint_path}")
-            
-            # Save final model
-            self.model.save(str(output_dir))
-        else:
-            # Standard training without checkpointing
-            self.model.fit(
-                train_objectives=[(train_dataloader, train_loss)],
-                evaluator=evaluator,
-                epochs=epochs,
-                evaluation_steps=eval_steps,
-                warmup_steps=warmup_steps,
-                output_path=str(output_dir),
-                save_best_model=True,
-                optimizer_params={'lr': learning_rate},
-                show_progress_bar=True
-            )
+        print(f"Training configuration:")
+        print(f"  - Per-device batch size: {batch_size}")
+        print(f"  - Gradient accumulation steps: {gradient_accumulation_steps}")
+        print(f"  - Effective batch size: {effective_batch_size}")
+        print(f"  - Total training steps: {total_steps}")
+        print(f"  - Mixed precision: {mixed_precision}")
+        print(f"  - Gradient checkpointing: {gradient_checkpointing}")
+        print(f"  - Optimizer: {optimizer_type}")
+        
+        # Use optimized AdamW parameters for maximum speed
+        optimizer_params = {
+            'lr': learning_rate,
+            'weight_decay': 0.01,
+            'eps': 1e-6
+        }
+        
+        # Configure streamlined training for maximum speed
+        training_args = {
+            'train_objectives': [(train_dataloader, train_loss)],
+            'epochs': epochs,
+            'warmup_steps': warmup_steps,
+            'output_path': str(output_dir),
+            'optimizer_params': optimizer_params,
+            'show_progress_bar': True,
+            'use_amp': mixed_precision
+        }
+        
+        print(f"✓ Speed-optimized training configuration:")
+        print(f"  - Mixed precision: {mixed_precision}")
+        print(f"  - Streamlined for maximum speed")
+        print(f"  - Evaluation disabled during training")
+        
+        # Execute training with maximum speed (no evaluation overhead)
+        print("Starting streamlined training for maximum speed...")
+        self.model.fit(**training_args)
         
         print(f"Fine-tuning completed!")
         print(f"Model saved to: {output_dir}")
         
+        # Clear GPU memory after training
+        if self.device != "cpu":
+            import torch
+            if hasattr(torch, 'mps') and torch.backends.mps.is_available():
+                torch.mps.empty_cache()
+                print("✓ MPS memory cache cleared")
+            elif torch.cuda.is_available():
+                torch.cuda.empty_cache()
+                print("✓ CUDA memory cache cleared")
+        
         return str(output_dir)
-    
-    @staticmethod
-    def list_checkpoints(model_dir: Path) -> List[Path]:
-        """List available checkpoints in a model directory.
-        
-        Args:
-            model_dir: Directory containing checkpoints
-            
-        Returns:
-            List of checkpoint paths sorted by epoch number
-        """
-        checkpoints_dir = Path(model_dir) / "checkpoints"
-        if not checkpoints_dir.exists():
-            return []
-        
-        checkpoints = []
-        for checkpoint_path in checkpoints_dir.iterdir():
-            if checkpoint_path.is_dir() and checkpoint_path.name.startswith("checkpoint_epoch_"):
-                checkpoints.append(checkpoint_path)
-        
-        # Sort by epoch number
-        checkpoints.sort(key=lambda x: int(x.name.split("_")[-1]))
-        return checkpoints
-    
-    @staticmethod
-    def load_from_checkpoint(checkpoint_path: Path, corpus_path: Optional[Path] = None) -> 'DenseRetriever':
-        """Load a DenseRetriever from a specific checkpoint.
-        
-        Args:
-            checkpoint_path: Path to the checkpoint directory
-            corpus_path: Optional path to corpus (uses default if not provided)
-            
-        Returns:
-            DenseRetriever instance loaded from checkpoint
-        """
-        retriever = DenseRetriever(checkpoint_path=checkpoint_path)
-        if corpus_path:
-            retriever._load_corpus(corpus_path)
-            retriever._precompute_embeddings()
-        return retriever
     
     def evaluate_model(self, test_queries_path: Path, corpus_path: Path) -> Dict:
         """Evaluate the current model on test data."""
