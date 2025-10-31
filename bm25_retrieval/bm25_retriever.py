@@ -102,11 +102,19 @@ class BM25HyperparameterOptimizer:
         return qa_data
     
     def _extract_relevant_chunks(self, qa_item):
-        """Extract ground truth relevant chunk IDs."""
+        """Extract ground truth relevant chunk IDs from QA item or triples format."""
         relevant_chunks = set()
-        for link in qa_item.get("corpus_links", []):
-            if "chunk_id" in link:
-                relevant_chunks.add(link["chunk_id"])
+        
+        # Handle QA dataset format (with corpus_links)
+        if "corpus_links" in qa_item:
+            for link in qa_item.get("corpus_links", []):
+                if "chunk_id" in link:
+                    relevant_chunks.add(link["chunk_id"])
+        
+        # Handle triples format (with pos_id directly)
+        elif "pos_id" in qa_item:
+            relevant_chunks.add(qa_item["pos_id"])
+        
         return relevant_chunks
     
     def _evaluate_hyperparams(self, k1, b, sample_size=100):
@@ -123,7 +131,14 @@ class BM25HyperparameterOptimizer:
         total_ndcg_10 = 0
         
         for qa_item in sample_data:
-            query = qa_item["question_user"]
+            # Handle both QA dataset format and triples format
+            if "question_user" in qa_item:
+                query = qa_item["question_user"]  # QA dataset format
+            elif "query" in qa_item:
+                query = qa_item["query"]  # Triples format
+            else:
+                continue  # Skip invalid items
+                
             relevant_chunks = self._extract_relevant_chunks(qa_item)
             
             if not relevant_chunks:

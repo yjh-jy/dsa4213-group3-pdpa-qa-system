@@ -39,15 +39,31 @@ def load_bm25_index() -> Tuple[BM25Okapi, List[str], Dict]:
         bm25_sections = json.load(f)
     return bm25, chunk_ids, bm25_sections
 
-# --- Load dense retriever (using fine-tuned model) ---
-def load_dense_retriever():
-    """Load the fine-tuned dense retriever instead of static embeddings."""
+# --- Load dense retriever (using fine-tuned model or checkpoint) ---
+def load_dense_retriever(checkpoint_path=None):
+    """Load the fine-tuned dense retriever instead of static embeddings.
+    
+    Args:
+        checkpoint_path: Optional path to specific checkpoint to load
+    """
     import sys
     sys.path.append(str(ROOT / "dense_retrieval"))
     from dense_retriever import DenseRetriever
     
-    # Initialize dense retriever (will automatically use fine-tuned model if available)
-    dense_retriever = DenseRetriever()
+    # Initialize dense retriever with optional checkpoint
+    if checkpoint_path:
+        from pathlib import Path
+        checkpoint_path = Path(checkpoint_path)
+        if checkpoint_path.exists():
+            print(f"Loading dense retriever from checkpoint: {checkpoint_path}")
+            dense_retriever = DenseRetriever(checkpoint_path=checkpoint_path)
+        else:
+            print(f"Checkpoint not found: {checkpoint_path}, using default model")
+            dense_retriever = DenseRetriever()
+    else:
+        # Initialize dense retriever (will automatically use fine-tuned model if available)
+        dense_retriever = DenseRetriever()
+    
     return dense_retriever
 
 # --- Hybrid retriever ---
@@ -244,19 +260,27 @@ class HybridHyperparameterOptimizer:
         return qa_data
     
     def _extract_relevant_chunks(self, qa_item):
-        """Extract ground truth relevant chunk IDs."""
+        """Extract ground truth relevant chunk IDs from QA item or triples format."""
         relevant_chunks = set()
-        for link in qa_item.get("corpus_links", []):
-            if "chunk_id" in link:
-                relevant_chunks.add(link["chunk_id"])
+        
+        # Handle QA dataset format (with corpus_links)
+        if "corpus_links" in qa_item:
+            for link in qa_item.get("corpus_links", []):
+                if "chunk_id" in link:
+                    relevant_chunks.add(link["chunk_id"])
+        
+        # Handle triples format (with pos_id directly)
+        elif "pos_id" in qa_item:
+            relevant_chunks.add(qa_item["pos_id"])
+        
         return relevant_chunks
     
-    def _evaluate_hyperparams(self, alpha=None, fusion_method="linear", rrf_k=60, sample_size=100):
+    def _evaluate_hyperparams(self, alpha=None, fusion_method="linear", rrf_k=60, sample_size=100, dense_retriever=None):
         """Evaluate hybrid retriever with specific hyperparameters."""
         if fusion_method == "linear" and alpha is None:
             alpha = 0.5
         
-        retriever = create_hybrid_retriever(alpha=alpha, fusion_method=fusion_method, rrf_k=rrf_k)
+        retriever = create_hybrid_retriever(alpha=alpha, fusion_method=fusion_method, rrf_k=rrf_k, dense_retriever=dense_retriever)
         
         # Use a sample for faster evaluation
         sample_data = self.qa_data[:sample_size] if sample_size else self.qa_data
@@ -268,7 +292,14 @@ class HybridHyperparameterOptimizer:
         total_ndcg_10 = 0
         
         for qa_item in sample_data:
-            query = qa_item["question_user"]
+            # Handle both QA dataset format and triples format
+            if "question_user" in qa_item:
+                query = qa_item["question_user"]  # QA dataset format
+            elif "query" in qa_item:
+                query = qa_item["query"]  # Triples format
+            else:
+                continue  # Skip invalid items
+                
             relevant_chunks = self._extract_relevant_chunks(qa_item)
             
             if not relevant_chunks:
@@ -328,7 +359,7 @@ class HybridHyperparameterOptimizer:
         
         return actual_dcg / ideal_dcg if ideal_dcg > 0 else 0.0
     
-    def optimize_alpha(self, alpha_values=None, sample_size=100):
+    def optimize_alpha(self, alpha_values=None, sample_size=100, dense_retriever=None):
         """Optimize alpha parameter for linear fusion."""
         if alpha_values is None:
             alpha_values = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
@@ -343,7 +374,7 @@ class HybridHyperparameterOptimizer:
             print(f"[{i+1:2d}/{len(alpha_values)}] Testing alpha={alpha:.1f}...", end=" ")
             
             try:
-                result = self._evaluate_hyperparams(alpha=alpha, fusion_method="linear", sample_size=sample_size)
+                result = self._evaluate_hyperparams(alpha=alpha, fusion_method="linear", sample_size=sample_size, dense_retriever=dense_retriever)
                 results.append(result)
                 print(f"Score: {result['composite_score']:.4f}")
             except Exception as e:
@@ -366,7 +397,7 @@ class HybridHyperparameterOptimizer:
         
         return results
     
-    def compare_fusion_methods(self, sample_size=100):
+    def compare_fusion_methods(self, sample_size=100, dense_retriever=None):
         """Compare linear fusion vs RRF."""
         print(f"Comparing fusion methods...")
         print(f"Sample size: {sample_size} queries")
@@ -376,7 +407,7 @@ class HybridHyperparameterOptimizer:
         
         # Test linear fusion with best alpha (if known) or default
         print("Testing Linear Fusion (alpha=0.5)...", end=" ")
-        linear_result = self._evaluate_hyperparams(alpha=0.5, fusion_method="linear", sample_size=sample_size)
+        linear_result = self._evaluate_hyperparams(alpha=0.5, fusion_method="linear", sample_size=sample_size, dense_retriever=dense_retriever)
         linear_result["method_name"] = "Linear (α=0.5)"
         results.append(linear_result)
         print(f"Score: {linear_result['composite_score']:.4f}")
@@ -385,7 +416,7 @@ class HybridHyperparameterOptimizer:
         rrf_k_values = [30, 60, 100]
         for k in rrf_k_values:
             print(f"Testing RRF (k={k})...", end=" ")
-            rrf_result = self._evaluate_hyperparams(fusion_method="rrf", rrf_k=k, sample_size=sample_size)
+            rrf_result = self._evaluate_hyperparams(fusion_method="rrf", rrf_k=k, sample_size=sample_size, dense_retriever=dense_retriever)
             rrf_result["method_name"] = f"RRF (k={k})"
             results.append(rrf_result)
             print(f"Score: {rrf_result['composite_score']:.4f}")
@@ -407,7 +438,7 @@ class HybridHyperparameterOptimizer:
         return results
 
 # Convenience function for easy initialization
-def create_hybrid_retriever(alpha=ALPHA, fusion_method=DEFAULT_FUSION, rrf_k=RRF_K, dense_retriever=None):
+def create_hybrid_retriever(alpha=ALPHA, fusion_method=DEFAULT_FUSION, rrf_k=RRF_K, dense_retriever=None, checkpoint_path=None):
     """Create a HybridRetriever instance with loaded indices.
     
     Args:
@@ -415,13 +446,14 @@ def create_hybrid_retriever(alpha=ALPHA, fusion_method=DEFAULT_FUSION, rrf_k=RRF
         fusion_method: "linear" or "rrf"
         rrf_k: RRF constant
         dense_retriever: Pre-trained DenseRetriever instance (optional)
+        checkpoint_path: Path to dense retriever checkpoint (optional)
     """
     try:
         bm25, bm25_chunk_ids, bm25_sections = load_bm25_index()
         
-        # Use provided dense retriever or load default one
+        # Use provided dense retriever or load one (with optional checkpoint)
         if dense_retriever is None:
-            dense_retriever = load_dense_retriever()
+            dense_retriever = load_dense_retriever(checkpoint_path=checkpoint_path)
         
         return HybridRetriever(bm25, bm25_chunk_ids, bm25_sections, dense_retriever, 
                              alpha=alpha, fusion_method=fusion_method, rrf_k=rrf_k)

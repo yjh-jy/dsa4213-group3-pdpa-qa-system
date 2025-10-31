@@ -50,7 +50,11 @@ class DenseTrainingDataGenerator:
         with self.qa_path.open("r", encoding="utf-8") as f:
             for line in f:
                 if line.strip():
-                    qa_data.append(json.loads(line))
+                    qa_item = json.loads(line)
+                    # Ensure qa_type is included for stratified splitting
+                    if 'qa_type' not in qa_item:
+                        qa_item['qa_type'] = 'unknown'
+                    qa_data.append(qa_item)
         return qa_data
     
     def _create_chunk_section_mapping(self) -> Dict[str, str]:
@@ -145,7 +149,10 @@ class DenseTrainingDataGenerator:
                             "neg_id": neg_chunk_id,
                             "neg_text": neg_text,
                             "pos_citation": self.corpus_chunks[pos_chunk_id].get("canonical_citation", ""),
-                            "neg_citation": self.corpus_chunks[neg_chunk_id].get("canonical_citation", "")
+                            "neg_citation": self.corpus_chunks[neg_chunk_id].get("canonical_citation", ""),
+                            "qa_type": qa_item.get("qa_type", "unknown"),
+                            "part": qa_item.get("part", ""),
+                            "difficulty": qa_item.get("difficulty", "medium")
                         }
                         triples.append(triple)
         
