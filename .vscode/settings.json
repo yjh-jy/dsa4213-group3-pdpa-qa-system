@@ -1,0 +1,14 @@
+{
+    "python.analysis.extraPaths": [
+        "./dense_retrieval",
+        "./src/generator",
+        "./bm25_retrieval",
+        "./hybrid_retrieval",
+        "./src/retrievers/dense_retrieval",
+        "./src/retrievers/dense_indexer",
+        "./src/retrievers/hybrid_retrieval",
+        "./src/retrievers/retrieval_evaluation",
+        "./src/retrievers/bm25_retrieval",
+        "./src/rerankers/cross_encoder_reranker"
+    ]
+}
