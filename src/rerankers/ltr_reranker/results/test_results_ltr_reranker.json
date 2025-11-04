@@ -1,0 +1,1218 @@
+{
+  "summary": {
+    "precision@1": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "ndcg@1": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "hit_rate@1": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "mrr@1": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "precision@3": {
+      "mean": 0.641025641025641,
+      "std": 0.17104697518110681
+    },
+    "ndcg@3": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "hit_rate@3": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "mrr@3": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "precision@5": {
+      "mean": 0.39999999999999997,
+      "std": 0.15191090506254998
+    },
+    "ndcg@5": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "hit_rate@5": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "mrr@5": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "precision@10": {
+      "mean": 0.20769230769230765,
+      "std": 0.11067303515337046
+    },
+    "ndcg@10": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "hit_rate@10": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "mrr@10": {
+      "mean": 0.9423076923076923,
+      "std": 0.23316068563427195
+    },
+    "latency_ms": {
+      "mean": 1.4839080663827748,
+      "std": 1.604079628410368
+    }
+  },
+  "results": [
+    {
+      "query_id": "PDPA-QA-0004",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 4.356145858764648
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0014",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 8.850336074829102
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0015",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 6.929159164428711
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0018",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 5.627870559692383
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0020",
+      "metrics": {
+        "precision@1": 0.0,
+        "ndcg@1": 0.0,
+        "hit_rate@1": 0.0,
+        "mrr@1": 0.0,
+        "precision@3": 0.0,
+        "ndcg@3": 0.0,
+        "hit_rate@3": 0.0,
+        "mrr@3": 0.0,
+        "precision@5": 0.0,
+        "ndcg@5": 0.0,
+        "hit_rate@5": 0.0,
+        "mrr@5": 0.0,
+        "precision@10": 0.0,
+        "ndcg@10": 0.0,
+        "hit_rate@10": 0.0,
+        "mrr@10": 0.0,
+        "latency_ms": 3.70025634765625
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0022",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8671283721923828
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0023",
+      "metrics": {
+        "precision@1": 0.0,
+        "ndcg@1": 0.0,
+        "hit_rate@1": 0.0,
+        "mrr@1": 0.0,
+        "precision@3": 0.0,
+        "ndcg@3": 0.0,
+        "hit_rate@3": 0.0,
+        "mrr@3": 0.0,
+        "precision@5": 0.0,
+        "ndcg@5": 0.0,
+        "hit_rate@5": 0.0,
+        "mrr@5": 0.0,
+        "precision@10": 0.0,
+        "ndcg@10": 0.0,
+        "hit_rate@10": 0.0,
+        "mrr@10": 0.0,
+        "latency_ms": 1.138925552368164
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0024",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 2.3436546325683594
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0047",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.9503364562988281
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0066",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 2.7916431427001953
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0070",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 1.15203857421875
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0076",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 1.1982917785644531
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0087",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.9179115295410156
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0096",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.7596015930175781
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0118",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8425712585449219
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0129",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.7879734039306641
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0131",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8668899536132812
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0145",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8358955383300781
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0152",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8952617645263672
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0159",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.7569789886474609
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0165",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8234977722167969
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0179",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.84686279296875
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0180",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8060932159423828
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0183",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8728504180908203
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0192",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 1.3370513916015625
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0202",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 1.619577407836914
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0204",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 1.0,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.6,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 1.6758441925048828
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0225",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.9164810180664062
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0227",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8397102355957031
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0248",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.7956027984619141
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0271",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.7638931274414062
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0275",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 1.0,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 1.0,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.8,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 2.4564266204833984
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0307",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8740425109863281
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0324",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8392333984375
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0335",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8628368377685547
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0336",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8745193481445312
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0337",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8263587951660156
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0339",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8392333984375
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0355",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8709430694580078
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0356",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.7724761962890625
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0390",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.743865966796875
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0418",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8203983306884766
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0420",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.7810592651367188
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0434",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.77056884765625
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0453",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8876323699951172
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0454",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.9098052978515625
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0460",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8993148803710938
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0464",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8764266967773438
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0467",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8206367492675781
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0486",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8606910705566406
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0487",
+      "metrics": {
+        "precision@1": 0.0,
+        "ndcg@1": 0.0,
+        "hit_rate@1": 0.0,
+        "mrr@1": 0.0,
+        "precision@3": 0.0,
+        "ndcg@3": 0.0,
+        "hit_rate@3": 0.0,
+        "mrr@3": 0.0,
+        "precision@5": 0.0,
+        "ndcg@5": 0.0,
+        "hit_rate@5": 0.0,
+        "mrr@5": 0.0,
+        "precision@10": 0.0,
+        "ndcg@10": 0.0,
+        "hit_rate@10": 0.0,
+        "mrr@10": 0.0,
+        "latency_ms": 0.8900165557861328
+      }
+    },
+    {
+      "query_id": "PDPA-QA-0490",
+      "metrics": {
+        "precision@1": 1.0,
+        "ndcg@1": 1.0,
+        "hit_rate@1": 1.0,
+        "mrr@1": 1.0,
+        "precision@3": 0.6666666666666666,
+        "ndcg@3": 1.0,
+        "hit_rate@3": 1.0,
+        "mrr@3": 1.0,
+        "precision@5": 0.4,
+        "ndcg@5": 1.0,
+        "hit_rate@5": 1.0,
+        "mrr@5": 1.0,
+        "precision@10": 0.2,
+        "ndcg@10": 1.0,
+        "hit_rate@10": 1.0,
+        "mrr@10": 1.0,
+        "latency_ms": 0.8203983306884766
+      }
+    }
+  ]
+}
