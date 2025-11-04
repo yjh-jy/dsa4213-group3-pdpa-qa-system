@@ -1,0 +1,54 @@
+{
+  "run": "no_rag",
+  "outdir": "eval_runs/no_rag_20251105T014543",
+  "files": {
+    "per_question_jsonl": "eval_runs/no_rag_20251105T014543/detailed_results.jsonl"
+  },
+  "n_examples": 52,
+  "Retrieval": {
+    "Hit@10": 0.0
+  },
+  "Reranking": {
+    "Hit@3": 0.0
+  },
+  "Citations": {
+    "Precision": 0.07142857142857142,
+    "Recall": 0.03636363636363636,
+    "F1": 0.048192771084337345,
+    "Citation_HitRate": 0.038461538461538464,
+    "Support": {
+      "hits": 2,
+      "pred": 28,
+      "gold": 55
+    },
+    "F1_AnswerableConditional": 0.022222222222222223,
+    "F1_AnsweredOnly": 0.022222222222222223
+  },
+  "AnswerString": {
+    "ExactMatch": 0.0,
+    "ROUGE-L": 0.15002112285695654,
+    "BERTScore_Precision": 0.873450918839528,
+    "BERTScore_Recall": 0.8842259771548785,
+    "BERTScore_F1": 0.8787283175266706
+  },
+  "Abstention": {
+    "TP": 0,
+    "FP": 0,
+    "FN": 7,
+    "TN": 45,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F1": 0.0,
+    "Accuracy": 0.8653846153846154,
+    "Coverage": 1.0
+  },
+  "Calibration": {
+    "ECE_10bin": null
+  },
+  "Diagnostics": {
+    "Model_name": "Qwen/Qwen2.5-3B-Instruct",
+    "Avg_latency_per_question_s": 5.134134615384616,
+    "Sys_prompt_hash": "f5d76b6c",
+    "Sys_prompt": "You are a careful Singapore data-privacy assistant. You will be given a question about Singapore's PDPA (Personal Data Protection Act) and answer to the best of your abilities.\n    If you deem the context to be insufficient, ABSTAIN from answering: \"I’m not sure; this appears outside the provided statute.\" AND ask ONE clarifying question.\n\"\n    \n    FORMAT:\nWrite in lawyer-plain English. Answer concisely in 2-5 sentences. Preserve numbers and legal terms. Include the specific canonical citations in your sentences like this: PDPA s.xx(xx). Do not use any other format to quote."
+  }
+}
