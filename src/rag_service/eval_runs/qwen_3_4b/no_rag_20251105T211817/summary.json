@@ -1,0 +1,66 @@
+{
+  "run": "no_rag",
+  "outdir": "eval_runs/no_rag_20251105T211817",
+  "files": {
+    "per_question_jsonl": "eval_runs/no_rag_20251105T211817/detailed_results.jsonl"
+  },
+  "n_examples": 52,
+  "Retrieval": {
+    "Hit@10": 0.0
+  },
+  "Reranking": {
+    "Hit@3": 0.0
+  },
+  "Citations": {
+    "Precision": 0.02631578947368421,
+    "Recall": 0.01818181818181818,
+    "F1": 0.02150537634408602,
+    "Citation_HitRate": 0.019230769230769232,
+    "Support": {
+      "hits": 1,
+      "pred": 38,
+      "gold": 55
+    },
+    "F1_AnswerableConditional": 0.022222222222222223,
+    "F1_AnsweredOnly": 0.023809523809523808
+  },
+  "AnswerString": {
+    "ExactMatch": 0.0,
+    "ROUGE-L": 0.16256692765923006,
+    "BERTScore_Precision": 0.8786341100931168,
+    "BERTScore_Recall": 0.8841643299047763,
+    "BERTScore_F1": 0.8813062814565805
+  },
+  "Abstention": {
+    "TP": 1,
+    "FP": 3,
+    "FN": 6,
+    "TN": 42,
+    "Precision": 0.25,
+    "Recall": 0.14285714285714285,
+    "F1": 0.18181818181818182,
+    "Accuracy": 0.8269230769230769,
+    "Coverage": 0.9230769230769231,
+    "Thresholds": {
+      "Max_retriever_score": 0.031,
+      "Max_retriever_margin": 0.0,
+      "Max_reranker_score": 1.0,
+      "Max_reranker_margin": 0.0
+    }
+  },
+  "Calibration": {
+    "ECE_10bin": null
+  },
+  "Diagnostics": {
+    "Model_name": "Qwen/Qwen3-4B",
+    "Reasoning_enabled": true,
+    "Model_sampling_parameters": {
+      "Temperature": 0.6,
+      "Top_P": 0.95,
+      "Top_K": 20
+    },
+    "Avg_latency_per_question_s": 42.30886538461538,
+    "Sys_prompt_hash": "f5d76b6c",
+    "Sys_prompt": "You are a careful Singapore data-privacy assistant. You will be given a question about Singapore's PDPA (Personal Data Protection Act) and answer to the best of your abilities.\n    If you deem the context to be insufficient, ABSTAIN from answering: \"I’m not sure; this appears outside the provided statute.\" AND ask ONE clarifying question.\n\"\n    \n    FORMAT:\nWrite in lawyer-plain English. Answer concisely in 2-5 sentences. Preserve numbers and legal terms. Include the specific canonical citations in your sentences like this: PDPA s.xx(xx). Do not use any other format to quote."
+  }
+}
