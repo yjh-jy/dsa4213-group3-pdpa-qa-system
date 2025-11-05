@@ -1,0 +1,66 @@
+{
+  "run": "rag",
+  "outdir": "eval_runs/rag_20251105T164809",
+  "files": {
+    "per_question_jsonl": "eval_runs/rag_20251105T164809/detailed_results.jsonl"
+  },
+  "n_examples": 52,
+  "Retrieval": {
+    "Hit@10": 0.8846153846153846
+  },
+  "Reranking": {
+    "Hit@3": 0.7692307692307693
+  },
+  "Citations": {
+    "Precision": 0.5441176470588235,
+    "Recall": 0.6727272727272727,
+    "F1": 0.6016260162601627,
+    "Citation_HitRate": 0.7115384615384616,
+    "Support": {
+      "hits": 37,
+      "pred": 68,
+      "gold": 55
+    },
+    "F1_AnswerableConditional": 0.6851851851851852,
+    "F1_AnsweredOnly": 0.7520325203252033
+  },
+  "AnswerString": {
+    "ExactMatch": 0.0,
+    "ROUGE-L": 0.2390984589637314,
+    "BERTScore_Precision": 0.8839194637078506,
+    "BERTScore_Recall": 0.9054979372483033,
+    "BERTScore_F1": 0.8944359158094113
+  },
+  "Abstention": {
+    "TP": 2,
+    "FP": 4,
+    "FN": 5,
+    "TN": 41,
+    "Precision": 0.3333333333333333,
+    "Recall": 0.2857142857142857,
+    "F1": 0.30769230769230765,
+    "Accuracy": 0.8269230769230769,
+    "Coverage": 0.8846153846153846,
+    "Thresholds": {
+      "Max_retriever_score": 0.031,
+      "Max_retriever_margin": 0.0,
+      "Max_reranker_score": 1.0,
+      "Max_reranker_margin": 0.0
+    }
+  },
+  "Calibration": {
+    "ECE_10bin": null
+  },
+  "Diagnostics": {
+    "Model_name": "Qwen/Qwen3-4B",
+    "Reasoning_enabled": false,
+    "Model_sampling_parameters": {
+      "Temperature": 0.2,
+      "Top_P": 0.8,
+      "Top_K": 20
+    },
+    "Avg_latency_per_question_s": 15.394519230769228,
+    "Sys_prompt_hash": "92731da7",
+    "Sys_prompt": "You are a careful Singapore data-privacy assistant.\nUse ONLY the information from QUOTED EVIDENCES.\nEach QUOTED EVIDENCE will be prepended with its reranked and retrieval scores like [RERANK=...|RRF=...], these scores can be useful in determining the order of relevance of the evidences provided.\nALL QUOTED EVIDENCES are relevant in some manner.\nAfter looking at all the QUOTED EVIDENCES, if you deem either the context or evidences provided to be insufficient, ABSTAIN from answering: \"I’m not sure; this appears outside the provided statute.\" AND ask ONE clarifying question.\nYou can ONLY either abstain or answer to the best of your abilities. DO NOT do both.\n\nEVIDENCE:\n[RERANK=6.078|RRF=0.033] [PDPA s.26C(3)] \"Duty to conduct assessment of data breach\nWhere a data intermediary (other than a data intermediary mentioned in section 26E) has reason to believe that a data breach has occurred in relation to personal data that the data intermediary is processing on behalf of and for the purposes of another organisation —\n(a) the data intermediary must, without undue delay, notify that other organisation of the occurrence of the data breach; and\n(b) that other organisation must, upon notification by the data intermediary, conduct an assessment of whether the data breach is a notifiable data breach.\"\n[RERANK=4.942|RRF=0.032] [PDPA s.26C(1)] \"Duty to conduct assessment of data breach\nThis section applies to a data breach that occurs on or after 1 February 2021.\"\n[RERANK=4.282|RRF=0.031] [PDPA s.26C(4)] \"Duty to conduct assessment of data breach\nThe organisation must carry out the assessment mentioned in subsection (2) or (3)(b) in accordance with any prescribed requirements.\nDuty to notify occurrence of notifiable data breach\"\n\nFORMAT:\nWrite in lawyer-plain English. Answer concisely in 2-5 sentences. Preserve numbers and legal terms. Include the specific canonical citations in your sentences like this: PDPA s.xx(xx), except when abstaining. Do not use any other format to quote."
+  }
+}
