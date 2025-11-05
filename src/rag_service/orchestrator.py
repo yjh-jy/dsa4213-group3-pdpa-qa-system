@@ -28,7 +28,7 @@ Usage
     -d '{"qid":"q1","question":"If a company’s chatbot sends promotional messages using a third-party API, is the company responsible?"}' \
     | jq .
 
-    For end-to-end evaluation:
+    For end-to-end evaluation (batch testing on unseen test set):
         evaluate with rag:
             curl -s -X POST http://localhost:8000/evaluate \
             -H "Content-Type: application/json" \
@@ -245,7 +245,12 @@ def ask_no_rag(payload: AskIn):
     prompt_hash = hashlib.md5(sys_prompt.encode()).hexdigest()[:8]
 
     # 1) generate
-    text = slm_generate(sys_prompt, payload.question)
+    text, reasoning_text = slm_generate(
+        sys_prompt=sys_prompt, 
+        question=payload.question, 
+        max_new_tokens=MAX_NEW_TOKENS_QWEN3_THINKING if ENABLE_REASONING else MAX_NEW_TOKENS_QWEN3_NON_THINKING,
+        use_reasoning=ENABLE_REASONING
+        )
 
     # 2) validate citations
     cov = citation_coverage(text)
@@ -254,6 +259,7 @@ def ask_no_rag(payload: AskIn):
         "text": text,
         "citations": cites,
         "abstained": False if cites else True, # Assume if not citations captured => it abstained on its own
+        "reasoning_text": reasoning_text if ENABLE_REASONING else None
     }
 
     return AskOut(
@@ -275,6 +281,7 @@ def ask_no_rag(payload: AskIn):
         diagnostics={
             "prompt_hash": prompt_hash,
             "model": HF_GENERATOR_MODEL,
+            "reasoning_enabled": ENABLE_REASONING,
             "total_latency_s": round(time.time() - t0, 2),
             "retrieval_latency_ms": None,
             "reranking_latency_ms": None,
@@ -306,7 +313,12 @@ def ask(payload: AskIn):
     prompt_hash = hashlib.md5(sys_prompt.encode()).hexdigest()[:8]
 
     # 4) generate
-    text = slm_generate(sys_prompt, payload.question)
+    text, reasoning_text = slm_generate(
+        sys_prompt=sys_prompt, 
+        question=payload.question, 
+        max_new_tokens=MAX_NEW_TOKENS_QWEN3_THINKING if ENABLE_REASONING else MAX_NEW_TOKENS_QWEN3_NON_THINKING,
+        use_reasoning=ENABLE_REASONING
+        )
 
     # 5) validate citations
     cov = citation_coverage(text)
@@ -315,6 +327,7 @@ def ask(payload: AskIn):
         "text": text,
         "citations": cites,
         "abstained": False if cites else True, # Assume if not citations captured => it abstained on its own
+        "reasoning_text": reasoning_text if ENABLE_REASONING else None
     }
 
     # 6) format retrieval and reranker block
@@ -352,6 +365,7 @@ def ask(payload: AskIn):
             "text": "I'm not sure; this appears outside the provided statute.",
             "original_text": text,
             "citations": [],
+            "reasoning_text": reasoning_text if ENABLE_REASONING else None,
             "abstained": True,
             "abstain_reason": abstain_reason
         }
@@ -377,6 +391,7 @@ def ask(payload: AskIn):
                 "intent": intent,
                 "prompt_hash": prompt_hash,
                 "model": HF_GENERATOR_MODEL,
+                "reasoning_enabled": ENABLE_REASONING,
                 "total_latency_s": round(time.time() - t0, 2),
                 "retrieval_latency_ms": retrieval_time_ms,
                 "reranking_latency_ms": reranking_time_ms,
@@ -407,6 +422,7 @@ def ask(payload: AskIn):
             "intent": intent,
             "prompt_hash": prompt_hash,
             "model": HF_GENERATOR_MODEL,
+            "reasoning_enabled": ENABLE_REASONING,
             "total_latency_s": round(time.time() - t0, 2),
             "retrieval_latency_ms": retrieval_time_ms,
             "reranking_latency_ms": reranking_time_ms,
@@ -585,12 +601,14 @@ def evaluate(payload: EvalIn):
                     "prediction": {
                         "abstained": bool(predicted_abstain),
                         "abstain_reason": out.get("answer", {}).get("abstain_reason", None),
-                        "answer_text": pred_text,
+                        "answer_text": pred_text, # what it actually outputted
+                        "original_text": out.get("answer", {}).get("original_text", None) if bool(predicted_abstain) else None, # provide the original model output if it abstained for analytics
+                        "reasoning_text": out.get("answer", {}).get("reasoning_text", None), # reasoning text for analytics for reasoning model
                         "citations": sorted(list(pred_cites)),
                     },
                     "retrieval": {
-                        "used_ids_k10": retrieved_ids,
-                        "r_at_10_hit": int(r_at_10_hit),
+                        f"used_ids_k{TOPK_RETRIEVER}": retrieved_ids,
+                        f"r_at_{TOPK_RETRIEVER}_hit": int(r_at_10_hit),
                         "top_passages": out.get("retrieval", {}).get("top_retrieved_passages", []),  # includes scores
                         "max_retrieval_score": out.get("retrieval", {}).get("max_retrieval_score"),
                         "retrieval_margin":  out.get("retrieval", {}).get("retrieval_margin"),
@@ -598,8 +616,8 @@ def evaluate(payload: EvalIn):
                         "margin_threshold": out.get("retrieval", {}).get("margin_threshold"),
                     },
                     "reranking": {
-                        "used_ids_r3": reranked_ids,
-                        "r_at_3_hit": int(r_at_3_hit),
+                        f"used_ids_r{K_GEN}": reranked_ids,
+                        f"r_at_{K_GEN}_hit": int(r_at_3_hit),
                         "top_passages": out.get("rerank", {}).get("top_reranked_passages", []),  # includes scores
                         "max_reranked_score": out.get("rerank", {}).get("max_reranked_score"),
                         "retrieval_margin":  out.get("rerank", {}).get("rerank_margin"),
@@ -665,10 +683,10 @@ def evaluate(payload: EvalIn):
         },
         "n_examples": total_examples,
         "Retrieval": {
-            "Hit@10": float(hit_at_10_retrieval)
+            f"Hit@{TOPK_RETRIEVER}": float(hit_at_10_retrieval)
         },
         "Reranking": {
-            "Hit@3": float(hit_at_3_reranking)
+            f"Hit@{K_GEN}": float(hit_at_3_reranking)
         },
         "Citations": {
             "Precision": float(citation_precision),
@@ -692,13 +710,25 @@ def evaluate(payload: EvalIn):
             "Recall": float(abst_recall),
             "F1": float(abst_f1),
             "Accuracy": float(abst_acc),
-            "Coverage": float(coverage)
+            "Coverage": float(coverage),
+            "Thresholds": {
+                "Max_retriever_score": TAU_RETR,
+                "Max_retriever_margin": TAU_RETR_MARGIN,
+                "Max_reranker_score": TAU_RERANK,
+                "Max_reranker_margin": TAU_RERANK_MARGIN,
+            }
         },
         "Calibration": {
             "ECE_10bin": ece
         },
         "Diagnostics": {
-            "Model_name": model_name,
+            "Model_name": f"{model_name}",
+            "Reasoning_enabled": ENABLE_REASONING,
+            "Model_sampling_parameters": {
+                "Temperature": TEMPERATURE_QWEN3_THINKING if ENABLE_REASONING else TEMPERATURE_QWEN3_NON_THINKING,
+                "Top_P": TOP_P_QWEN3_THINKING if ENABLE_REASONING else TOP_P_QWEN3_NON_THINKING,
+                "Top_K": TOP_K_QWEN3_THINKING if ENABLE_REASONING else TOP_K_QWEN3_NON_THINKING
+            },
             "Avg_latency_per_question_s": avg(total_latency_list),
             "Sys_prompt_hash": out.get("diagnostics", {}).get("prompt_hash", None),
             "Sys_prompt": system_prompt_used
