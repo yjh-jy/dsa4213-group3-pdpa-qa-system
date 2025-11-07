@@ -108,7 +108,8 @@ def evaluate_cross_encoder(model, qa_data):
                for m, v in agg.items()}
     print("\n=== Cross-Encoder Evaluation Summary ===")
     for m in ["precision@1", "precision@3", "precision@5", "precision@10",
-              "ndcg@5", "ndcg@10", "hit_rate@5", "hit_rate@10"]:
+              "ndcg@1", "ndcg@3", "ndcg@5", "ndcg@10",
+              "hit_rate@1", "hit_rate@3", "hit_rate@5", "hit_rate@10"]:
         if m in summary:
             print(f"{m:<15s}: {summary[m]['mean']:.4f}")
     print(f"Latency (ms/query): {np.mean(total_times):.2f}")
