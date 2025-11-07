@@ -1,0 +1,1046 @@
+{
+  "summary": {
+    "precision@1": {
+      "mean": 0.9230769230769231,
+      "std": 0.2664693550105965
+    },
+    "precision@3": {
+      "mean": 0.33333333333333326,
+      "std": 5.551115123125783e-17
+    },
+    "precision@5": {
+      "mean": 0.19999999999999993,
+      "std": 8.326672684688674e-17
+    },
+    "precision@10": {
+      "mean": 0.09999999999999996,
+      "std": 4.163336342344337e-17
+    },
+    "hit_rate@1": {
+      "mean": 0.9230769230769231,
+      "std": 0.2664693550105965
+    },
+    "hit_rate@3": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "hit_rate@5": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "hit_rate@10": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "ndcg@1": {
+      "mean": 0.9230769230769231,
+      "std": 0.2664693550105965
+    },
+    "ndcg@3": {
+      "mean": 0.9716099810439582,
+      "std": 0.09834591051941562
+    },
+    "ndcg@5": {
+      "mean": 0.9716099810439582,
+      "std": 0.09834591051941562
+    },
+    "ndcg@10": {
+      "mean": 0.9716099810439582,
+      "std": 0.09834591051941562
+    },
+    "latency_ms": {
+      "mean": 73.22129836449257,
+      "std": 106.18519814937807
+    }
+  },
+  "results": [
+    {
+      "qa_id": "PDPA-QA-0165",
+      "query": "Who is responsible for assessing a breach when it happens at a data intermediary?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 815.9999847412109
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0020",
+      "query": "If a company collects work emails from a public website, must it comply with PDPA?",
+      "metrics": {
+        "precision@1": 0.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 0.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 0.0,
+        "ndcg@3": 0.6309297535714575,
+        "ndcg@5": 0.6309297535714575,
+        "ndcg@10": 0.6309297535714575,
+        "latency_ms": 87.51988410949707
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0460",
+      "query": "If an employee mishandles personal data at work, is the employer treated as having done the act too?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 71.0000991821289
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0275",
+      "query": "Does the PDPA specify what form the prescribed applications and confirmations must take?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 56.253910064697266
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0018",
+      "query": "If a private museum keeps data from 1900, does the PDPA apply?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 72.77798652648926
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0337",
+      "query": "What can the PDPC regulate about mediation operators under the PDPA?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 57.48176574707031
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0467",
+      "query": "How are compoundable offences under Part 9 treated?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 56.70285224914551
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0023",
+      "query": "If an organisation uses personal data based on unclear authority, does PDPA allow it?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 57.286977767944336
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0179",
+      "query": "If another law also requires data breach reporting, does PDPA still apply?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 54.43406105041504
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0248",
+      "query": "If the Appeal Committee confirms PDPC’s decision, can it still alter factual findings?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 56.68997764587402
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0014",
+      "query": "If a private person keeps old letters from 1920, are they bound by the PDPA?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 58.48097801208496
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0307",
+      "query": "If my Wi-Fi was hijacked and messages were sent without my knowledge, am I responsible?",
+      "metrics": {
+        "precision@1": 0.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 0.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 0.0,
+        "ndcg@3": 0.6309297535714575,
+        "ndcg@5": 0.6309297535714575,
+        "ndcg@10": 0.6309297535714575,
+        "latency_ms": 49.423933029174805
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0066",
+      "query": "What must companies disclose when someone requests information about their PDPA practices?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 44.654130935668945
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0335",
+      "query": "What penalty applies for improper use of personal data resulting in harm but without proven gain?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 55.85598945617676
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0336",
+      "query": "Does the excerpt specify all parts of the defences in s.48F(2)?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 77.6681900024414
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0202",
+      "query": "When does the PDPA's DNC rules apply to messages sent to Singapore numbers?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 54.24904823303223
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0434",
+      "query": "Is ‘I didn’t know’ a defence for managers when a PDPA breach occurs?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 83.39691162109375
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0183",
+      "query": "Can PDPA notification duties overlap with those under other regulations, like banking laws?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 47.077178955078125
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0390",
+      "query": "Can organisations seek reconsideration of financial penalties?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 11.745929718017578
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0145",
+      "query": "If the corrected data is sent to other companies, must they also tell me?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 43.411970138549805
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0180",
+      "query": "What protection does a company have when disclosing information during a breach notification?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 49.44181442260742
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0464",
+      "query": "If an employer proves practicable steps, does that automatically absolve the employee?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 42.30070114135742
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0490",
+      "query": "Can PDPC share confidential information if the individual involved agrees?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 61.696767807006836
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0192",
+      "query": "What does 'calling line identity' mean under the PDPA?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 67.03805923461914
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0204",
+      "query": "If a company’s chatbot sends promotional messages using a third-party API, is the company responsible?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 43.65706443786621
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0096",
+      "query": "When does the deemed consent by notification rule apply?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 43.78080368041992
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0324",
+      "query": "What defences are available for improper use of personal data?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 52.304744720458984
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0271",
+      "query": "Can a business send marketing messages without checking the Do Not Call Register?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 48.803091049194336
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0454",
+      "query": "Does section 52A change how evidence is admitted in PDPA prosecutions against associations or partnerships?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 59.86595153808594
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0420",
+      "query": "Can an individual ever be jailed for PDPA offences?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 74.85413551330566
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0159",
+      "query": "Who must be informed if a data breach affects thousands of customers?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 73.09699058532715
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0131",
+      "query": "If another company receives notice that my data was corrected, what must it do?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 64.17298316955566
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0129",
+      "query": "What must a company do if I ask them to correct my personal data?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 13.283967971801758
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0486",
+      "query": "What must specified persons under PDPA s.59(1) keep secret?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 102.37574577331543
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0356",
+      "query": "When can PDPC proceed to issue a direction or impose a penalty?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 43.08485984802246
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0355",
+      "query": "Can the time to submit written representations be extended?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 20.885944366455078
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0076",
+      "query": "If a company has multiple staff managing different aspects of PDPA compliance, is that allowed?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 73.93908500671387
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0022",
+      "query": "If a law enforcement agency collects data under another law, does PDPA still apply?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 82.26704597473145
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0024",
+      "query": "Can the Minister change what counts as a public agency under PDPA?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 54.69012260437012
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0418",
+      "query": "Can PDPC refuse to investigate if a complaint seems insincere?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 79.18691635131836
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0152",
+      "query": "Can an organisation be exempted from cross-border transfer requirements?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 73.67396354675293
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0047",
+      "query": "Can the PDPC choose not to act on a matter if another regulator is handling it?",
+      "metrics": {
+        "precision@1": 0.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 0.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 0.0,
+        "ndcg@3": 0.6309297535714575,
+        "ndcg@5": 0.6309297535714575,
+        "ndcg@10": 0.6309297535714575,
+        "latency_ms": 94.77806091308594
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0015",
+      "query": "Does the PDPA still apply to information about someone who died 5 years ago?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 16.620874404907227
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0453",
+      "query": "If a committee member of an unincorporated association is charged, can they use the same legal defence the association would have?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 25.26998519897461
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0339",
+      "query": "What can PDPC order after reviewing a complaint?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 73.65894317626953
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0070",
+      "query": "What does PDPA require about staff awareness of complaint handling?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 59.34906005859375
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0225",
+      "query": "Who can bring a private action against an individual for PDPA message offences?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 66.87307357788086
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0227",
+      "query": "Can the Chair nominate fewer than three members to hear an appeal?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 121.91200256347656
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0487",
+      "query": "Is it an offence to disclose confidential PDPC information unlawfully?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 63.17901611328125
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0087",
+      "query": "When is consent considered 'deemed' even if I didn’t explicitly agree?",
+      "metrics": {
+        "precision@1": 0.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 0.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 0.0,
+        "ndcg@3": 0.6309297535714575,
+        "ndcg@5": 0.6309297535714575,
+        "ndcg@10": 0.6309297535714575,
+        "latency_ms": 19.711971282958984
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0118",
+      "query": "What can I ask a company for under the PDPA if I want to see my data?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 63.5221004486084
+      }
+    },
+    {
+      "qa_id": "PDPA-QA-0004",
+      "query": "Does the PDPA apply to individuals acting in a personal capacity?",
+      "metrics": {
+        "precision@1": 1.0,
+        "precision@3": 0.3333333333333333,
+        "precision@5": 0.2,
+        "precision@10": 0.1,
+        "hit_rate@1": 1.0,
+        "hit_rate@3": 1.0,
+        "hit_rate@5": 1.0,
+        "hit_rate@10": 1.0,
+        "ndcg@1": 1.0,
+        "ndcg@3": 1.0,
+        "ndcg@5": 1.0,
+        "ndcg@10": 1.0,
+        "latency_ms": 66.11990928649902
+      }
+    }
+  ]
+}
