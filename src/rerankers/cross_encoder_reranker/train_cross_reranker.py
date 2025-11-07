@@ -16,9 +16,9 @@ from transformers import logging as hf_logging
 # ---------------------------------------------------------------------
 # CONFIG
 # ---------------------------------------------------------------------
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 DATA_FILE = ROOT / "data" / "dense_training" / "stratified_splits" / "train_triples.jsonl"
-OUT_DIR = Path(__file__).resolve().parent / "cross_encoder_model"
+CROSS_MODEL_DIR = Path(__file__).resolve().parents[3] / "artefacts" / "cross_encoder"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 BASE_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
