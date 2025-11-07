@@ -24,9 +24,9 @@ from cross_encoder_reranker import CrossEncoderReranker
 # ---------------------------------------------------------------------
 # CONFIG
 # ---------------------------------------------------------------------
-RETRIEVER_EVAL_PATH = ROOT / "artifacts" / "eval" / "evaluation_results.json"
+RETRIEVER_EVAL_PATH = ROOT / "src" / "retrievers" / "stratified_results" / "eval" / "evaluation_results.json"
 BM25_SECTION_MAP = ROOT / "artefacts" / "bm25_index" / "sections.map.json"
-CROSS_MODEL_DIR = Path(__file__).resolve().parents[3] / "artefacts" / "cross_encoder_model"
+CROSS_MODEL_DIR = Path(__file__).resolve().parents[3] / "artefacts" / "cross_encoder" / "model"
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 

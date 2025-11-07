@@ -15,10 +15,10 @@ from cross_encoder_reranker import CrossEncoderReranker
 # ---------------------------------------------------------------------
 # CONFIG
 # ---------------------------------------------------------------------
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 QA_PATH = ROOT / "data" / "dense_training" / "stratified_splits" / "test_triples.jsonl"
-CROSS_MODEL_DIR = Path(__file__).resolve().parents[2] / "cross_encoder_model"
-RESULTS_DIR = CROSS_MODEL_DIR / "results"
+CROSS_MODEL_DIR = Path(__file__).resolve().parents[3] / "artefacts" / "cross_encoder" / "model"
+RESULTS_DIR = ROOT / "src" / "rerankers" / "cross_encoder_reranker" / "results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
 
