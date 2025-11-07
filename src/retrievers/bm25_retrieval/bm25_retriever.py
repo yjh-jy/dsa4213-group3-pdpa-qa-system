@@ -37,8 +37,9 @@ class BM25Retriever:
             b: BM25 b parameter (length normalization)
         """
         if index_dir is None:
-            index_dir = "artefacts" / "bm25_index"
-        index_dir = Path(index_dir)
+            index_dir = Path(__file__).resolve().parents[3] / "artefacts" / "bm25_index"
+        else:
+            index_dir = Path(index_dir)
 
         npz = np.load(index_dir / "bm25_index.npz", allow_pickle=True)
         self.tokenized = list(npz["tokenized_corpus"])

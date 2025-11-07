@@ -86,9 +86,10 @@ class DenseRetriever:
         self.meta = meta
         self.index = index
     
-    def _load_corpus(self):
+    def _load_corpus(self, corpus_path: Optional[Path] = None):
         """Load corpus data for dynamic embedding computation."""
-        corpus_path = Path(__file__).resolve().parents[3] / "data" / "corpus" / "corpus_subsection_v1.jsonl"
+        if corpus_path is None:
+            corpus_path = Path(__file__).resolve().parents[3] / "data" / "corpus" / "corpus_subsection_v1.jsonl"
         
         if not corpus_path.exists():
             raise FileNotFoundError(f"Corpus not found at {corpus_path}")
@@ -582,7 +583,7 @@ def train_dense_retriever():
     print("=== Dense Retriever Training ===")
     
     # Paths
-    root_dir = Path(__file__).resolve().parents[1]
+    root_dir = Path(__file__).resolve().parents[3]
     training_data_dir = root_dir / "data" / "dense_training"
     
     # Check if training data exists
@@ -629,7 +630,7 @@ def evaluate_trained_model():
     print("=== Dense Retriever Evaluation ===")
     
     # Paths
-    root_dir = Path(__file__).resolve().parents[1]
+    root_dir = Path(__file__).resolve().parents[3]
     model_dir = Path(__file__).resolve().parents[0] / "fine_tuned_model"
     training_data_dir = root_dir / "data" / "dense_training"
     
@@ -655,7 +656,7 @@ def k_fold_evaluate_dense_retriever():
     print("=== K-Fold Cross-Validation Evaluation ===")
     
     # Paths
-    root_dir = Path(__file__).resolve().parents[1]
+    root_dir = Path(__file__).resolve().parents[3]
     training_data_dir = root_dir / "data" / "dense_training"
     
     if not training_data_dir.exists():

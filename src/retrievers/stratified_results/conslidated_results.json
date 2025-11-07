@@ -1,8 +1,8 @@
 {
   "device": "mps",
   "dense_retriever": {
-    "model_dir": "/Users/bytedance/Downloads/dsa4213-group3-pdpa-qa-system/artifacts/dense_retriever",
-    "faiss_index_dir": "/Users/bytedance/Downloads/dsa4213-group3-pdpa-qa-system/artifacts/faiss",
+    "model_dir": "omitted",
+    "faiss_index_dir": "omitted",
     "metrics": {
       "recall@1": 0.5175438596491229,
       "recall@5": 0.7807017543859649,

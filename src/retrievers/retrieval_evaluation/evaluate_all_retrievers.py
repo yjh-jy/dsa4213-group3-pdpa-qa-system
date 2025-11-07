@@ -229,7 +229,7 @@ class UnifiedRetrievalEvaluator:
             return {}
         
         # Paths
-        project_root = Path(__file__).resolve().parents[1]
+        project_root = Path(__file__).resolve().parents[3]
         training_data_dir = project_root / "data" / "dense_training"
         
         if not training_data_dir.exists():
@@ -436,7 +436,7 @@ class UnifiedRetrievalEvaluator:
             return {}
         
         # Paths
-        project_root = Path(__file__).resolve().parents[1]
+        project_root = Path(__file__).resolve().parents[3]
         training_data_dir = project_root / "data" / "dense_training"
         
         if not training_data_dir.exists():
@@ -675,7 +675,7 @@ def main():
     args = parser.parse_args()
     
     # Paths
-    project_root = Path(__file__).resolve().parents[1]
+    project_root = Path(__file__).resolve().parents[3]
     qa_dataset_path = project_root / "data" / "qa" / "pdpa_qa_500.jsonl"
     
     # Create timestamped results directory
