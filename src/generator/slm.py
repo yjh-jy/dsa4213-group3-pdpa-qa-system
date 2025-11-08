@@ -74,7 +74,7 @@ TEMPLATES: Dict[Intent, str] = {
     ),
     # Default template used
     Intent.DEFAULT: (
-        "{SYSTEM}\n\nEVIDENCE:\n{EVIDENCE}\n\nFORMAT:\nWrite in lawyer-plain English. Answer concisely in 2-5 sentences. Preserve numbers and legal terms. Include the specific canonical citations in your sentences like this: PDPA s.xx(xx), except when abstaining. Do not use any other format to quote."
+        "{SYSTEM}\n\nEVIDENCE:\n{EVIDENCE}\n\nFORMAT:\nWrite in layman English. Answer concisely in 2-5 sentences. Preserve numbers and legal terms. Include the specific canonical citations in your sentences like this: PDPA s.xx(xx), except when abstaining. Do not use any other format to quote."
     ),
 }
 
@@ -143,6 +143,7 @@ def build_prompt(question: str, evidence: List[Dict[str, Any]], intent: Optional
 # --- minimal helpers / patterns ---
 _THINK_BLOCK   = re.compile(r"<think>(.*?)(?:</think>|$)", flags=re.S)   # closed or truncated
 _IM_END_TAIL   = re.compile(r"\s*<\|im_end\|>\s*$")
+_RERANK_TAG = re.compile(r"\s*\[RERANK:\s*[^]]*\]\s*")
 
 # class _StopOnText(StoppingCriteria):
 #     def __init__(self, tok, substrings):
@@ -187,7 +188,10 @@ def slm_generate(
         {"role": "user",   "content": question},
     ]
     base_text = tok.apply_chat_template(
-        messages, tokenize=False, add_generation_prompt=True, enable_thinking=use_reasoning
+        messages, 
+        tokenize=False, 
+        add_generation_prompt=True, 
+        enable_thinking=use_reasoning
     )
     base_inputs = tok([base_text], return_tensors="pt").to(gen.device)
 
@@ -207,6 +211,7 @@ def slm_generate(
                     if _THINK_BLOCK.search(decoded) else "")
         content  = _THINK_BLOCK.sub("", decoded).strip()
         content  = _IM_END_TAIL.sub("", content).rstrip()
+        content = _RERANK_TAG.sub("", content).rstrip()
         content  = content.replace("<think>", "").replace("</think>", "")
         if print_thinking and thinking:
             print(thinking)
@@ -247,7 +252,9 @@ def slm_generate(
     # PASS 2: final answer, reasoning disabled, with clear stops
     # We re-template with enable_thinking=False so the model won't reopen think mode.
     # Provide a small assistant cue to anchor the answer section.
-    assist_cue = (f"<think>{thinking}</think>\nFinal Answer: " "Summarise your reasoning clearly in 2-3 sentences using the retrieved citations." if closed and thinking else "Final Answer:"
+    assist_cue = (
+        f"<think>{thinking}</think>\nFinal Answer: " 
+        "Summarise your reasoning clearly in 2-3 sentences using the retrieved citations." if closed and thinking else "Final Answer:"
 )
     messages2 = [
         {"role": "system", "content": sys_prompt},
@@ -282,6 +289,8 @@ def slm_generate(
     # clean answer
     content = _THINK_BLOCK.sub("", decoded2).strip()
     content = _IM_END_TAIL.sub("", content).rstrip()
+    content = _RERANK_TAG.sub("", content).rstrip()
+
     # final safety: if answer somehow empty (rare), quick fallback single pass non-thinking
     if not content.strip():
         out_f = gen.generate(
