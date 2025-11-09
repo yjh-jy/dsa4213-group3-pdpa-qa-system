@@ -1,9 +1,9 @@
 
-# Human Eval (2 Raters, 50 Prompts) — Quick Start
+# Human Eval (N Raters, 50 Prompts)
 
 ## Files
-- `create_double_blind.py`: Run this script to generate a template file with the PDPABench_test questions in randomized order. Follow the instructions there on the file paths.
-- `raterX_template.xlsx`: Fill these with judgments.
+- `create_double_blind.py`: Run this script to generate a template file with the PDPABench_test questions in randomized order. Follow the instructions regarding the file paths.
+- `raterX_template.xlsx`: Before filling these with judgments, remember to blank out the last column as it contains the answers to which system is rag.
 - `analysis.py`: Run to compute win rates, significance (sign test), Cohen's kappa, and rating summaries.
 
 ## Rater instructions 
@@ -36,15 +36,41 @@ Rules: Judge content quality (accuracy, usefulness, clarity). Ignore style unles
 
 
 ## How to run analysis
-``` bash
-cd src/rag_service/eval_runs
-python analysis.py \
-  --rater1 rater1_answers.xlsx \
-  --rater2 rater2_answers.xlsx \
-  --preview preview_pairs.csv
-```
-Outputs:
+1. Navigate
+   ``` bash
+   cd src/rag_service/eval_runs/qwen_3_4b/qualitative_eval/human
+   ```
+2. Run
+   ``` bash
+   python analysis.py --raters rater1_answers.xlsx rater2_answers.xlsx
+      # [rater3_answers.csv ...] you can add how many raters you have
+   ```
+### Outputs (in terminal window):
 - Per-rater and aggregate **win/tie/loss** for RAG 
 - **Two-sided sign test** (exact binomial).
 - **Cohen's kappa** on preferences.
 - Mean 1–5 **factuality**/**usefulness** per system.
+  
+### Example output:
+```
+=== Pairwise preference (per rater, per-row RAG mapping) ===
+rater1_answers.xlsx: {'rag_wins': 13, 'rag_losses': 20, 'ties': 17, 'n_effective': 33, 'p_value_sign_test': 0.296206368599087, 'unmapped_or_missing': 0}
+rater2_answers.xlsx: {'rag_wins': 28, 'rag_losses': 15, 'ties': 7, 'n_effective': 43, 'p_value_sign_test': 0.0659940344557981, 'unmapped_or_missing': 0}
+rater3_answers.xlsx: {'rag_wins': 36, 'rag_losses': 14, 'ties': 0, 'n_effective': 50, 'p_value_sign_test': 0.0026021714567221466, 'unmapped_or_missing': 0}
+rater4_answers.xlsx: {'rag_wins': 36, 'rag_losses': 14, 'ties': 0, 'n_effective': 50, 'p_value_sign_test': 0.0026021714567221466, 'unmapped_or_missing': 0}
+
+=== Pairwise preference (aggregate, per-row mapping) ===
+{'rag_wins': 113, 'rag_losses': 63, 'ties': 24, 'n_effective': 176, 'p_value_sign_test': 0.00020218969307107758, 'unmapped_or_missing': 0}
+
+=== Mean ratings (aggregate, RAG vs BASE) ===
+{'RAG': {'factuality_mean': 4.5, 'usefulness_mean': 4.225, 'n': 200}, 'BASE': {'factuality_mean': 3.955, 'usefulness_mean': 3.95, 'n': 200}}
+
+=== Inter-rater agreement on common prompts ===
+{'fleiss_kappa': 0.13, 'raw_observed_agreement': 0.507, 'raw_observed_agreement_pct': 50.7, 'n_items': 50, 'n_raters_expected': 4}
+
+=== Mean ratings (per rater, RAG vs BASE) ===
+rater1_answers.xlsx: {'RAG': {'factuality_mean': 4.26, 'usefulness_mean': 4.14, 'n': 50}, 'BASE': {'factuality_mean': 4.36, 'usefulness_mean': 4.34, 'n': 50}}
+rater2_answers.xlsx: {'RAG': {'factuality_mean': 4.72, 'usefulness_mean': 4.24, 'n': 50}, 'BASE': {'factuality_mean': 3.96, 'usefulness_mean': 3.72, 'n': 50}}
+rater3_answers.xlsx: {'RAG': {'factuality_mean': 4.7, 'usefulness_mean': 4.38, 'n': 50}, 'BASE': {'factuality_mean': 4.34, 'usefulness_mean': 4.1, 'n': 50}}
+rater4_answers.xlsx: {'RAG': {'factuality_mean': 4.32, 'usefulness_mean': 4.14, 'n': 50}, 'BASE': {'factuality_mean': 3.16, 'usefulness_mean': 3.64, 'n': 50}}
+```
