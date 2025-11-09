@@ -27,7 +27,7 @@ TEMPERATURE_QWEN2_5 = 0.2
 MAX_NEW_TOKENS_QWEN2_5 = 350 # max token for SLM to generate
 
 # Qwen 3 related sampling parameters
-ENABLE_REASONING = True
+ENABLE_REASONING = False
 
 MAX_NEW_TOKENS_QWEN3_THINKING = 500 # higher than non thinking to accomodate for the thinking budget 
 TEMPERATURE_QWEN3_THINKING = 0.6
