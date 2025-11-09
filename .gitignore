@@ -211,6 +211,6 @@ marimo/_lsp/
 __marimo__/
 
 # Large model files
-*.safetensors
+artefacts/dense_retriever/model/model.safetensors
 fine_tuned_model/
 checkpoints/
