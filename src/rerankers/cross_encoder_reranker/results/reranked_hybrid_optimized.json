@@ -3,140 +3,140 @@
     "reranker_name": "CrossEncoder_Reranker",
     "evaluation_summary": {
       "precision@1": {
-        "mean": 0.5,
-        "median": 0.5,
-        "std": 0.5,
+        "mean": 0.5384615384615384,
+        "median": 1.0,
+        "std": 0.4985185152621431,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "ndcg@1": {
-        "mean": 0.5,
-        "median": 0.5,
-        "std": 0.5,
+        "mean": 0.5384615384615384,
+        "median": 1.0,
+        "std": 0.4985185152621431,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "hit_rate@1": {
-        "mean": 0.5,
-        "median": 0.5,
-        "std": 0.5,
+        "mean": 0.5384615384615384,
+        "median": 1.0,
+        "std": 0.4985185152621431,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "mrr@1": {
-        "mean": 0.5,
-        "median": 0.5,
-        "std": 0.5,
+        "mean": 0.5384615384615384,
+        "median": 1.0,
+        "std": 0.4985185152621431,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "precision@3": {
-        "mean": 0.22514619883040934,
+        "mean": 0.2435897435897436,
         "median": 0.3333333333333333,
-        "std": 0.1560702473109066,
+        "std": 0.14785336659834353,
         "min": 0.0,
         "max": 0.3333333333333333,
-        "count": 114
+        "count": 52
       },
       "ndcg@3": {
-        "mean": 0.6060954040100291,
-        "median": 0.8154648767857288,
-        "std": 0.4441734966479648,
+        "mean": 0.6547584236263781,
+        "median": 1.0,
+        "std": 0.4249826236137721,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "hit_rate@3": {
-        "mean": 0.6754385964912281,
+        "mean": 0.7307692307692307,
         "median": 1.0,
-        "std": 0.46821074193271994,
+        "std": 0.4435600997950306,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "mrr@3": {
-        "mean": 0.5818713450292399,
-        "median": 0.75,
-        "std": 0.44767409195718694,
+        "mean": 0.6282051282051283,
+        "median": 1.0,
+        "std": 0.4319200135364876,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "precision@5": {
-        "mean": 0.14912280701754382,
+        "mean": 0.16538461538461535,
         "median": 0.2,
-        "std": 0.08710309885829058,
+        "std": 0.07566275220348462,
         "min": 0.0,
         "max": 0.2,
-        "count": 114
+        "count": 52
       },
       "ndcg@5": {
-        "mean": 0.6340118071640118,
-        "median": 0.8154648767857288,
-        "std": 0.41689497667901415,
+        "mean": 0.6936413378158092,
+        "median": 1.0,
+        "std": 0.37940532473855787,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "hit_rate@5": {
-        "mean": 0.7456140350877193,
+        "mean": 0.8269230769230769,
         "median": 1.0,
-        "std": 0.4355154942914529,
+        "std": 0.3783137610174232,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "mrr@5": {
-        "mean": 0.5967836257309941,
-        "median": 0.75,
-        "std": 0.4313205457906707,
+        "mean": 0.6493589743589744,
+        "median": 1.0,
+        "std": 0.4052666308463856,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "precision@10": {
-        "mean": 0.08421052631578947,
+        "mean": 0.08653846153846152,
         "median": 0.1,
-        "std": 0.03646422752776583,
+        "std": 0.0341312295178824,
         "min": 0.0,
         "max": 0.1,
-        "count": 114
+        "count": 52
       },
       "ndcg@10": {
-        "mean": 0.6635636570047813,
-        "median": 0.8154648767857288,
-        "std": 0.3801702759392299,
+        "mean": 0.7065581082753044,
+        "median": 1.0,
+        "std": 0.36085485095204584,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "hit_rate@10": {
-        "mean": 0.8421052631578947,
+        "mean": 0.8653846153846154,
         "median": 1.0,
-        "std": 0.36464227527765836,
+        "std": 0.341312295178824,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "mrr@10": {
-        "mean": 0.6080130882762461,
-        "median": 0.75,
-        "std": 0.4169372782806591,
+        "mean": 0.6549679487179488,
+        "median": 1.0,
+        "std": 0.39718984706779825,
         "min": 0.0,
         "max": 1.0,
-        "count": 114
+        "count": 52
       },
       "latency_ms": {
-        "mean": 34.3807203727856,
-        "median": 24.385571479797363,
-        "std": 46.30728538615884,
-        "min": 14.95814323425293,
-        "max": 483.8290214538574,
-        "count": 114
+        "mean": 38.91179653314444,
+        "median": 16.7464017868042,
+        "std": 56.46222988199348,
+        "min": 9.67097282409668,
+        "max": 379.4517517089844,
+        "count": 52
       }
     },
     "individual_results": [
@@ -156,7 +156,7 @@
           "PDPA-26B-4-96",
           "PDPA-4-2-8",
           "PDPA-5-2-14",
-          "PDPA-26E-0-110"
+          "PDPA-26D-5-105"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -175,7 +175,7 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 483.8290214538574
+          "latency_ms": 379.4517517089844
         }
       },
       {
@@ -188,13 +188,13 @@
           "PDPA-26E-0-110",
           "PDPA-20-4-66",
           "PDPA-11-5-32",
-          "PDPA-57-1-281",
-          "PDPA-20-5-67",
           "PDPA-20-2-64",
           "PDPA-59-5-289",
-          "PDPA-26D-9-109",
           "PDPA-15A-4-53",
-          "PDPA-2-2-5"
+          "PDPA-57-1-281",
+          "PDPA-4-1-7",
+          "PDPA-11-3-30",
+          "PDPA-48B-2-165"
         ],
         "metrics": {
           "precision@1": 0.0,
@@ -213,7 +213,7 @@
           "ndcg@10": 0.0,
           "hit_rate@10": 0.0,
           "mrr@10": 0.0,
-          "latency_ms": 78.2780647277832
+          "latency_ms": 75.14333724975586
         }
       },
       {
@@ -230,8 +230,8 @@
           "PDPA-4-1-7",
           "PDPA-20-4-66",
           "PDPA-48B-2-165",
-          "PDPA-48-4-156",
           "PDPA-4-3-9",
+          "PDPA-48-4-156",
           "PDPA-51-3-255"
         ],
         "metrics": {
@@ -251,7 +251,7 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 75.91819763183594
+          "latency_ms": 70.07217407226562
         }
       },
       {
@@ -269,7 +269,7 @@
           "PDPA-43-1-135",
           "PDPA-43-3-137",
           "PDPA-26D-4-104",
-          "PDPA-40-1-127",
+          "PDPA-37-6-122",
           "PDPA-40-2-128"
         ],
         "metrics": {
@@ -289,7 +289,7 @@
           "ndcg@10": 0.0,
           "hit_rate@10": 0.0,
           "mrr@10": 0.0,
-          "latency_ms": 73.38094711303711
+          "latency_ms": 63.94600868225098
         }
       },
       {
@@ -303,12 +303,12 @@
           "PDPA-26C-1-97",
           "PDPA-15-8-48",
           "PDPA-58-2-284",
-          "PDPA-15A-1-50",
-          "PDPA-40-2-128",
-          "PDPA-48K-5-202",
-          "PDPA-48M-2-214",
           "PDPA-48N-7-224",
-          "PDPA-22A-1-83"
+          "PDPA-22A-1-83",
+          "PDPA-59-6-290",
+          "PDPA-19-0-62",
+          "PDPA-48O-3-227",
+          "PDPA-48O-2-226"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -327,7 +327,7 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 71.94399833679199
+          "latency_ms": 59.987783432006836
         }
       },
       {
@@ -342,11 +342,11 @@
           "PDPA-65-1-299",
           "PDPA-65-3-302",
           "PDPA-52A-6-271",
-          "PDPA-65-2-300",
-          "PDPA-52-6-264",
           "PDPA-48G-3-184",
           "PDPA-67-8-311",
-          "PDPA-39-3-126"
+          "PDPA-39-3-126",
+          "PDPA-9-2-22",
+          "PDPA-11-3-30"
         ],
         "metrics": {
           "precision@1": 0.0,
@@ -365,7 +365,7 @@
           "ndcg@10": 0.6309297535714575,
           "hit_rate@10": 1.0,
           "mrr@10": 0.5,
-          "latency_ms": 60.66012382507324
+          "latency_ms": 60.59885025024414
         }
       },
       {
@@ -381,10 +381,10 @@
           "PDPA-56-0-280",
           "PDPA-55-3-278",
           "PDPA-54-0-275",
-          "PDPA-51-5-257",
-          "PDPA-51-6-258",
-          "PDPA-48C-2-169",
-          "PDPA-48J-2-191"
+          "PDPA-48O-1-225",
+          "PDPA-53-1-273",
+          "PDPA-48E-4-177",
+          "PDPA-48I-1-188"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -403,7 +403,7 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 75.00195503234863
+          "latency_ms": 65.65022468566895
         }
       },
       {
@@ -420,9 +420,9 @@
           "PDPA-14-2-38",
           "PDPA-16-4-58",
           "PDPA-48E-2-175",
-          "PDPA-18-0-61",
-          "PDPA-17-1-59",
-          "PDPA-51-1-252"
+          "PDPA-23-0-85",
+          "PDPA-20-2-64",
+          "PDPA-17-1-59"
         ],
         "metrics": {
           "precision@1": 0.0,
@@ -441,7 +441,7 @@
           "ndcg@10": 0.0,
           "hit_rate@10": 0.0,
           "mrr@10": 0.0,
-          "latency_ms": 18.934011459350586
+          "latency_ms": 10.336875915527344
         }
       },
       {
@@ -459,8 +459,8 @@
           "PDPA-26B-4-96",
           "PDPA-26A-0-92",
           "PDPA-26D-7-107",
-          "PDPA-26C-1-97",
-          "PDPA-48J-2-191"
+          "PDPA-48J-2-191",
+          "PDPA-26D-2-102"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -479,7 +479,7 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 23.415803909301758
+          "latency_ms": 10.277986526489258
         }
       },
       {
@@ -494,11 +494,11 @@
           "PDPA-48Q-6-238",
           "PDPA-48R-1-240",
           "PDPA-48R-3-242",
+          "PDPA-22-4-79",
           "PDPA-48P-5-232",
-          "PDPA-22-6-81",
-          "PDPA-48H-2-187",
-          "PDPA-48N-6-223",
-          "PDPA-43-2-136"
+          "PDPA-48L-3-210",
+          "PDPA-48Q-4-236",
+          "PDPA-48N-6-223"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -517,7 +517,7 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 21.434783935546875
+          "latency_ms": 11.89112663269043
         }
       },
       {
@@ -529,14 +529,14 @@
         "reranked_chunks": [
           "PDPA-4-4-10",
           "PDPA-25-0-87",
+          "PDPA-7-2-17",
           "PDPA-22A-1-83",
           "PDPA-48O-1-225",
           "PDPA-48N-7-224",
-          "PDPA-48O-3-227",
-          "PDPA-19-0-62",
-          "PDPA-18-0-61",
-          "PDPA-24-0-86",
-          "PDPA-59-1-285"
+          "PDPA-48M-2-214",
+          "PDPA-59-6-290",
+          "PDPA-67-6-309",
+          "PDPA-48O-3-227"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -555,7 +555,7 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 20.720958709716797
+          "latency_ms": 25.55704116821289
         }
       },
       {
@@ -571,10 +571,10 @@
           "PDPA-48A-4-161",
           "PDPA-48B-3-166",
           "PDPA-48B-1-164",
-          "PDPA-37-4-120",
           "PDPA-11-4-31",
-          "PDPA-51-1-252",
-          "PDPA-53-1-273"
+          "PDPA-38-0-123",
+          "PDPA-37-4-120",
+          "PDPA-51-1-252"
         ],
         "metrics": {
           "precision@1": 0.0,
@@ -593,7 +593,7 @@
           "ndcg@10": 0.6309297535714575,
           "hit_rate@10": 1.0,
           "mrr@10": 0.5,
-          "latency_ms": 148.7879753112793
+          "latency_ms": 65.67215919494629
         }
       },
       {
@@ -604,15 +604,15 @@
         ],
         "reranked_chunks": [
           "PDPA-12-0-35",
-          "PDPA-21-1-68",
           "PDPA-20-5-67",
+          "PDPA-21-1-68",
           "PDPA-59-1-285",
           "PDPA-15A-4-53",
           "PDPA-59-6-290",
-          "PDPA-21-4-72",
-          "PDPA-20-1-63",
-          "PDPA-21-6-74",
-          "PDPA-59-4-288"
+          "PDPA-21-7-75",
+          "PDPA-11-5A-33",
+          "PDPA-14-2-38",
+          "PDPA-10-3-25"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -631,7 +631,7 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 16.477108001708984
+          "latency_ms": 14.4500732421875
         }
       },
       {
@@ -646,11 +646,11 @@
           "PDPA-48E-3-176",
           "PDPA-26B-1-93",
           "PDPA-48J-6-197",
-          "PDPA-48C-1-168",
-          "PDPA-26D-5-105",
           "PDPA-48E-2-175",
-          "PDPA-48J-2-191",
-          "PDPA-48D-4-173"
+          "PDPA-51-2-254",
+          "PDPA-51-4-256",
+          "PDPA-26D-5-105",
+          "PDPA-48J-4A-194"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -669,7 +669,7 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 38.42568397521973
+          "latency_ms": 21.5301513671875
         }
       },
       {
@@ -682,13 +682,13 @@
           "PDPA-48-4-156",
           "PDPA-52-3-261",
           "PDPA-37-5-121",
-          "PDPA-52A-3-268",
           "PDPA-48D-4-173",
-          "PDPA-48O-1-225",
-          "PDPA-48E-4-177",
-          "PDPA-48-5-157",
-          "PDPA-26-3-90",
-          "PDPA-48M-2-214"
+          "PDPA-48M-2-214",
+          "PDPA-38-0-123",
+          "PDPA-2-1-3",
+          "PDPA-47-6-152",
+          "PDPA-48D-2-171",
+          "PDPA-24-0-86"
         ],
         "metrics": {
           "precision@1": 0.0,
@@ -707,7 +707,7 @@
           "ndcg@10": 0.0,
           "hit_rate@10": 0.0,
           "mrr@10": 0.0,
-          "latency_ms": 31.289100646972656
+          "latency_ms": 21.461963653564453
         }
       },
       {
@@ -724,9 +724,9 @@
           "PDPA-48-2-154",
           "PDPA-43-1-135",
           "PDPA-48A-2-159",
-          "PDPA-47-3-149",
           "PDPA-36-2-114",
-          "PDPA-48B-3-166"
+          "PDPA-47-3-149",
+          "PDPA-47-1-147"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -745,7 +745,7 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 59.22889709472656
+          "latency_ms": 16.731977462768555
         }
       },
       {
@@ -760,961 +760,11 @@
           "PDPA-26B-4-96",
           "PDPA-26C-1-97",
           "PDPA-48-1-153",
-          "PDPA-26C-3-99",
-          "PDPA-52-3-261",
           "PDPA-48D-2-171",
           "PDPA-48E-2-175",
-          "PDPA-52-7-265"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 79.29229736328125
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0183",
-        "query": "Can PDPA notification duties overlap with those under other regulations, like banking laws?",
-        "relevant_chunks": [
-          "PDPA-26D-9-109"
-        ],
-        "reranked_chunks": [
-          "PDPA-26D-8-108",
-          "PDPA-26D-3-103",
-          "PDPA-26D-4-104",
-          "PDPA-26D-6-106",
-          "PDPA-26D-9-109",
-          "PDPA-15A-3-52",
-          "PDPA-4-6-12",
-          "PDPA-26C-3-99",
-          "PDPA-65-2-300",
-          "PDPA-48E-3-176"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.2,
-          "ndcg@5": 0.38685280723454163,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.2,
-          "precision@10": 0.1,
-          "ndcg@10": 0.38685280723454163,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.2,
-          "latency_ms": 31.62097930908203
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0390",
-        "query": "Can organisations seek reconsideration of financial penalties?",
-        "relevant_chunks": [
-          "PDPA-48N-2-219"
-        ],
-        "reranked_chunks": [
-          "PDPA-48N-2-219",
-          "PDPA-48N-6-223",
-          "PDPA-48N-3-220",
-          "PDPA-48N-7-224",
-          "PDPA-48J-1-190",
-          "PDPA-48N-4-221",
-          "PDPA-48J-2-191",
-          "PDPA-48N-1-218",
-          "PDPA-48Q-3-235",
-          "PDPA-48N-5-222"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 73.17566871643066
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0467",
-        "query": "How are compoundable offences under Part 9 treated?",
-        "relevant_chunks": [
-          "PDPA-55-2-277"
-        ],
-        "reranked_chunks": [
-          "PDPA-55-2-277",
-          "PDPA-55-4-279",
-          "PDPA-55-1-276",
-          "PDPA-56-0-280",
-          "PDPA-55-3-278",
-          "PDPA-54-0-275",
-          "PDPA-51-5-257",
-          "PDPA-51-6-258",
-          "PDPA-48C-2-169",
-          "PDPA-48J-2-191"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 18.764972686767578
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0145",
-        "query": "If the corrected data is sent to other companies, must they also tell me?",
-        "relevant_chunks": [
-          "PDPA-22-4-79"
-        ],
-        "reranked_chunks": [
-          "PDPA-22-2-77",
-          "PDPA-22-4-79",
-          "PDPA-22-5-80",
-          "PDPA-22-3-78",
-          "PDPA-26D-2-102",
-          "PDPA-21-7-75",
-          "PDPA-22-6-81",
-          "PDPA-22-7-82",
-          "PDPA-22-1-76",
-          "PDPA-48H-2-187"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.6309297535714575,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.5,
-          "precision@5": 0.2,
-          "ndcg@5": 0.6309297535714575,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.5,
-          "precision@10": 0.1,
-          "ndcg@10": 0.6309297535714575,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.5,
-          "latency_ms": 18.677234649658203
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0180",
-        "query": "What protection does a company have when disclosing information during a breach notification?",
-        "relevant_chunks": [
-          "PDPA-26D-8-108"
-        ],
-        "reranked_chunks": [
-          "PDPA-26D-3-103",
-          "PDPA-26D-4-104",
-          "PDPA-26D-8-108",
-          "PDPA-15A-4-53",
-          "PDPA-15-9-49",
-          "PDPA-20-5-67",
-          "PDPA-59-5-289",
-          "PDPA-21-4-72",
-          "PDPA-26D-9-109",
-          "PDPA-26C-3-99"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.5,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.3333333333333333,
-          "precision@5": 0.2,
-          "ndcg@5": 0.5,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.3333333333333333,
-          "precision@10": 0.1,
-          "ndcg@10": 0.5,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.3333333333333333,
-          "latency_ms": 18.909931182861328
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0464",
-        "query": "If an employer proves practicable steps, does that automatically absolve the employee?",
-        "relevant_chunks": [
-          "PDPA-53-2-274"
-        ],
-        "reranked_chunks": [
-          "PDPA-53-2-274",
-          "PDPA-53-1-273",
-          "PDPA-48-1-153",
-          "PDPA-48-4-156",
-          "PDPA-20-4-66",
-          "PDPA-37-4-120",
-          "PDPA-52-1-259",
-          "PDPA-11-6-34",
-          "PDPA-48B-2-165",
-          "PDPA-60-0-292"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 22.243738174438477
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0490",
-        "query": "Can PDPC share confidential information if the individual involved agrees?",
-        "relevant_chunks": [
-          "PDPA-59-5-289"
-        ],
-        "reranked_chunks": [
-          "PDPA-59-3-287",
-          "PDPA-59-6-290",
-          "PDPA-59-4-288",
-          "PDPA-59-1-285",
-          "PDPA-21-4-72",
-          "PDPA-21-3-70",
-          "PDPA-11-5-32",
-          "PDPA-10-3-25",
-          "PDPA-10-2-24",
-          "PDPA-14-2-38"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 62.13498115539551
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0192",
-        "query": "What does 'calling line identity' mean under the PDPA?",
-        "relevant_chunks": [
-          "PDPA-36-1-111"
-        ],
-        "reranked_chunks": [
-          "PDPA-36-1-111",
-          "PDPA-36-1-113",
-          "PDPA-45-0-144",
-          "PDPA-37-1-117",
-          "PDPA-48A-1-158",
-          "PDPA-48-5-157",
-          "PDPA-39-1-124",
-          "PDPA-48B-4-167",
-          "PDPA-36-4-116",
-          "PDPA-68-2-314"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 71.20299339294434
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0204",
-        "query": "If a company’s chatbot sends promotional messages using a third-party API, is the company responsible?",
-        "relevant_chunks": [
-          "PDPA-37-3-119"
-        ],
-        "reranked_chunks": [
-          "PDPA-37-3-119",
-          "PDPA-48B-1-164",
-          "PDPA-48B-2-165",
-          "PDPA-48B-3-166",
-          "PDPA-46-2-146",
-          "PDPA-37-2-118",
-          "PDPA-36-3-115",
-          "PDPA-48-2-154",
-          "PDPA-48A-4-161",
-          "PDPA-43-4-138"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 38.108110427856445
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0275",
-        "query": "Does the PDPA specify what form the prescribed applications and confirmations must take?",
-        "relevant_chunks": [
-          "PDPA-40-2-128"
-        ],
-        "reranked_chunks": [
-          "PDPA-48N-4-221",
-          "PDPA-65-2-300",
-          "PDPA-39-2-125",
-          "PDPA-65-2-301",
-          "PDPA-43A-2-141",
-          "PDPA-43-1-135",
-          "PDPA-43-3-137",
-          "PDPA-26D-4-104",
-          "PDPA-40-1-127",
-          "PDPA-40-2-128"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.1,
-          "ndcg@10": 0.2890648263178879,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.1,
-          "latency_ms": 17.288923263549805
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0204",
-        "query": "If a company’s chatbot sends promotional messages using a third-party API, is the company responsible?",
-        "relevant_chunks": [
-          "PDPA-37-3-119"
-        ],
-        "reranked_chunks": [
-          "PDPA-37-3-119",
-          "PDPA-48B-1-164",
-          "PDPA-48B-2-165",
-          "PDPA-48B-3-166",
-          "PDPA-46-2-146",
-          "PDPA-37-2-118",
-          "PDPA-36-3-115",
-          "PDPA-48-2-154",
-          "PDPA-48A-4-161",
-          "PDPA-43-4-138"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 22.327899932861328
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0096",
-        "query": "When does the deemed consent by notification rule apply?",
-        "relevant_chunks": [
-          "PDPA-15A-1-50"
-        ],
-        "reranked_chunks": [
-          "PDPA-15A-3-52",
-          "PDPA-15A-1-50",
-          "PDPA-15A-2-51",
-          "PDPA-20-3-65",
-          "PDPA-15-9-49",
-          "PDPA-15A-5-54",
-          "PDPA-15-8-48",
-          "PDPA-15-7-47",
-          "PDPA-15-4-44",
-          "PDPA-15A-4-53"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.6309297535714575,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.5,
-          "precision@5": 0.2,
-          "ndcg@5": 0.6309297535714575,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.5,
-          "precision@10": 0.1,
-          "ndcg@10": 0.6309297535714575,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.5,
-          "latency_ms": 24.862051010131836
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0460",
-        "query": "If an employee mishandles personal data at work, is the employer treated as having done the act too?",
-        "relevant_chunks": [
-          "PDPA-53-1-273"
-        ],
-        "reranked_chunks": [
-          "PDPA-53-1-273",
-          "PDPA-53-2-274",
-          "PDPA-48-1-153",
-          "PDPA-60-0-292",
-          "PDPA-4-1-7",
-          "PDPA-20-4-66",
-          "PDPA-48B-2-165",
-          "PDPA-48-4-156",
-          "PDPA-4-3-9",
-          "PDPA-51-3-255"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 23.69976043701172
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0204",
-        "query": "If a company’s chatbot sends promotional messages using a third-party API, is the company responsible?",
-        "relevant_chunks": [
-          "PDPA-37-4-120"
-        ],
-        "reranked_chunks": [
-          "PDPA-37-3-119",
-          "PDPA-48B-1-164",
-          "PDPA-48B-2-165",
-          "PDPA-48B-3-166",
-          "PDPA-46-2-146",
-          "PDPA-37-2-118",
-          "PDPA-36-3-115",
-          "PDPA-48-2-154",
-          "PDPA-48A-4-161",
-          "PDPA-43-4-138"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 24.486064910888672
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0324",
-        "query": "What defences are available for improper use of personal data?",
-        "relevant_chunks": [
-          "PDPA-48E-2-175"
-        ],
-        "reranked_chunks": [
-          "PDPA-48E-2-175",
-          "PDPA-48D-2-171",
-          "PDPA-48E-3-176",
-          "PDPA-48E-1-174",
-          "PDPA-52-3-261",
-          "PDPA-48F-2-179",
-          "PDPA-24-0-86",
-          "PDPA-52A-3-268",
-          "PDPA-3-0-6",
-          "PDPA-48E-4-177"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 21.50559425354004
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0271",
-        "query": "Can a business send marketing messages without checking the Do Not Call Register?",
-        "relevant_chunks": [
-          "PDPA-43-1-135"
-        ],
-        "reranked_chunks": [
-          "PDPA-43-1-135",
-          "PDPA-43-4-138",
-          "PDPA-45-0-144",
-          "PDPA-43-5-139",
-          "PDPA-65-2-301",
-          "PDPA-39-1-124",
-          "PDPA-43-2-136",
-          "PDPA-44-0-143",
-          "PDPA-48B-1-164",
-          "PDPA-42-5-134"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 24.262189865112305
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0454",
-        "query": "Does section 52A change how evidence is admitted in PDPA prosecutions against associations or partnerships?",
-        "relevant_chunks": [
-          "PDPA-52A-4-269"
-        ],
-        "reranked_chunks": [
-          "PDPA-52A-4-269",
-          "PDPA-52A-5-270",
-          "PDPA-52A-1-266",
-          "PDPA-52A-3-268",
-          "PDPA-52A-2-267",
-          "PDPA-52A-6-271",
-          "PDPA-52-4-262",
-          "PDPA-52A-7-272",
-          "PDPA-58-2-284",
-          "PDPA-58-1-283"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 28.560161590576172
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0420",
-        "query": "Can an individual ever be jailed for PDPA offences?",
-        "relevant_chunks": [
-          "PDPA-51-2-254"
-        ],
-        "reranked_chunks": [
-          "PDPA-52-2-260",
-          "PDPA-51-4-256",
-          "PDPA-51-1-252",
-          "PDPA-55-3-278",
-          "PDPA-51-2-254",
-          "PDPA-48E-1-174",
-          "PDPA-51-5-257",
-          "PDPA-51-6-258",
-          "PDPA-59-2-286",
-          "PDPA-48D-1-170"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.2,
-          "ndcg@5": 0.38685280723454163,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.2,
-          "precision@10": 0.1,
-          "ndcg@10": 0.38685280723454163,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.2,
-          "latency_ms": 19.647836685180664
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0271",
-        "query": "Can a business send marketing messages without checking the Do Not Call Register?",
-        "relevant_chunks": [
-          "PDPA-43-1-135"
-        ],
-        "reranked_chunks": [
-          "PDPA-43-1-135",
-          "PDPA-43-4-138",
-          "PDPA-45-0-144",
-          "PDPA-43-5-139",
-          "PDPA-65-2-301",
-          "PDPA-39-1-124",
-          "PDPA-43-2-136",
-          "PDPA-44-0-143",
-          "PDPA-48B-1-164",
-          "PDPA-42-5-134"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 17.171144485473633
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0165",
-        "query": "Who is responsible for assessing a breach when it happens at a data intermediary?",
-        "relevant_chunks": [
-          "PDPA-26C-3-99"
-        ],
-        "reranked_chunks": [
-          "PDPA-26C-3-99",
-          "PDPA-26C-2-98",
-          "PDPA-26C-4-100",
+          "PDPA-52-7-265",
           "PDPA-26D-1-101",
-          "PDPA-4-3-9",
-          "PDPA-26C-1-97",
-          "PDPA-26B-4-96",
-          "PDPA-4-2-8",
-          "PDPA-5-2-14",
-          "PDPA-26E-0-110"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 22.14217185974121
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0159",
-        "query": "Who must be informed if a data breach affects thousands of customers?",
-        "relevant_chunks": [
-          "PDPA-26B-1-93"
-        ],
-        "reranked_chunks": [
-          "PDPA-26B-3-95",
-          "PDPA-26D-2-102",
-          "PDPA-26D-5-105",
-          "PDPA-26D-6-106",
-          "PDPA-26B-1-93",
-          "PDPA-26C-2-98",
-          "PDPA-26D-8-108",
-          "PDPA-26A-0-92",
-          "PDPA-26D-3-103",
-          "PDPA-26D-7-107"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.2,
-          "ndcg@5": 0.38685280723454163,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.2,
-          "precision@10": 0.1,
-          "ndcg@10": 0.38685280723454163,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.2,
-          "latency_ms": 15.160083770751953
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0131",
-        "query": "If another company receives notice that my data was corrected, what must it do?",
-        "relevant_chunks": [
-          "PDPA-22-4-79"
-        ],
-        "reranked_chunks": [
-          "PDPA-22-2-77",
-          "PDPA-22-4-79",
-          "PDPA-22-5-80",
-          "PDPA-22-3-78",
-          "PDPA-48H-2-187",
-          "PDPA-22-6-81",
-          "PDPA-22-7-82",
-          "PDPA-22-1-76",
-          "PDPA-21-7-75",
-          "PDPA-23-0-85"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.6309297535714575,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.5,
-          "precision@5": 0.2,
-          "ndcg@5": 0.6309297535714575,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.5,
-          "precision@10": 0.1,
-          "ndcg@10": 0.6309297535714575,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.5,
-          "latency_ms": 23.37169647216797
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0159",
-        "query": "Who must be informed if a data breach affects thousands of customers?",
-        "relevant_chunks": [
-          "PDPA-26B-1-93"
-        ],
-        "reranked_chunks": [
-          "PDPA-26B-3-95",
-          "PDPA-26D-2-102",
-          "PDPA-26D-5-105",
-          "PDPA-26D-6-106",
-          "PDPA-26B-1-93",
-          "PDPA-26C-2-98",
-          "PDPA-26D-8-108",
-          "PDPA-26A-0-92",
-          "PDPA-26D-3-103",
-          "PDPA-26D-7-107"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.2,
-          "ndcg@5": 0.38685280723454163,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.2,
-          "precision@10": 0.1,
-          "ndcg@10": 0.38685280723454163,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.2,
-          "latency_ms": 18.31817626953125
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0129",
-        "query": "What must a company do if I ask them to correct my personal data?",
-        "relevant_chunks": [
-          "PDPA-22-2-77"
-        ],
-        "reranked_chunks": [
-          "PDPA-22-4-79",
-          "PDPA-22-2-77",
-          "PDPA-22-5-80",
-          "PDPA-22-1-76",
-          "PDPA-22-7-82",
-          "PDPA-22-6-81",
-          "PDPA-22-3-78",
-          "PDPA-48H-2-187",
-          "PDPA-23-0-85",
-          "PDPA-22A-2-84"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.6309297535714575,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.5,
-          "precision@5": 0.2,
-          "ndcg@5": 0.6309297535714575,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.5,
-          "precision@10": 0.1,
-          "ndcg@10": 0.6309297535714575,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.5,
-          "latency_ms": 27.566194534301758
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0490",
-        "query": "Can PDPC share confidential information if the individual involved agrees?",
-        "relevant_chunks": [
-          "PDPA-59-5-289"
-        ],
-        "reranked_chunks": [
-          "PDPA-59-3-287",
-          "PDPA-59-6-290",
-          "PDPA-59-4-288",
-          "PDPA-59-1-285",
-          "PDPA-21-4-72",
-          "PDPA-21-3-70",
-          "PDPA-11-5-32",
-          "PDPA-10-3-25",
-          "PDPA-10-2-24",
-          "PDPA-14-2-38"
+          "PDPA-48F-2-179"
         ],
         "metrics": {
           "precision@1": 0.0,
@@ -1733,45 +783,83 @@
           "ndcg@10": 0.0,
           "hit_rate@10": 0.0,
           "mrr@10": 0.0,
-          "latency_ms": 38.92087936401367
+          "latency_ms": 89.36500549316406
         }
       },
       {
-        "qa_id": "PDPA-QA-0337",
-        "query": "What can the PDPC regulate about mediation operators under the PDPA?",
+        "qa_id": "PDPA-QA-0183",
+        "query": "Can PDPA notification duties overlap with those under other regulations, like banking laws?",
         "relevant_chunks": [
-          "PDPA-48G-4-185"
+          "PDPA-26D-9-109"
         ],
         "reranked_chunks": [
-          "PDPA-48G-1-182",
-          "PDPA-48G-4-185",
-          "PDPA-65-1-299",
-          "PDPA-65-3-302",
-          "PDPA-52A-6-271",
-          "PDPA-65-2-300",
+          "PDPA-26D-8-108",
+          "PDPA-26D-3-103",
+          "PDPA-26D-4-104",
+          "PDPA-26D-6-106",
+          "PDPA-26D-9-109",
           "PDPA-52-6-264",
-          "PDPA-48G-3-184",
-          "PDPA-67-8-311",
-          "PDPA-39-3-126"
+          "PDPA-52A-6-271",
+          "PDPA-26D-7-107",
+          "PDPA-15A-3-52",
+          "PDPA-65-3-302"
         ],
         "metrics": {
           "precision@1": 0.0,
           "ndcg@1": 0.0,
           "hit_rate@1": 0.0,
           "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.6309297535714575,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.5,
+          "precision@3": 0.0,
+          "ndcg@3": 0.0,
+          "hit_rate@3": 0.0,
+          "mrr@3": 0.0,
           "precision@5": 0.2,
-          "ndcg@5": 0.6309297535714575,
+          "ndcg@5": 0.38685280723454163,
           "hit_rate@5": 1.0,
-          "mrr@5": 0.5,
+          "mrr@5": 0.2,
           "precision@10": 0.1,
-          "ndcg@10": 0.6309297535714575,
+          "ndcg@10": 0.38685280723454163,
           "hit_rate@10": 1.0,
-          "mrr@10": 0.5,
-          "latency_ms": 20.9810733795166
+          "mrr@10": 0.2,
+          "latency_ms": 21.45099639892578
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0390",
+        "query": "Can organisations seek reconsideration of financial penalties?",
+        "relevant_chunks": [
+          "PDPA-48N-2-219"
+        ],
+        "reranked_chunks": [
+          "PDPA-48N-2-219",
+          "PDPA-48N-6-223",
+          "PDPA-48N-3-220",
+          "PDPA-48N-7-224",
+          "PDPA-48J-1-190",
+          "PDPA-48N-4-221",
+          "PDPA-48J-2-191",
+          "PDPA-48J-6-197",
+          "PDPA-48N-1-218",
+          "PDPA-48K-9-206"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 86.28392219543457
         }
       },
       {
@@ -1789,8 +877,8 @@
           "PDPA-21-7-75",
           "PDPA-22-6-81",
           "PDPA-22-7-82",
-          "PDPA-22-1-76",
-          "PDPA-48H-2-187"
+          "PDPA-48H-2-187",
+          "PDPA-22-1-76"
         ],
         "metrics": {
           "precision@1": 0.0,
@@ -1809,254 +897,26 @@
           "ndcg@10": 0.6309297535714575,
           "hit_rate@10": 1.0,
           "mrr@10": 0.5,
-          "latency_ms": 19.9587345123291
+          "latency_ms": 14.826059341430664
         }
       },
       {
-        "qa_id": "PDPA-QA-0486",
-        "query": "What must specified persons under PDPA s.59(1) keep secret?",
+        "qa_id": "PDPA-QA-0180",
+        "query": "What protection does a company have when disclosing information during a breach notification?",
         "relevant_chunks": [
-          "PDPA-59-1-285"
+          "PDPA-26D-8-108"
         ],
         "reranked_chunks": [
-          "PDPA-59-1-285",
-          "PDPA-59-6-290",
-          "PDPA-21-4-72",
-          "PDPA-21-2-69",
-          "PDPA-59-5-289",
-          "PDPA-45-0-144",
-          "PDPA-59-7-291",
-          "PDPA-21-7-75",
-          "PDPA-43-1-135",
-          "PDPA-10-1-23"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 19.17409896850586
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0204",
-        "query": "If a company’s chatbot sends promotional messages using a third-party API, is the company responsible?",
-        "relevant_chunks": [
-          "PDPA-37-3-119"
-        ],
-        "reranked_chunks": [
-          "PDPA-37-3-119",
-          "PDPA-48B-1-164",
-          "PDPA-48B-2-165",
-          "PDPA-48B-3-166",
-          "PDPA-46-2-146",
-          "PDPA-37-2-118",
-          "PDPA-36-3-115",
-          "PDPA-48-2-154",
-          "PDPA-48A-4-161",
-          "PDPA-43-4-138"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 28.8393497467041
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0014",
-        "query": "If a private person keeps old letters from 1920, are they bound by the PDPA?",
-        "relevant_chunks": [
-          "PDPA-4-4-10"
-        ],
-        "reranked_chunks": [
-          "PDPA-4-4-10",
-          "PDPA-25-0-87",
-          "PDPA-22A-1-83",
-          "PDPA-48O-1-225",
-          "PDPA-48N-7-224",
-          "PDPA-48O-3-227",
-          "PDPA-19-0-62",
-          "PDPA-18-0-61",
-          "PDPA-24-0-86",
-          "PDPA-59-1-285"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 26.794910430908203
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0356",
-        "query": "When can PDPC proceed to issue a direction or impose a penalty?",
-        "relevant_chunks": [
-          "PDPA-48K-4-201"
-        ],
-        "reranked_chunks": [
-          "PDPA-48K-7-204",
-          "PDPA-48N-2-219",
-          "PDPA-48K-9-206",
-          "PDPA-48K-4-201",
-          "PDPA-48K-8-205",
-          "PDPA-48K-1-198",
-          "PDPA-48K-6-203",
-          "PDPA-48M-4-216",
-          "PDPA-48K-10-207",
-          "PDPA-48J-6-197"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.2,
-          "ndcg@5": 0.43067655807339306,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.25,
-          "precision@10": 0.1,
-          "ndcg@10": 0.43067655807339306,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.25,
-          "latency_ms": 28.24711799621582
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0486",
-        "query": "What must specified persons under PDPA s.59(1) keep secret?",
-        "relevant_chunks": [
-          "PDPA-59-1-285"
-        ],
-        "reranked_chunks": [
-          "PDPA-59-1-285",
-          "PDPA-59-6-290",
-          "PDPA-21-4-72",
-          "PDPA-21-2-69",
-          "PDPA-59-5-289",
-          "PDPA-45-0-144",
-          "PDPA-59-7-291",
-          "PDPA-21-7-75",
-          "PDPA-43-1-135",
-          "PDPA-10-1-23"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 27.170181274414062
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0355",
-        "query": "Can the time to submit written representations be extended?",
-        "relevant_chunks": [
-          "PDPA-48K-3-200"
-        ],
-        "reranked_chunks": [
-          "PDPA-48K-3-200",
-          "PDPA-48K-4-201",
-          "PDPA-48K-2-199",
-          "PDPA-48K-1-198",
-          "PDPA-48N-5-222",
-          "PDPA-48N-4-221",
-          "PDPA-48K-9-206",
+          "PDPA-26D-3-103",
           "PDPA-26D-4-104",
-          "PDPA-59-4-288",
-          "PDPA-49-1-244"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 33.21123123168945
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0076",
-        "query": "If a company has multiple staff managing different aspects of PDPA compliance, is that allowed?",
-        "relevant_chunks": [
-          "PDPA-11-3-30"
-        ],
-        "reranked_chunks": [
-          "PDPA-65-3-302",
-          "PDPA-12-0-35",
-          "PDPA-11-3-30",
-          "PDPA-11-4-31",
-          "PDPA-48J-5-195",
-          "PDPA-20-4-66",
-          "PDPA-11-6-34",
-          "PDPA-60-0-292",
-          "PDPA-52-2-260",
-          "PDPA-6-0-15"
+          "PDPA-26D-8-108",
+          "PDPA-15A-4-53",
+          "PDPA-15-9-49",
+          "PDPA-59-5-289",
+          "PDPA-26D-5-105",
+          "PDPA-20-5-67",
+          "PDPA-59-1-285",
+          "PDPA-26C-3-99"
         ],
         "metrics": {
           "precision@1": 0.0,
@@ -2075,64 +935,26 @@
           "ndcg@10": 0.5,
           "hit_rate@10": 1.0,
           "mrr@10": 0.3333333333333333,
-          "latency_ms": 31.467914581298828
+          "latency_ms": 15.531063079833984
         }
       },
       {
-        "qa_id": "PDPA-QA-0129",
-        "query": "What must a company do if I ask them to correct my personal data?",
+        "qa_id": "PDPA-QA-0464",
+        "query": "If an employer proves practicable steps, does that automatically absolve the employee?",
         "relevant_chunks": [
-          "PDPA-22-2-77"
+          "PDPA-53-2-274"
         ],
         "reranked_chunks": [
-          "PDPA-22-4-79",
-          "PDPA-22-2-77",
-          "PDPA-22-5-80",
-          "PDPA-22-1-76",
-          "PDPA-22-7-82",
-          "PDPA-22-6-81",
-          "PDPA-22-3-78",
-          "PDPA-48H-2-187",
-          "PDPA-23-0-85",
-          "PDPA-22A-2-84"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.6309297535714575,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.5,
-          "precision@5": 0.2,
-          "ndcg@5": 0.6309297535714575,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.5,
-          "precision@10": 0.1,
-          "ndcg@10": 0.6309297535714575,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.5,
-          "latency_ms": 25.828838348388672
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0202",
-        "query": "When does the PDPA's DNC rules apply to messages sent to Singapore numbers?",
-        "relevant_chunks": [
-          "PDPA-38-0-123"
-        ],
-        "reranked_chunks": [
-          "PDPA-38-0-123",
-          "PDPA-43-4-138",
-          "PDPA-44-0-143",
-          "PDPA-48A-3-160",
+          "PDPA-53-2-274",
+          "PDPA-53-1-273",
+          "PDPA-48-1-153",
+          "PDPA-48-4-156",
+          "PDPA-20-4-66",
+          "PDPA-37-4-120",
+          "PDPA-11-6-34",
+          "PDPA-48O-2-226",
           "PDPA-48-2-154",
-          "PDPA-43-1-135",
-          "PDPA-48A-2-159",
-          "PDPA-47-3-149",
-          "PDPA-36-2-114",
-          "PDPA-48B-3-166"
+          "PDPA-26D-5-105"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -2151,255 +973,27 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 18.650054931640625
+          "latency_ms": 16.716957092285156
         }
       },
       {
-        "qa_id": "PDPA-QA-0022",
-        "query": "If a law enforcement agency collects data under another law, does PDPA still apply?",
+        "qa_id": "PDPA-QA-0490",
+        "query": "Can PDPC share confidential information if the individual involved agrees?",
         "relevant_chunks": [
-          "PDPA-4-6-12"
+          "PDPA-59-5-289"
         ],
         "reranked_chunks": [
+          "PDPA-59-3-287",
+          "PDPA-59-6-290",
+          "PDPA-59-4-288",
+          "PDPA-59-1-285",
           "PDPA-21-4-72",
-          "PDPA-48E-3-176",
-          "PDPA-26D-6-106",
-          "PDPA-48E-1-174",
-          "PDPA-26D-9-109",
-          "PDPA-10-5-27",
-          "PDPA-4-6-12",
-          "PDPA-48D-3-172",
-          "PDPA-13-0-36",
-          "PDPA-20-3-65"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.1,
-          "ndcg@10": 0.3333333333333333,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.14285714285714285,
-          "latency_ms": 23.73504638671875
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0024",
-        "query": "Can the Minister change what counts as a public agency under PDPA?",
-        "relevant_chunks": [
-          "PDPA-2-2-5"
-        ],
-        "reranked_chunks": [
-          "PDPA-2-2-5",
-          "PDPA-26E-0-110",
-          "PDPA-4-1-7",
-          "PDPA-57-1-281",
-          "PDPA-64-1-297",
-          "PDPA-48D-1-170",
-          "PDPA-48C-2-169",
-          "PDPA-48E-1-174",
-          "PDPA-64-2-298",
-          "PDPA-48D-3-172"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 17.787933349609375
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0183",
-        "query": "Can PDPA notification duties overlap with those under other regulations, like banking laws?",
-        "relevant_chunks": [
-          "PDPA-26D-9-109"
-        ],
-        "reranked_chunks": [
-          "PDPA-26D-8-108",
-          "PDPA-26D-3-103",
-          "PDPA-26D-4-104",
-          "PDPA-26D-6-106",
-          "PDPA-26D-9-109",
-          "PDPA-15A-3-52",
-          "PDPA-4-6-12",
-          "PDPA-26C-3-99",
-          "PDPA-65-2-300",
-          "PDPA-48E-3-176"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.2,
-          "ndcg@5": 0.38685280723454163,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.2,
-          "precision@10": 0.1,
-          "ndcg@10": 0.38685280723454163,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.2,
-          "latency_ms": 27.83370018005371
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0418",
-        "query": "Can PDPC refuse to investigate if a complaint seems insincere?",
-        "relevant_chunks": [
+          "PDPA-21-3-70",
+          "PDPA-36-1-113",
+          "PDPA-59-5-289",
+          "PDPA-15-9-49",
           "PDPA-50-3-249"
         ],
-        "reranked_chunks": [
-          "PDPA-50-3-249",
-          "PDPA-50-1-247",
-          "PDPA-50-3A-250",
-          "PDPA-48G-2-183",
-          "PDPA-48H-1-186",
-          "PDPA-50-2-248",
-          "PDPA-51-3-255",
-          "PDPA-65-2-300",
-          "PDPA-48G-1-182",
-          "PDPA-48H-2-187"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 31.24094009399414
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0152",
-        "query": "Can an organisation be exempted from cross-border transfer requirements?",
-        "relevant_chunks": [
-          "PDPA-26-2-89"
-        ],
-        "reranked_chunks": [
-          "PDPA-26-2-89",
-          "PDPA-26-1-88",
-          "PDPA-26-3-90",
-          "PDPA-26-4-91",
-          "PDPA-62-0-295",
-          "PDPA-26D-7-107",
-          "PDPA-22-7-82",
-          "PDPA-10-4-26",
-          "PDPA-48H-1-186",
-          "PDPA-65-1-299"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 24.824142456054688
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0066",
-        "query": "What must companies disclose when someone requests information about their PDPA practices?",
-        "relevant_chunks": [
-          "PDPA-12-0-35"
-        ],
-        "reranked_chunks": [
-          "PDPA-12-0-35",
-          "PDPA-21-1-68",
-          "PDPA-20-5-67",
-          "PDPA-59-1-285",
-          "PDPA-15A-4-53",
-          "PDPA-59-6-290",
-          "PDPA-21-4-72",
-          "PDPA-20-1-63",
-          "PDPA-21-6-74",
-          "PDPA-59-4-288"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 31.33106231689453
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0047",
-        "query": "Can the PDPC choose not to act on a matter if another regulator is handling it?",
-        "relevant_chunks": [
-          "PDPA-10-2-24"
-        ],
-        "reranked_chunks": [
-          "PDPA-50-3-249",
-          "PDPA-65-1-299",
-          "PDPA-65-2-300",
-          "PDPA-50-3A-250",
-          "PDPA-11-4-31",
-          "PDPA-48G-1-182",
-          "PDPA-39-3-126",
-          "PDPA-51-3-255",
-          "PDPA-10-2-24",
-          "PDPA-6-0-15"
-        ],
         "metrics": {
           "precision@1": 0.0,
           "ndcg@1": 0.0,
@@ -2414,162 +1008,10 @@
           "hit_rate@5": 0.0,
           "mrr@5": 0.0,
           "precision@10": 0.1,
-          "ndcg@10": 0.3010299956639812,
+          "ndcg@10": 0.31546487678572877,
           "hit_rate@10": 1.0,
-          "mrr@10": 0.1111111111111111,
-          "latency_ms": 26.58677101135254
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0248",
-        "query": "If the Appeal Committee confirms PDPC’s decision, can it still alter factual findings?",
-        "relevant_chunks": [
-          "PDPA-48Q-7-239"
-        ],
-        "reranked_chunks": [
-          "PDPA-48Q-7-239",
-          "PDPA-48Q-5-237",
-          "PDPA-48Q-6-238",
-          "PDPA-48R-1-240",
-          "PDPA-48R-3-242",
-          "PDPA-48P-5-232",
-          "PDPA-22-6-81",
-          "PDPA-48H-2-187",
-          "PDPA-48N-6-223",
-          "PDPA-43-2-136"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 19.008874893188477
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0015",
-        "query": "Does the PDPA still apply to information about someone who died 5 years ago?",
-        "relevant_chunks": [
-          "PDPA-4-4-10"
-        ],
-        "reranked_chunks": [
-          "PDPA-48K-5-202",
-          "PDPA-4-4-10",
-          "PDPA-48C-2-169",
-          "PDPA-4-5-11",
-          "PDPA-50-4-251",
-          "PDPA-15A-1-50",
-          "PDPA-58-2-284",
-          "PDPA-26C-1-97",
-          "PDPA-67-9-312",
-          "PDPA-52-4-262"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.6309297535714575,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.5,
-          "precision@5": 0.2,
-          "ndcg@5": 0.6309297535714575,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.5,
-          "precision@10": 0.1,
-          "ndcg@10": 0.6309297535714575,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.5,
-          "latency_ms": 18.14889907836914
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0420",
-        "query": "Can an individual ever be jailed for PDPA offences?",
-        "relevant_chunks": [
-          "PDPA-51-2-254"
-        ],
-        "reranked_chunks": [
-          "PDPA-52-2-260",
-          "PDPA-51-4-256",
-          "PDPA-51-1-252",
-          "PDPA-55-3-278",
-          "PDPA-51-2-254",
-          "PDPA-48E-1-174",
-          "PDPA-51-5-257",
-          "PDPA-51-6-258",
-          "PDPA-59-2-286",
-          "PDPA-48D-1-170"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.2,
-          "ndcg@5": 0.38685280723454163,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.2,
-          "precision@10": 0.1,
-          "ndcg@10": 0.38685280723454163,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.2,
-          "latency_ms": 25.6497859954834
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0324",
-        "query": "What defences are available for improper use of personal data?",
-        "relevant_chunks": [
-          "PDPA-48E-2-175"
-        ],
-        "reranked_chunks": [
-          "PDPA-48E-2-175",
-          "PDPA-48D-2-171",
-          "PDPA-48E-3-176",
-          "PDPA-48E-1-174",
-          "PDPA-52-3-261",
-          "PDPA-48F-2-179",
-          "PDPA-24-0-86",
-          "PDPA-52A-3-268",
-          "PDPA-3-0-6",
-          "PDPA-48E-4-177"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 31.354665756225586
+          "mrr@10": 0.125,
+          "latency_ms": 94.76089477539062
         }
       },
       {
@@ -2587,8 +1029,8 @@
           "PDPA-48-5-157",
           "PDPA-39-1-124",
           "PDPA-48B-4-167",
-          "PDPA-36-4-116",
-          "PDPA-68-2-314"
+          "PDPA-68-2-314",
+          "PDPA-36-1-112"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -2607,216 +1049,26 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 17.305850982666016
+          "latency_ms": 94.73776817321777
         }
       },
       {
-        "qa_id": "PDPA-QA-0453",
-        "query": "If a committee member of an unincorporated association is charged, can they use the same legal defence the association would have?",
+        "qa_id": "PDPA-QA-0204",
+        "query": "If a company’s chatbot sends promotional messages using a third-party API, is the company responsible?",
         "relevant_chunks": [
-          "PDPA-52A-3-268"
+          "PDPA-37-3-119"
         ],
         "reranked_chunks": [
-          "PDPA-52A-3-268",
-          "PDPA-52A-5-270",
-          "PDPA-52A-2-267",
-          "PDPA-52A-1-266",
-          "PDPA-52A-7-272",
-          "PDPA-52A-4-269",
-          "PDPA-52A-6-271",
-          "PDPA-52-3-261",
-          "PDPA-57-2-282",
-          "PDPA-48P-4-231"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 66.0400390625
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0336",
-        "query": "Does the excerpt specify all parts of the defences in s.48F(2)?",
-        "relevant_chunks": [
-          "PDPA-48F-2-179"
-        ],
-        "reranked_chunks": [
-          "PDPA-48-4-156",
-          "PDPA-52-3-261",
-          "PDPA-37-5-121",
-          "PDPA-52A-3-268",
-          "PDPA-48D-4-173",
-          "PDPA-48O-1-225",
-          "PDPA-48E-4-177",
-          "PDPA-48-5-157",
-          "PDPA-26-3-90",
-          "PDPA-48M-2-214"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 26.694059371948242
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0339",
-        "query": "What can PDPC order after reviewing a complaint?",
-        "relevant_chunks": [
-          "PDPA-48H-2-187"
-        ],
-        "reranked_chunks": [
-          "PDPA-48H-2-187",
-          "PDPA-64-2-298",
-          "PDPA-48H-1-186",
-          "PDPA-12-0-35",
-          "PDPA-48R-3-242",
-          "PDPA-48G-2-183",
-          "PDPA-65-2-300",
-          "PDPA-48G-4-185",
-          "PDPA-64-1-297",
-          "PDPA-48M-4-216"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 22.130966186523438
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0070",
-        "query": "What does PDPA require about staff awareness of complaint handling?",
-        "relevant_chunks": [
-          "PDPA-12-0-35"
-        ],
-        "reranked_chunks": [
-          "PDPA-12-0-35",
-          "PDPA-26D-4-104",
-          "PDPA-26C-4-100",
-          "PDPA-43A-2-141",
-          "PDPA-10-3-25",
-          "PDPA-66-0-303",
-          "PDPA-48H-1-186",
-          "PDPA-26-1-88",
-          "PDPA-15A-5-54",
-          "PDPA-48G-4-185"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 26.32594108581543
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0018",
-        "query": "If a private museum keeps data from 1900, does the PDPA apply?",
-        "relevant_chunks": [
-          "PDPA-4-4-10"
-        ],
-        "reranked_chunks": [
-          "PDPA-4-4-10",
-          "PDPA-26C-1-97",
-          "PDPA-15-8-48",
-          "PDPA-58-2-284",
-          "PDPA-15A-1-50",
-          "PDPA-40-2-128",
-          "PDPA-48K-5-202",
-          "PDPA-48M-2-214",
-          "PDPA-48N-7-224",
-          "PDPA-22A-1-83"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 17.850875854492188
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0225",
-        "query": "Who can bring a private action against an individual for PDPA message offences?",
-        "relevant_chunks": [
-          "PDPA-48O-1-225"
-        ],
-        "reranked_chunks": [
-          "PDPA-48O-1-225",
-          "PDPA-48O-3-227",
-          "PDPA-48O-2-226",
-          "PDPA-48K-1-198",
-          "PDPA-55-3-278",
-          "PDPA-36-3-115",
-          "PDPA-9-1-21",
+          "PDPA-37-3-119",
+          "PDPA-48B-1-164",
+          "PDPA-48B-2-165",
           "PDPA-48B-3-166",
-          "PDPA-37-4-120",
-          "PDPA-36-2-114"
+          "PDPA-46-2-146",
+          "PDPA-37-2-118",
+          "PDPA-36-3-115",
+          "PDPA-48A-4-161",
+          "PDPA-43-4-138",
+          "PDPA-47-1-147"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -2835,83 +1087,7 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 20.36309242248535
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0275",
-        "query": "Does the PDPA specify what form the prescribed applications and confirmations must take?",
-        "relevant_chunks": [
-          "PDPA-40-2-128"
-        ],
-        "reranked_chunks": [
-          "PDPA-48N-4-221",
-          "PDPA-65-2-300",
-          "PDPA-39-2-125",
-          "PDPA-65-2-301",
-          "PDPA-43A-2-141",
-          "PDPA-43-1-135",
-          "PDPA-43-3-137",
-          "PDPA-26D-4-104",
-          "PDPA-40-1-127",
-          "PDPA-40-2-128"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.1,
-          "ndcg@10": 0.2890648263178879,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.1,
-          "latency_ms": 24.996042251586914
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0434",
-        "query": "Is ‘I didn’t know’ a defence for managers when a PDPA breach occurs?",
-        "relevant_chunks": [
-          "PDPA-52-2-260"
-        ],
-        "reranked_chunks": [
-          "PDPA-26D-5-105",
-          "PDPA-26C-2-98",
-          "PDPA-26B-4-96",
-          "PDPA-26C-1-97",
-          "PDPA-48-1-153",
-          "PDPA-26C-3-99",
-          "PDPA-52-3-261",
-          "PDPA-48D-2-171",
-          "PDPA-48E-2-175",
-          "PDPA-52-7-265"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 34.856319427490234
+          "latency_ms": 24.13797378540039
         }
       },
       {
@@ -2949,64 +1125,102 @@
           "ndcg@10": 0.6309297535714575,
           "hit_rate@10": 1.0,
           "mrr@10": 0.5,
-          "latency_ms": 29.28614616394043
+          "latency_ms": 23.255109786987305
         }
       },
       {
-        "qa_id": "PDPA-QA-0015",
-        "query": "Does the PDPA still apply to information about someone who died 5 years ago?",
+        "qa_id": "PDPA-QA-0324",
+        "query": "What defences are available for improper use of personal data?",
         "relevant_chunks": [
-          "PDPA-4-4-10"
+          "PDPA-48E-2-175"
         ],
         "reranked_chunks": [
-          "PDPA-48K-5-202",
-          "PDPA-4-4-10",
-          "PDPA-48C-2-169",
-          "PDPA-4-5-11",
-          "PDPA-50-4-251",
-          "PDPA-15A-1-50",
+          "PDPA-48E-2-175",
+          "PDPA-48D-2-171",
+          "PDPA-48E-3-176",
+          "PDPA-48E-1-174",
+          "PDPA-52-3-261",
+          "PDPA-48F-2-179",
+          "PDPA-3-0-6",
+          "PDPA-24-0-86",
+          "PDPA-52A-3-268",
+          "PDPA-26B-2-94"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 13.264179229736328
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0271",
+        "query": "Can a business send marketing messages without checking the Do Not Call Register?",
+        "relevant_chunks": [
+          "PDPA-43-1-135"
+        ],
+        "reranked_chunks": [
+          "PDPA-43-1-135",
+          "PDPA-43-4-138",
+          "PDPA-45-0-144",
+          "PDPA-43-5-139",
+          "PDPA-65-2-301",
+          "PDPA-39-1-124",
+          "PDPA-43-2-136",
+          "PDPA-44-0-143",
+          "PDPA-38-0-123",
+          "PDPA-37-4-120"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 21.4388370513916
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0454",
+        "query": "Does section 52A change how evidence is admitted in PDPA prosecutions against associations or partnerships?",
+        "relevant_chunks": [
+          "PDPA-52A-4-269"
+        ],
+        "reranked_chunks": [
+          "PDPA-52A-4-269",
+          "PDPA-52A-5-270",
+          "PDPA-52A-1-266",
+          "PDPA-52A-3-268",
+          "PDPA-52A-2-267",
+          "PDPA-52A-6-271",
+          "PDPA-52-4-262",
+          "PDPA-52A-7-272",
           "PDPA-58-2-284",
-          "PDPA-26C-1-97",
-          "PDPA-67-9-312",
-          "PDPA-52-4-262"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.6309297535714575,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.5,
-          "precision@5": 0.2,
-          "ndcg@5": 0.6309297535714575,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.5,
-          "precision@10": 0.1,
-          "ndcg@10": 0.6309297535714575,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.5,
-          "latency_ms": 19.365787506103516
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0227",
-        "query": "Can the Chair nominate fewer than three members to hear an appeal?",
-        "relevant_chunks": [
-          "PDPA-48P-4-231"
-        ],
-        "reranked_chunks": [
-          "PDPA-48P-4-231",
-          "PDPA-48P-2-229",
-          "PDPA-48P-3-230",
-          "PDPA-48Q-5-237",
-          "PDPA-48P-5-232",
-          "PDPA-58-1-283",
-          "PDPA-57-2-282",
-          "PDPA-48R-2-241",
-          "PDPA-48Q-2-234",
-          "PDPA-48Q-1-233"
+          "PDPA-48-5-157"
         ],
         "metrics": {
           "precision@1": 1.0,
@@ -3025,634 +1239,64 @@
           "ndcg@10": 1.0,
           "hit_rate@10": 1.0,
           "mrr@10": 1.0,
-          "latency_ms": 21.460294723510742
+          "latency_ms": 153.38706970214844
         }
       },
       {
-        "qa_id": "PDPA-QA-0152",
-        "query": "Can an organisation be exempted from cross-border transfer requirements?",
+        "qa_id": "PDPA-QA-0420",
+        "query": "Can an individual ever be jailed for PDPA offences?",
         "relevant_chunks": [
-          "PDPA-26-2-89"
+          "PDPA-51-2-254"
         ],
         "reranked_chunks": [
-          "PDPA-26-2-89",
-          "PDPA-26-1-88",
-          "PDPA-26-3-90",
-          "PDPA-26-4-91",
-          "PDPA-62-0-295",
-          "PDPA-26D-7-107",
-          "PDPA-22-7-82",
-          "PDPA-10-4-26",
-          "PDPA-48H-1-186",
-          "PDPA-65-1-299"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 18.632173538208008
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0076",
-        "query": "If a company has multiple staff managing different aspects of PDPA compliance, is that allowed?",
-        "relevant_chunks": [
-          "PDPA-11-3-30"
-        ],
-        "reranked_chunks": [
-          "PDPA-65-3-302",
-          "PDPA-12-0-35",
-          "PDPA-11-3-30",
-          "PDPA-11-4-31",
-          "PDPA-48J-5-195",
-          "PDPA-20-4-66",
-          "PDPA-11-6-34",
-          "PDPA-60-0-292",
           "PDPA-52-2-260",
-          "PDPA-6-0-15"
+          "PDPA-51-4-256",
+          "PDPA-51-1-252",
+          "PDPA-55-3-278",
+          "PDPA-51-2-254",
+          "PDPA-51-5-257",
+          "PDPA-48D-1-170",
+          "PDPA-55-2-277",
+          "PDPA-9-1-21",
+          "PDPA-48C-2-169"
         ],
         "metrics": {
           "precision@1": 0.0,
           "ndcg@1": 0.0,
           "hit_rate@1": 0.0,
           "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.5,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.3333333333333333,
+          "precision@3": 0.0,
+          "ndcg@3": 0.0,
+          "hit_rate@3": 0.0,
+          "mrr@3": 0.0,
           "precision@5": 0.2,
-          "ndcg@5": 0.5,
+          "ndcg@5": 0.38685280723454163,
           "hit_rate@5": 1.0,
-          "mrr@5": 0.3333333333333333,
+          "mrr@5": 0.2,
           "precision@10": 0.1,
-          "ndcg@10": 0.5,
+          "ndcg@10": 0.38685280723454163,
           "hit_rate@10": 1.0,
-          "mrr@10": 0.3333333333333333,
-          "latency_ms": 21.572113037109375
+          "mrr@10": 0.2,
+          "latency_ms": 11.35706901550293
         }
       },
       {
-        "qa_id": "PDPA-QA-0418",
-        "query": "Can PDPC refuse to investigate if a complaint seems insincere?",
+        "qa_id": "PDPA-QA-0159",
+        "query": "Who must be informed if a data breach affects thousands of customers?",
         "relevant_chunks": [
-          "PDPA-50-3-249"
+          "PDPA-26B-1-93"
         ],
         "reranked_chunks": [
-          "PDPA-50-3-249",
-          "PDPA-50-1-247",
-          "PDPA-50-3A-250",
-          "PDPA-48G-2-183",
-          "PDPA-48H-1-186",
-          "PDPA-50-2-248",
-          "PDPA-51-3-255",
-          "PDPA-65-2-300",
-          "PDPA-48G-1-182",
-          "PDPA-48H-2-187"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 23.826122283935547
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0179",
-        "query": "If another law also requires data breach reporting, does PDPA still apply?",
-        "relevant_chunks": [
-          "PDPA-26D-9-109"
-        ],
-        "reranked_chunks": [
-          "PDPA-26D-9-109",
-          "PDPA-26D-8-108",
+          "PDPA-26B-3-95",
+          "PDPA-26D-2-102",
           "PDPA-26D-5-105",
           "PDPA-26D-6-106",
-          "PDPA-26C-4-100",
-          "PDPA-26B-4-96",
+          "PDPA-26B-1-93",
+          "PDPA-26C-2-98",
+          "PDPA-26D-8-108",
           "PDPA-26A-0-92",
-          "PDPA-26D-7-107",
-          "PDPA-26C-1-97",
-          "PDPA-48J-2-191"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 19.968032836914062
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0487",
-        "query": "Is it an offence to disclose confidential PDPC information unlawfully?",
-        "relevant_chunks": [
-          "PDPA-59-2-286"
-        ],
-        "reranked_chunks": [
-          "PDPA-59-5-289",
-          "PDPA-59-6-290",
-          "PDPA-59-3-287",
-          "PDPA-59-1-285",
-          "PDPA-59-4-288",
-          "PDPA-21-4-72",
-          "PDPA-48D-1-170",
-          "PDPA-48D-2-171",
-          "PDPA-18-0-61",
-          "PDPA-58-1-283"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 16.450881958007812
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0275",
-        "query": "Does the PDPA specify what form the prescribed applications and confirmations must take?",
-        "relevant_chunks": [
-          "PDPA-42-1-130"
-        ],
-        "reranked_chunks": [
-          "PDPA-48N-4-221",
-          "PDPA-65-2-300",
-          "PDPA-39-2-125",
-          "PDPA-65-2-301",
-          "PDPA-43A-2-141",
-          "PDPA-43-1-135",
-          "PDPA-43-3-137",
-          "PDPA-26D-4-104",
-          "PDPA-40-1-127",
-          "PDPA-40-2-128"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 20.908832550048828
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0339",
-        "query": "What can PDPC order after reviewing a complaint?",
-        "relevant_chunks": [
-          "PDPA-48H-2-187"
-        ],
-        "reranked_chunks": [
-          "PDPA-48H-2-187",
-          "PDPA-64-2-298",
-          "PDPA-48H-1-186",
-          "PDPA-12-0-35",
-          "PDPA-48R-3-242",
-          "PDPA-48G-2-183",
-          "PDPA-65-2-300",
-          "PDPA-48G-4-185",
-          "PDPA-64-1-297",
-          "PDPA-48M-4-216"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 23.443937301635742
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0087",
-        "query": "When is consent considered 'deemed' even if I didn’t explicitly agree?",
-        "relevant_chunks": [
-          "PDPA-15-1-41"
-        ],
-        "reranked_chunks": [
-          "PDPA-14-4-40",
-          "PDPA-15-1-41",
-          "PDPA-15-2-42",
-          "PDPA-15A-2-51",
-          "PDPA-47-4-150",
-          "PDPA-15-6-46",
-          "PDPA-13-0-36",
-          "PDPA-15-3-43",
-          "PDPA-15A-1-50",
-          "PDPA-15-8-48"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.6309297535714575,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.5,
-          "precision@5": 0.2,
-          "ndcg@5": 0.6309297535714575,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.5,
-          "precision@10": 0.1,
-          "ndcg@10": 0.6309297535714575,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.5,
-          "latency_ms": 20.885944366455078
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0453",
-        "query": "If a committee member of an unincorporated association is charged, can they use the same legal defence the association would have?",
-        "relevant_chunks": [
-          "PDPA-52A-3-268"
-        ],
-        "reranked_chunks": [
-          "PDPA-52A-3-268",
-          "PDPA-52A-5-270",
-          "PDPA-52A-2-267",
-          "PDPA-52A-1-266",
-          "PDPA-52A-7-272",
-          "PDPA-52A-4-269",
-          "PDPA-52A-6-271",
-          "PDPA-52-3-261",
-          "PDPA-57-2-282",
-          "PDPA-48P-4-231"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 36.492109298706055
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0275",
-        "query": "Does the PDPA specify what form the prescribed applications and confirmations must take?",
-        "relevant_chunks": [
-          "PDPA-42-1-130"
-        ],
-        "reranked_chunks": [
-          "PDPA-48N-4-221",
-          "PDPA-65-2-300",
-          "PDPA-39-2-125",
-          "PDPA-65-2-301",
-          "PDPA-43A-2-141",
-          "PDPA-43-1-135",
-          "PDPA-43-3-137",
-          "PDPA-26D-4-104",
-          "PDPA-40-1-127",
-          "PDPA-40-2-128"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 25.717973709106445
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0024",
-        "query": "Can the Minister change what counts as a public agency under PDPA?",
-        "relevant_chunks": [
-          "PDPA-2-2-5"
-        ],
-        "reranked_chunks": [
-          "PDPA-2-2-5",
-          "PDPA-26E-0-110",
-          "PDPA-4-1-7",
-          "PDPA-57-1-281",
-          "PDPA-64-1-297",
-          "PDPA-48D-1-170",
-          "PDPA-48C-2-169",
-          "PDPA-48E-1-174",
-          "PDPA-64-2-298",
-          "PDPA-48D-3-172"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 34.2099666595459
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0070",
-        "query": "What does PDPA require about staff awareness of complaint handling?",
-        "relevant_chunks": [
-          "PDPA-12-0-35"
-        ],
-        "reranked_chunks": [
-          "PDPA-12-0-35",
-          "PDPA-26D-4-104",
-          "PDPA-26C-4-100",
-          "PDPA-43A-2-141",
-          "PDPA-10-3-25",
-          "PDPA-66-0-303",
-          "PDPA-48H-1-186",
-          "PDPA-26-1-88",
-          "PDPA-15A-5-54",
-          "PDPA-48G-4-185"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 31.950950622558594
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0307",
-        "query": "If my Wi-Fi was hijacked and messages were sent without my knowledge, am I responsible?",
-        "relevant_chunks": [
-          "PDPA-48A-5-162"
-        ],
-        "reranked_chunks": [
-          "PDPA-36-3-115",
-          "PDPA-48A-5-162",
-          "PDPA-36-2-114",
-          "PDPA-48A-4-161",
-          "PDPA-48B-3-166",
-          "PDPA-48B-1-164",
-          "PDPA-37-4-120",
-          "PDPA-11-4-31",
-          "PDPA-51-1-252",
-          "PDPA-53-1-273"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.6309297535714575,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.5,
-          "precision@5": 0.2,
-          "ndcg@5": 0.6309297535714575,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.5,
-          "precision@10": 0.1,
-          "ndcg@10": 0.6309297535714575,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.5,
-          "latency_ms": 36.58103942871094
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0047",
-        "query": "Can the PDPC choose not to act on a matter if another regulator is handling it?",
-        "relevant_chunks": [
-          "PDPA-10-2-24"
-        ],
-        "reranked_chunks": [
-          "PDPA-50-3-249",
-          "PDPA-65-1-299",
-          "PDPA-65-2-300",
-          "PDPA-50-3A-250",
-          "PDPA-11-4-31",
-          "PDPA-48G-1-182",
-          "PDPA-39-3-126",
-          "PDPA-51-3-255",
-          "PDPA-10-2-24",
-          "PDPA-6-0-15"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.1,
-          "ndcg@10": 0.3010299956639812,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.1111111111111111,
-          "latency_ms": 24.945974349975586
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0487",
-        "query": "Is it an offence to disclose confidential PDPC information unlawfully?",
-        "relevant_chunks": [
-          "PDPA-59-2-286"
-        ],
-        "reranked_chunks": [
-          "PDPA-59-5-289",
-          "PDPA-59-6-290",
-          "PDPA-59-3-287",
-          "PDPA-59-1-285",
-          "PDPA-59-4-288",
-          "PDPA-21-4-72",
-          "PDPA-48D-1-170",
-          "PDPA-48D-2-171",
-          "PDPA-18-0-61",
-          "PDPA-58-1-283"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 17.40407943725586
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0464",
-        "query": "If an employer proves practicable steps, does that automatically absolve the employee?",
-        "relevant_chunks": [
-          "PDPA-53-2-274"
-        ],
-        "reranked_chunks": [
-          "PDPA-53-2-274",
-          "PDPA-53-1-273",
-          "PDPA-48-1-153",
-          "PDPA-48-4-156",
-          "PDPA-20-4-66",
-          "PDPA-37-4-120",
-          "PDPA-52-1-259",
-          "PDPA-11-6-34",
-          "PDPA-48B-2-165",
-          "PDPA-60-0-292"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 23.669004440307617
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0356",
-        "query": "When can PDPC proceed to issue a direction or impose a penalty?",
-        "relevant_chunks": [
-          "PDPA-48K-4-201"
-        ],
-        "reranked_chunks": [
-          "PDPA-48K-7-204",
-          "PDPA-48N-2-219",
-          "PDPA-48K-9-206",
-          "PDPA-48K-4-201",
-          "PDPA-48K-8-205",
-          "PDPA-48K-1-198",
-          "PDPA-48K-6-203",
-          "PDPA-48M-4-216",
-          "PDPA-48K-10-207",
-          "PDPA-48J-6-197"
+          "PDPA-26D-3-103",
+          "PDPA-26D-7-107"
         ],
         "metrics": {
           "precision@1": 0.0,
@@ -3664,318 +1308,14 @@
           "hit_rate@3": 0.0,
           "mrr@3": 0.0,
           "precision@5": 0.2,
-          "ndcg@5": 0.43067655807339306,
+          "ndcg@5": 0.38685280723454163,
           "hit_rate@5": 1.0,
-          "mrr@5": 0.25,
+          "mrr@5": 0.2,
           "precision@10": 0.1,
-          "ndcg@10": 0.43067655807339306,
+          "ndcg@10": 0.38685280723454163,
           "hit_rate@10": 1.0,
-          "mrr@10": 0.25,
-          "latency_ms": 22.433042526245117
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0275",
-        "query": "Does the PDPA specify what form the prescribed applications and confirmations must take?",
-        "relevant_chunks": [
-          "PDPA-40-2-128"
-        ],
-        "reranked_chunks": [
-          "PDPA-48N-4-221",
-          "PDPA-65-2-300",
-          "PDPA-39-2-125",
-          "PDPA-65-2-301",
-          "PDPA-43A-2-141",
-          "PDPA-43-1-135",
-          "PDPA-43-3-137",
-          "PDPA-26D-4-104",
-          "PDPA-40-1-127",
-          "PDPA-40-2-128"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.1,
-          "ndcg@10": 0.2890648263178879,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.1,
-          "latency_ms": 34.21378135681152
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0204",
-        "query": "If a company’s chatbot sends promotional messages using a third-party API, is the company responsible?",
-        "relevant_chunks": [
-          "PDPA-37-4-120"
-        ],
-        "reranked_chunks": [
-          "PDPA-37-3-119",
-          "PDPA-48B-1-164",
-          "PDPA-48B-2-165",
-          "PDPA-48B-3-166",
-          "PDPA-46-2-146",
-          "PDPA-37-2-118",
-          "PDPA-36-3-115",
-          "PDPA-48-2-154",
-          "PDPA-48A-4-161",
-          "PDPA-43-4-138"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 32.30595588684082
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0204",
-        "query": "If a company’s chatbot sends promotional messages using a third-party API, is the company responsible?",
-        "relevant_chunks": [
-          "PDPA-37-4-120"
-        ],
-        "reranked_chunks": [
-          "PDPA-37-3-119",
-          "PDPA-48B-1-164",
-          "PDPA-48B-2-165",
-          "PDPA-48B-3-166",
-          "PDPA-46-2-146",
-          "PDPA-37-2-118",
-          "PDPA-36-3-115",
-          "PDPA-48-2-154",
-          "PDPA-48A-4-161",
-          "PDPA-43-4-138"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 24.285078048706055
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0275",
-        "query": "Does the PDPA specify what form the prescribed applications and confirmations must take?",
-        "relevant_chunks": [
-          "PDPA-40-1-127"
-        ],
-        "reranked_chunks": [
-          "PDPA-48N-4-221",
-          "PDPA-65-2-300",
-          "PDPA-39-2-125",
-          "PDPA-65-2-301",
-          "PDPA-43A-2-141",
-          "PDPA-43-1-135",
-          "PDPA-43-3-137",
-          "PDPA-26D-4-104",
-          "PDPA-40-1-127",
-          "PDPA-40-2-128"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.1,
-          "ndcg@10": 0.3010299956639812,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.1111111111111111,
-          "latency_ms": 20.524978637695312
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0118",
-        "query": "What can I ask a company for under the PDPA if I want to see my data?",
-        "relevant_chunks": [
-          "PDPA-21-1-68"
-        ],
-        "reranked_chunks": [
-          "PDPA-21-5-73",
-          "PDPA-2-1-3",
-          "PDPA-21-3-70",
-          "PDPA-22-1-76",
-          "PDPA-22A-1-83",
-          "PDPA-15-3-43",
-          "PDPA-21-2-69",
-          "PDPA-21-1-68",
-          "PDPA-26C-3-99",
-          "PDPA-21-3A-71"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.1,
-          "ndcg@10": 0.31546487678572877,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.125,
-          "latency_ms": 28.168201446533203
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0023",
-        "query": "If an organisation uses personal data based on unclear authority, does PDPA allow it?",
-        "relevant_chunks": [
-          "PDPA-4-6-12"
-        ],
-        "reranked_chunks": [
-          "PDPA-48E-1-174",
-          "PDPA-3-0-6",
-          "PDPA-48E-3-176",
-          "PDPA-19-0-62",
-          "PDPA-14-2-38",
-          "PDPA-16-4-58",
-          "PDPA-48E-2-175",
-          "PDPA-18-0-61",
-          "PDPA-17-1-59",
-          "PDPA-51-1-252"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 27.280092239379883
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0004",
-        "query": "Does the PDPA apply to individuals acting in a personal capacity?",
-        "relevant_chunks": [
-          "PDPA-4-1-7"
-        ],
-        "reranked_chunks": [
-          "PDPA-4-1-7",
-          "PDPA-51-1A-253",
-          "PDPA-57-1-281",
-          "PDPA-20-3-65",
-          "PDPA-48C-2-169",
-          "PDPA-21-3A-71",
-          "PDPA-3-0-6",
-          "PDPA-48J-2-191",
-          "PDPA-14-1-37",
-          "PDPA-16-1-55"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 23.107051849365234
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0004",
-        "query": "Does the PDPA apply to individuals acting in a personal capacity?",
-        "relevant_chunks": [
-          "PDPA-4-1-7"
-        ],
-        "reranked_chunks": [
-          "PDPA-4-1-7",
-          "PDPA-51-1A-253",
-          "PDPA-57-1-281",
-          "PDPA-20-3-65",
-          "PDPA-48C-2-169",
-          "PDPA-21-3A-71",
-          "PDPA-3-0-6",
-          "PDPA-48J-2-191",
-          "PDPA-14-1-37",
-          "PDPA-16-1-55"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 19.2108154296875
+          "mrr@10": 0.2,
+          "latency_ms": 9.67097282409668
         }
       },
       {
@@ -4013,444 +1353,26 @@
           "ndcg@10": 0.6309297535714575,
           "hit_rate@10": 1.0,
           "mrr@10": 0.5,
-          "latency_ms": 24.84416961669922
+          "latency_ms": 15.347957611083984
         }
       },
       {
-        "qa_id": "PDPA-QA-0225",
-        "query": "Who can bring a private action against an individual for PDPA message offences?",
+        "qa_id": "PDPA-QA-0129",
+        "query": "What must a company do if I ask them to correct my personal data?",
         "relevant_chunks": [
-          "PDPA-48O-1-225"
+          "PDPA-22-2-77"
         ],
         "reranked_chunks": [
-          "PDPA-48O-1-225",
-          "PDPA-48O-3-227",
-          "PDPA-48O-2-226",
-          "PDPA-48K-1-198",
-          "PDPA-55-3-278",
-          "PDPA-36-3-115",
-          "PDPA-9-1-21",
-          "PDPA-48B-3-166",
-          "PDPA-37-4-120",
-          "PDPA-36-2-114"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 27.48703956604004
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0355",
-        "query": "Can the time to submit written representations be extended?",
-        "relevant_chunks": [
-          "PDPA-48K-3-200"
-        ],
-        "reranked_chunks": [
-          "PDPA-48K-3-200",
-          "PDPA-48K-4-201",
-          "PDPA-48K-2-199",
-          "PDPA-48K-1-198",
-          "PDPA-48N-5-222",
-          "PDPA-48N-4-221",
-          "PDPA-48K-9-206",
-          "PDPA-26D-4-104",
-          "PDPA-59-4-288",
-          "PDPA-49-1-244"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 22.77970314025879
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0180",
-        "query": "What protection does a company have when disclosing information during a breach notification?",
-        "relevant_chunks": [
-          "PDPA-26D-8-108"
-        ],
-        "reranked_chunks": [
-          "PDPA-26D-3-103",
-          "PDPA-26D-4-104",
-          "PDPA-26D-8-108",
-          "PDPA-15A-4-53",
-          "PDPA-15-9-49",
-          "PDPA-20-5-67",
-          "PDPA-59-5-289",
-          "PDPA-21-4-72",
-          "PDPA-26D-9-109",
-          "PDPA-26C-3-99"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 0.5,
-          "hit_rate@3": 1.0,
-          "mrr@3": 0.3333333333333333,
-          "precision@5": 0.2,
-          "ndcg@5": 0.5,
-          "hit_rate@5": 1.0,
-          "mrr@5": 0.3333333333333333,
-          "precision@10": 0.1,
-          "ndcg@10": 0.5,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.3333333333333333,
-          "latency_ms": 20.483016967773438
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0454",
-        "query": "Does section 52A change how evidence is admitted in PDPA prosecutions against associations or partnerships?",
-        "relevant_chunks": [
-          "PDPA-52A-4-269"
-        ],
-        "reranked_chunks": [
-          "PDPA-52A-4-269",
-          "PDPA-52A-5-270",
-          "PDPA-52A-1-266",
-          "PDPA-52A-3-268",
-          "PDPA-52A-2-267",
-          "PDPA-52A-6-271",
-          "PDPA-52-4-262",
-          "PDPA-52A-7-272",
-          "PDPA-58-2-284",
-          "PDPA-58-1-283"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 21.862030029296875
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0390",
-        "query": "Can organisations seek reconsideration of financial penalties?",
-        "relevant_chunks": [
-          "PDPA-48N-2-219"
-        ],
-        "reranked_chunks": [
-          "PDPA-48N-2-219",
-          "PDPA-48N-6-223",
-          "PDPA-48N-3-220",
-          "PDPA-48N-7-224",
-          "PDPA-48J-1-190",
-          "PDPA-48N-4-221",
-          "PDPA-48J-2-191",
-          "PDPA-48N-1-218",
-          "PDPA-48Q-3-235",
-          "PDPA-48N-5-222"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 25.255918502807617
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0335",
-        "query": "What penalty applies for improper use of personal data resulting in harm but without proven gain?",
-        "relevant_chunks": [
-          "PDPA-48E-1-174"
-        ],
-        "reranked_chunks": [
-          "PDPA-48E-1-174",
-          "PDPA-26B-2-94",
-          "PDPA-48E-3-176",
-          "PDPA-26B-1-93",
-          "PDPA-48J-6-197",
-          "PDPA-48C-1-168",
-          "PDPA-26D-5-105",
-          "PDPA-48E-2-175",
-          "PDPA-48J-2-191",
-          "PDPA-48D-4-173"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 17.415761947631836
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0275",
-        "query": "Does the PDPA specify what form the prescribed applications and confirmations must take?",
-        "relevant_chunks": [
-          "PDPA-40-1-127"
-        ],
-        "reranked_chunks": [
-          "PDPA-48N-4-221",
-          "PDPA-65-2-300",
-          "PDPA-39-2-125",
-          "PDPA-65-2-301",
-          "PDPA-43A-2-141",
-          "PDPA-43-1-135",
-          "PDPA-43-3-137",
-          "PDPA-26D-4-104",
-          "PDPA-40-1-127",
-          "PDPA-40-2-128"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.1,
-          "ndcg@10": 0.3010299956639812,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.1111111111111111,
-          "latency_ms": 23.823976516723633
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0118",
-        "query": "What can I ask a company for under the PDPA if I want to see my data?",
-        "relevant_chunks": [
-          "PDPA-21-1-68"
-        ],
-        "reranked_chunks": [
-          "PDPA-21-5-73",
-          "PDPA-2-1-3",
-          "PDPA-21-3-70",
+          "PDPA-22-4-79",
+          "PDPA-22-2-77",
+          "PDPA-22-5-80",
           "PDPA-22-1-76",
-          "PDPA-22A-1-83",
-          "PDPA-15-3-43",
-          "PDPA-21-2-69",
-          "PDPA-21-1-68",
-          "PDPA-26C-3-99",
-          "PDPA-21-3A-71"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.1,
-          "ndcg@10": 0.31546487678572877,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.125,
-          "latency_ms": 32.65500068664551
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0022",
-        "query": "If a law enforcement agency collects data under another law, does PDPA still apply?",
-        "relevant_chunks": [
-          "PDPA-4-6-12"
-        ],
-        "reranked_chunks": [
-          "PDPA-21-4-72",
-          "PDPA-48E-3-176",
-          "PDPA-26D-6-106",
-          "PDPA-48E-1-174",
-          "PDPA-26D-9-109",
-          "PDPA-10-5-27",
-          "PDPA-4-6-12",
-          "PDPA-48D-3-172",
-          "PDPA-13-0-36",
-          "PDPA-20-3-65"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.1,
-          "ndcg@10": 0.3333333333333333,
-          "hit_rate@10": 1.0,
-          "mrr@10": 0.14285714285714285,
-          "latency_ms": 20.216941833496094
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0227",
-        "query": "Can the Chair nominate fewer than three members to hear an appeal?",
-        "relevant_chunks": [
-          "PDPA-48P-4-231"
-        ],
-        "reranked_chunks": [
-          "PDPA-48P-4-231",
-          "PDPA-48P-2-229",
-          "PDPA-48P-3-230",
-          "PDPA-48Q-5-237",
-          "PDPA-48P-5-232",
-          "PDPA-58-1-283",
-          "PDPA-57-2-282",
-          "PDPA-48R-2-241",
-          "PDPA-48Q-2-234",
-          "PDPA-48Q-1-233"
-        ],
-        "metrics": {
-          "precision@1": 1.0,
-          "ndcg@1": 1.0,
-          "hit_rate@1": 1.0,
-          "mrr@1": 1.0,
-          "precision@3": 0.3333333333333333,
-          "ndcg@3": 1.0,
-          "hit_rate@3": 1.0,
-          "mrr@3": 1.0,
-          "precision@5": 0.2,
-          "ndcg@5": 1.0,
-          "hit_rate@5": 1.0,
-          "mrr@5": 1.0,
-          "precision@10": 0.1,
-          "ndcg@10": 1.0,
-          "hit_rate@10": 1.0,
-          "mrr@10": 1.0,
-          "latency_ms": 14.95814323425293
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0020",
-        "query": "If a company collects work emails from a public website, must it comply with PDPA?",
-        "relevant_chunks": [
-          "PDPA-4-5-11"
-        ],
-        "reranked_chunks": [
-          "PDPA-26E-0-110",
-          "PDPA-20-4-66",
-          "PDPA-11-5-32",
-          "PDPA-57-1-281",
-          "PDPA-20-5-67",
-          "PDPA-20-2-64",
-          "PDPA-59-5-289",
-          "PDPA-26D-9-109",
-          "PDPA-15A-4-53",
-          "PDPA-2-2-5"
-        ],
-        "metrics": {
-          "precision@1": 0.0,
-          "ndcg@1": 0.0,
-          "hit_rate@1": 0.0,
-          "mrr@1": 0.0,
-          "precision@3": 0.0,
-          "ndcg@3": 0.0,
-          "hit_rate@3": 0.0,
-          "mrr@3": 0.0,
-          "precision@5": 0.0,
-          "ndcg@5": 0.0,
-          "hit_rate@5": 0.0,
-          "mrr@5": 0.0,
-          "precision@10": 0.0,
-          "ndcg@10": 0.0,
-          "hit_rate@10": 0.0,
-          "mrr@10": 0.0,
-          "latency_ms": 30.903100967407227
-        }
-      },
-      {
-        "qa_id": "PDPA-QA-0087",
-        "query": "When is consent considered 'deemed' even if I didn’t explicitly agree?",
-        "relevant_chunks": [
-          "PDPA-15-1-41"
-        ],
-        "reranked_chunks": [
-          "PDPA-14-4-40",
-          "PDPA-15-1-41",
-          "PDPA-15-2-42",
-          "PDPA-15A-2-51",
-          "PDPA-47-4-150",
-          "PDPA-15-6-46",
-          "PDPA-13-0-36",
-          "PDPA-15-3-43",
-          "PDPA-15A-1-50",
-          "PDPA-15-8-48"
+          "PDPA-22-7-82",
+          "PDPA-22-6-81",
+          "PDPA-22-3-78",
+          "PDPA-48H-2-187",
+          "PDPA-23-0-85",
+          "PDPA-22A-2-84"
         ],
         "metrics": {
           "precision@1": 0.0,
@@ -4469,7 +1391,729 @@
           "ndcg@10": 0.6309297535714575,
           "hit_rate@10": 1.0,
           "mrr@10": 0.5,
-          "latency_ms": 22.880077362060547
+          "latency_ms": 13.518810272216797
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0486",
+        "query": "What must specified persons under PDPA s.59(1) keep secret?",
+        "relevant_chunks": [
+          "PDPA-59-1-285"
+        ],
+        "reranked_chunks": [
+          "PDPA-59-1-285",
+          "PDPA-59-6-290",
+          "PDPA-21-2-69",
+          "PDPA-43-1-135",
+          "PDPA-10-1-23",
+          "PDPA-59-3-287",
+          "PDPA-48K-8-205",
+          "PDPA-11-5-32",
+          "PDPA-48G-4-185",
+          "PDPA-21-4-72"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 10.629892349243164
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0356",
+        "query": "When can PDPC proceed to issue a direction or impose a penalty?",
+        "relevant_chunks": [
+          "PDPA-48K-4-201"
+        ],
+        "reranked_chunks": [
+          "PDPA-48K-7-204",
+          "PDPA-48N-2-219",
+          "PDPA-48K-9-206",
+          "PDPA-48K-4-201",
+          "PDPA-48K-1-198",
+          "PDPA-48J-6-197",
+          "PDPA-48K-8-205",
+          "PDPA-48J-1-190",
+          "PDPA-48I-1-188",
+          "PDPA-48Q-2-234"
+        ],
+        "metrics": {
+          "precision@1": 0.0,
+          "ndcg@1": 0.0,
+          "hit_rate@1": 0.0,
+          "mrr@1": 0.0,
+          "precision@3": 0.0,
+          "ndcg@3": 0.0,
+          "hit_rate@3": 0.0,
+          "mrr@3": 0.0,
+          "precision@5": 0.2,
+          "ndcg@5": 0.43067655807339306,
+          "hit_rate@5": 1.0,
+          "mrr@5": 0.25,
+          "precision@10": 0.1,
+          "ndcg@10": 0.43067655807339306,
+          "hit_rate@10": 1.0,
+          "mrr@10": 0.25,
+          "latency_ms": 11.55710220336914
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0355",
+        "query": "Can the time to submit written representations be extended?",
+        "relevant_chunks": [
+          "PDPA-48K-3-200"
+        ],
+        "reranked_chunks": [
+          "PDPA-48K-3-200",
+          "PDPA-48K-4-201",
+          "PDPA-48K-2-199",
+          "PDPA-48K-1-198",
+          "PDPA-48N-5-222",
+          "PDPA-48N-4-221",
+          "PDPA-48K-9-206",
+          "PDPA-26D-4-104",
+          "PDPA-49-1-244",
+          "PDPA-48K-6-203"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 13.080835342407227
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0076",
+        "query": "If a company has multiple staff managing different aspects of PDPA compliance, is that allowed?",
+        "relevant_chunks": [
+          "PDPA-11-3-30"
+        ],
+        "reranked_chunks": [
+          "PDPA-65-3-302",
+          "PDPA-12-0-35",
+          "PDPA-11-3-30",
+          "PDPA-11-4-31",
+          "PDPA-20-4-66",
+          "PDPA-11-6-34",
+          "PDPA-11-1-28",
+          "PDPA-48J-5-195",
+          "PDPA-39-3-126",
+          "PDPA-48J-6-197"
+        ],
+        "metrics": {
+          "precision@1": 0.0,
+          "ndcg@1": 0.0,
+          "hit_rate@1": 0.0,
+          "mrr@1": 0.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 0.5,
+          "hit_rate@3": 1.0,
+          "mrr@3": 0.3333333333333333,
+          "precision@5": 0.2,
+          "ndcg@5": 0.5,
+          "hit_rate@5": 1.0,
+          "mrr@5": 0.3333333333333333,
+          "precision@10": 0.1,
+          "ndcg@10": 0.5,
+          "hit_rate@10": 1.0,
+          "mrr@10": 0.3333333333333333,
+          "latency_ms": 15.980005264282227
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0022",
+        "query": "If a law enforcement agency collects data under another law, does PDPA still apply?",
+        "relevant_chunks": [
+          "PDPA-4-6-12"
+        ],
+        "reranked_chunks": [
+          "PDPA-21-4-72",
+          "PDPA-48E-3-176",
+          "PDPA-26D-6-106",
+          "PDPA-48E-1-174",
+          "PDPA-26D-9-109",
+          "PDPA-4-6-12",
+          "PDPA-48D-3-172",
+          "PDPA-13-0-36",
+          "PDPA-10-5-27",
+          "PDPA-4-1-7"
+        ],
+        "metrics": {
+          "precision@1": 0.0,
+          "ndcg@1": 0.0,
+          "hit_rate@1": 0.0,
+          "mrr@1": 0.0,
+          "precision@3": 0.0,
+          "ndcg@3": 0.0,
+          "hit_rate@3": 0.0,
+          "mrr@3": 0.0,
+          "precision@5": 0.0,
+          "ndcg@5": 0.0,
+          "hit_rate@5": 0.0,
+          "mrr@5": 0.0,
+          "precision@10": 0.1,
+          "ndcg@10": 0.3562071871080222,
+          "hit_rate@10": 1.0,
+          "mrr@10": 0.16666666666666666,
+          "latency_ms": 15.055179595947266
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0024",
+        "query": "Can the Minister change what counts as a public agency under PDPA?",
+        "relevant_chunks": [
+          "PDPA-2-2-5"
+        ],
+        "reranked_chunks": [
+          "PDPA-2-2-5",
+          "PDPA-26E-0-110",
+          "PDPA-4-1-7",
+          "PDPA-64-1-297",
+          "PDPA-57-1-281",
+          "PDPA-48D-1-170",
+          "PDPA-48F-1-178",
+          "PDPA-48E-1-174",
+          "PDPA-17-2-60",
+          "PDPA-26D-9-109"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 13.210773468017578
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0418",
+        "query": "Can PDPC refuse to investigate if a complaint seems insincere?",
+        "relevant_chunks": [
+          "PDPA-50-3-249"
+        ],
+        "reranked_chunks": [
+          "PDPA-50-3-249",
+          "PDPA-50-1-247",
+          "PDPA-50-3A-250",
+          "PDPA-48G-2-183",
+          "PDPA-48H-1-186",
+          "PDPA-50-2-248",
+          "PDPA-51-3-255",
+          "PDPA-48G-1-182",
+          "PDPA-65-2-300",
+          "PDPA-48H-2-187"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 14.042854309082031
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0152",
+        "query": "Can an organisation be exempted from cross-border transfer requirements?",
+        "relevant_chunks": [
+          "PDPA-26-2-89"
+        ],
+        "reranked_chunks": [
+          "PDPA-26-2-89",
+          "PDPA-26-1-88",
+          "PDPA-26-3-90",
+          "PDPA-26-4-91",
+          "PDPA-62-0-295",
+          "PDPA-26D-7-107",
+          "PDPA-52-6-264",
+          "PDPA-25-0-87",
+          "PDPA-67-3-306",
+          "PDPA-65-2-300"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 16.760826110839844
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0047",
+        "query": "Can the PDPC choose not to act on a matter if another regulator is handling it?",
+        "relevant_chunks": [
+          "PDPA-10-2-24"
+        ],
+        "reranked_chunks": [
+          "PDPA-50-3-249",
+          "PDPA-65-1-299",
+          "PDPA-65-2-300",
+          "PDPA-50-3A-250",
+          "PDPA-48G-2-183",
+          "PDPA-65-3-302",
+          "PDPA-4-6-12",
+          "PDPA-60-0-292",
+          "PDPA-48G-4-185",
+          "PDPA-63-0-296"
+        ],
+        "metrics": {
+          "precision@1": 0.0,
+          "ndcg@1": 0.0,
+          "hit_rate@1": 0.0,
+          "mrr@1": 0.0,
+          "precision@3": 0.0,
+          "ndcg@3": 0.0,
+          "hit_rate@3": 0.0,
+          "mrr@3": 0.0,
+          "precision@5": 0.0,
+          "ndcg@5": 0.0,
+          "hit_rate@5": 0.0,
+          "mrr@5": 0.0,
+          "precision@10": 0.0,
+          "ndcg@10": 0.0,
+          "hit_rate@10": 0.0,
+          "mrr@10": 0.0,
+          "latency_ms": 16.378164291381836
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0015",
+        "query": "Does the PDPA still apply to information about someone who died 5 years ago?",
+        "relevant_chunks": [
+          "PDPA-4-4-10"
+        ],
+        "reranked_chunks": [
+          "PDPA-48K-5-202",
+          "PDPA-4-4-10",
+          "PDPA-48C-2-169",
+          "PDPA-50-4-251",
+          "PDPA-4-5-11",
+          "PDPA-15A-1-50",
+          "PDPA-19-0-62",
+          "PDPA-48F-1-178",
+          "PDPA-21-1-68",
+          "PDPA-59-6-290"
+        ],
+        "metrics": {
+          "precision@1": 0.0,
+          "ndcg@1": 0.0,
+          "hit_rate@1": 0.0,
+          "mrr@1": 0.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 0.6309297535714575,
+          "hit_rate@3": 1.0,
+          "mrr@3": 0.5,
+          "precision@5": 0.2,
+          "ndcg@5": 0.6309297535714575,
+          "hit_rate@5": 1.0,
+          "mrr@5": 0.5,
+          "precision@10": 0.1,
+          "ndcg@10": 0.6309297535714575,
+          "hit_rate@10": 1.0,
+          "mrr@10": 0.5,
+          "latency_ms": 15.182971954345703
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0453",
+        "query": "If a committee member of an unincorporated association is charged, can they use the same legal defence the association would have?",
+        "relevant_chunks": [
+          "PDPA-52A-3-268"
+        ],
+        "reranked_chunks": [
+          "PDPA-52A-3-268",
+          "PDPA-52A-5-270",
+          "PDPA-52A-2-267",
+          "PDPA-52A-1-266",
+          "PDPA-52A-7-272",
+          "PDPA-52A-4-269",
+          "PDPA-52A-6-271",
+          "PDPA-52-3-261",
+          "PDPA-57-2-282",
+          "PDPA-48P-4-231"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 48.597097396850586
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0339",
+        "query": "What can PDPC order after reviewing a complaint?",
+        "relevant_chunks": [
+          "PDPA-48H-2-187"
+        ],
+        "reranked_chunks": [
+          "PDPA-48H-2-187",
+          "PDPA-64-2-298",
+          "PDPA-48H-1-186",
+          "PDPA-12-0-35",
+          "PDPA-48R-3-242",
+          "PDPA-48G-2-183",
+          "PDPA-65-2-300",
+          "PDPA-48G-4-185",
+          "PDPA-48M-4-216",
+          "PDPA-62-0-295"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 23.53215217590332
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0070",
+        "query": "What does PDPA require about staff awareness of complaint handling?",
+        "relevant_chunks": [
+          "PDPA-12-0-35"
+        ],
+        "reranked_chunks": [
+          "PDPA-12-0-35",
+          "PDPA-26D-4-104",
+          "PDPA-43A-2-141",
+          "PDPA-48G-4-185",
+          "PDPA-48G-3-184",
+          "PDPA-48G-2-183",
+          "PDPA-65-2-300",
+          "PDPA-15A-4-53",
+          "PDPA-50-1-247",
+          "PDPA-48G-1-182"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 23.85401725769043
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0225",
+        "query": "Who can bring a private action against an individual for PDPA message offences?",
+        "relevant_chunks": [
+          "PDPA-48O-1-225"
+        ],
+        "reranked_chunks": [
+          "PDPA-48O-1-225",
+          "PDPA-48O-3-227",
+          "PDPA-48O-2-226",
+          "PDPA-48K-1-198",
+          "PDPA-48N-7-224",
+          "PDPA-55-3-278",
+          "PDPA-48B-3-166",
+          "PDPA-9-1-21",
+          "PDPA-36-3-115",
+          "PDPA-15A-4-53"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 14.783859252929688
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0227",
+        "query": "Can the Chair nominate fewer than three members to hear an appeal?",
+        "relevant_chunks": [
+          "PDPA-48P-4-231"
+        ],
+        "reranked_chunks": [
+          "PDPA-48P-4-231",
+          "PDPA-48P-2-229",
+          "PDPA-48P-3-230",
+          "PDPA-48Q-5-237",
+          "PDPA-48P-5-232",
+          "PDPA-58-1-283",
+          "PDPA-57-2-282",
+          "PDPA-48R-2-241",
+          "PDPA-48Q-2-234",
+          "PDPA-48R-3-242"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 13.069868087768555
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0487",
+        "query": "Is it an offence to disclose confidential PDPC information unlawfully?",
+        "relevant_chunks": [
+          "PDPA-59-2-286"
+        ],
+        "reranked_chunks": [
+          "PDPA-59-5-289",
+          "PDPA-59-6-290",
+          "PDPA-59-3-287",
+          "PDPA-59-1-285",
+          "PDPA-59-4-288",
+          "PDPA-21-4-72",
+          "PDPA-48D-2-171",
+          "PDPA-18-0-61",
+          "PDPA-58-1-283",
+          "PDPA-48D-1-170"
+        ],
+        "metrics": {
+          "precision@1": 0.0,
+          "ndcg@1": 0.0,
+          "hit_rate@1": 0.0,
+          "mrr@1": 0.0,
+          "precision@3": 0.0,
+          "ndcg@3": 0.0,
+          "hit_rate@3": 0.0,
+          "mrr@3": 0.0,
+          "precision@5": 0.0,
+          "ndcg@5": 0.0,
+          "hit_rate@5": 0.0,
+          "mrr@5": 0.0,
+          "precision@10": 0.0,
+          "ndcg@10": 0.0,
+          "hit_rate@10": 0.0,
+          "mrr@10": 0.0,
+          "latency_ms": 13.72528076171875
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0087",
+        "query": "When is consent considered 'deemed' even if I didn’t explicitly agree?",
+        "relevant_chunks": [
+          "PDPA-15-1-41"
+        ],
+        "reranked_chunks": [
+          "PDPA-14-4-40",
+          "PDPA-15-1-41",
+          "PDPA-15-2-42",
+          "PDPA-15A-2-51",
+          "PDPA-47-4-150",
+          "PDPA-15-6-46",
+          "PDPA-13-0-36",
+          "PDPA-15-3-43",
+          "PDPA-15A-1-50",
+          "PDPA-15A-5-54"
+        ],
+        "metrics": {
+          "precision@1": 0.0,
+          "ndcg@1": 0.0,
+          "hit_rate@1": 0.0,
+          "mrr@1": 0.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 0.6309297535714575,
+          "hit_rate@3": 1.0,
+          "mrr@3": 0.5,
+          "precision@5": 0.2,
+          "ndcg@5": 0.6309297535714575,
+          "hit_rate@5": 1.0,
+          "mrr@5": 0.5,
+          "precision@10": 0.1,
+          "ndcg@10": 0.6309297535714575,
+          "hit_rate@10": 1.0,
+          "mrr@10": 0.5,
+          "latency_ms": 18.517017364501953
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0118",
+        "query": "What can I ask a company for under the PDPA if I want to see my data?",
+        "relevant_chunks": [
+          "PDPA-21-1-68"
+        ],
+        "reranked_chunks": [
+          "PDPA-21-5-73",
+          "PDPA-21-2-69",
+          "PDPA-2-1-3",
+          "PDPA-21-1-68",
+          "PDPA-26C-3-99",
+          "PDPA-21-3A-71",
+          "PDPA-20-5-67",
+          "PDPA-2-1-4",
+          "PDPA-26E-0-110",
+          "PDPA-26B-2-94"
+        ],
+        "metrics": {
+          "precision@1": 0.0,
+          "ndcg@1": 0.0,
+          "hit_rate@1": 0.0,
+          "mrr@1": 0.0,
+          "precision@3": 0.0,
+          "ndcg@3": 0.0,
+          "hit_rate@3": 0.0,
+          "mrr@3": 0.0,
+          "precision@5": 0.2,
+          "ndcg@5": 0.43067655807339306,
+          "hit_rate@5": 1.0,
+          "mrr@5": 0.25,
+          "precision@10": 0.1,
+          "ndcg@10": 0.43067655807339306,
+          "hit_rate@10": 1.0,
+          "mrr@10": 0.25,
+          "latency_ms": 20.74432373046875
+        }
+      },
+      {
+        "qa_id": "PDPA-QA-0004",
+        "query": "Does the PDPA apply to individuals acting in a personal capacity?",
+        "relevant_chunks": [
+          "PDPA-4-1-7"
+        ],
+        "reranked_chunks": [
+          "PDPA-4-1-7",
+          "PDPA-57-1-281",
+          "PDPA-20-3-65",
+          "PDPA-48C-2-169",
+          "PDPA-3-0-6",
+          "PDPA-48J-2-191",
+          "PDPA-51-1A-253",
+          "PDPA-60-0-292",
+          "PDPA-9-1-21",
+          "PDPA-4-4-10"
+        ],
+        "metrics": {
+          "precision@1": 1.0,
+          "ndcg@1": 1.0,
+          "hit_rate@1": 1.0,
+          "mrr@1": 1.0,
+          "precision@3": 0.3333333333333333,
+          "ndcg@3": 1.0,
+          "hit_rate@3": 1.0,
+          "mrr@3": 1.0,
+          "precision@5": 0.2,
+          "ndcg@5": 1.0,
+          "hit_rate@5": 1.0,
+          "mrr@5": 1.0,
+          "precision@10": 0.1,
+          "ndcg@10": 1.0,
+          "hit_rate@10": 1.0,
+          "mrr@10": 1.0,
+          "latency_ms": 12.901067733764648
         }
       }
     ]
