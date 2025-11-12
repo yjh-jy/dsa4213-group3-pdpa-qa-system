@@ -2,10 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """
-finetune_and_eval.py — End-to-end PDPA QA System Pipeline for:
-- Dense retriever training
-- Hybrid retriever integration and tuning (validation set)
-- Final evaluation (test set) with multiple retrievers
+evaluate_all_retrievers.py — Retriever Evaluation Pipeline:
+- Final evaluation (on unseen test set) with dense retriever, BM25, and hybrid retriever
 - Outputs consolidated results to stratified_results/consolidated_results.json
 """
 
@@ -17,32 +15,16 @@ from pathlib import Path
 from typing import Dict, List, Optional
 import sys
 
-# Device detection
-try:
-    import torch
-    if torch.backends.mps.is_available():
-        device = torch.device("mps")
-    elif torch.cuda.is_available():
-        device = torch.device("cuda")
-    else:
-        device = torch.device("cpu")
-except:
-    device = torch.device("cpu")
-
-print(f"Using device: {device}")
-
 # Add retriever paths to sys.path
 IMMEDIATE_PARENT = Path(__file__).resolve().parent
-sys.path.append(str("dense_retrieval"))
-sys.path.append(str("dense_indexer"))
-sys.path.append(str("hybrid_retrieval"))
-sys.path.append(str("retrieval_evaluation"))
+sys.path.append(str(IMMEDIATE_PARENT / "dense_retrieval"))
+sys.path.append(str(IMMEDIATE_PARENT / "hybrid_retrieval"))
+sys.path.append(str(IMMEDIATE_PARENT / "retrieval_evaluation"))
 
 # Import modules
-from dense_indexer import build_index, save_faiss_bundle
 from dense_retriever import DenseRetriever
 from hybrid_retriever import create_hybrid_retriever, HybridHyperparameterOptimizer
-from evaluate_all_retrievers import UnifiedRetrievalEvaluator
+from evaluate_all_retrievers_kfold import UnifiedRetrievalEvaluator
 
 class PDPAPipeline:
     def __init__(self):
@@ -60,11 +42,9 @@ class PDPAPipeline:
         
         # Data paths
         self.training_data_dir = self.root / "data" / "dense_training"
-        self.qa_dataset_path = self.root / "data" / "qa" / "pdpa_qa_500.jsonl"
         
         # Results storage
         self.results = {
-            "device": str(device),
             "dense_retriever": {},
             "hybrid_default": {},
             "hybrid_optimized": {}
@@ -101,7 +81,6 @@ class PDPAPipeline:
         required_files = [
             self.training_data_dir / "stratified_splits" / "train_triples.jsonl",
             self.root / "data" / "corpus" / "corpus_subsection_v1.jsonl",
-            self.qa_dataset_path
         ]
         
         missing_files = [f for f in required_files if not f.exists()]
@@ -242,13 +221,8 @@ class PDPAPipeline:
         
         # Use validation triples for hyperparameter tuning (proper data split)
         val_triples_path = self.training_data_dir / "stratified_splits" / "val_triples.jsonl"
-        if not val_triples_path.exists():
-            print(f"Warning: Validation triples not found at {val_triples_path}")
-            print("Falling back to QA dataset for tuning")
-            tuning_dataset_path = self.qa_dataset_path
-        else:
-            print(f"Using validation triples for hyperparameter tuning: {val_triples_path}")
-            tuning_dataset_path = val_triples_path
+        print(f"Using validation triples for hyperparameter tuning: {val_triples_path}")
+        tuning_dataset_path = val_triples_path
         
         # Initialize optimizer with validation dataset
         optimizer = HybridHyperparameterOptimizer(tuning_dataset_path)
@@ -296,247 +270,193 @@ class PDPAPipeline:
         return best_config
     
     def evaluate_retrievers(self, dense_model_path: str, best_hybrid_config: Dict) -> Dict:
-        """Evaluate all retrievers on test set."""
+        """Evaluate all retrievers on test set"""
         print("=" * 60)
         print("STEP 3: Final Evaluation")
         print("=" * 60)
         
         # Use test triples for final evaluation (proper data split)
         test_triples_path = self.training_data_dir / "stratified_splits" / "test_triples.jsonl"
-        if not test_triples_path.exists():
-            print(f"Warning: Test triples not found at {test_triples_path}")
-            print("Falling back to QA dataset for evaluation")
-            evaluation_dataset_path = self.qa_dataset_path
+        print(f"Using test triples for final evaluation: {test_triples_path}")
+        evaluation_dataset_path = test_triples_path
+        
+        # Load tuning results (hybrid + bm25) from file
+        tuning_file = Path(__file__).resolve().parent / "stratified_results" / "tuning" / "hyperparameter_tuning.json"
+        bm25_best_params = {"k1": 0.5, "b": 1.0}
+        if tuning_file.exists():
+            with open(tuning_file, "r", encoding="utf-8") as f:
+                tuning_json = json.load(f)
+            # Hybrid best config
+            if not best_hybrid_config:
+                best_hybrid_config = tuning_json.get("best_config", {})
+            # BM25 best params if present
+            if "bm25_best_params" in tuning_json:
+                bm25_best_params = tuning_json["bm25_best_params"]
         else:
-            print(f"Using test triples for final evaluation: {test_triples_path}")
-            evaluation_dataset_path = test_triples_path
+            print(f"Warning: Tuning file not found at {tuning_file}. Using default BM25 params and provided hybrid config.")
         
         evaluator = UnifiedRetrievalEvaluator(evaluation_dataset_path)
-        
         eval_results = {}
         
         # 1. Evaluate fine-tuned dense retriever
         print("Evaluating fine-tuned dense retriever...")
         dense_retriever = DenseRetriever(model_name=dense_model_path)
         print(f"Evaluation dense retriever using device: {dense_retriever.device}")
-        
-        # Confirm model type for evaluation
-        if hasattr(dense_retriever, 'is_fine_tuned'):
-            if dense_retriever.is_fine_tuned:
-                print(f"✓ Fine-tuned model loaded for evaluation")
-            else:
-                print(f"⚠️ Warning: Expected fine-tuned model but loaded base model for evaluation")
-        
-        print(f"✓ GPU acceleration confirmed for dense retriever evaluation")
-        dense_result = evaluator.evaluate_retriever(dense_retriever, "Dense_Finetuned", top_k=20)
+        if hasattr(dense_retriever, 'is_fine_tuned') and not dense_retriever.is_fine_tuned:
+            print("Warning: Expected fine-tuned model but loaded base model for evaluation")
+        dense_result = evaluator.evaluate_retriever(dense_retriever, "Dense_Finetuned", top_k=10)
         eval_results["dense_finetuned"] = dense_result
         
-        # 2. Evaluate hybrid retriever with default parameters
-        print("Evaluating hybrid retriever (default)...")
-        print(f"✓ GPU acceleration confirmed for hybrid retriever (dense component)")
-        hybrid_default = create_hybrid_retriever(
-            alpha=0.5, 
-            fusion_method="rrf", 
-            rrf_k=30,
-            dense_retriever=dense_retriever
-        )
-        hybrid_default_result = evaluator.evaluate_retriever(hybrid_default, "Hybrid_Default", top_k=20)
-        eval_results["hybrid_default"] = hybrid_default_result
-        
-        # 3. Evaluate hybrid retriever with optimized parameters
-        print("Evaluating hybrid retriever (optimized)...")
-        
-        # Extract parameters from best config
+        # 2. Evaluate hybrid retriever with optimized parameters ONLY
+        print("Evaluating hybrid retriever (optimized only)...")
         if best_hybrid_config.get("fusion_method") == "linear" and best_hybrid_config.get("alpha") is not None:
-            # Linear fusion
             hybrid_optimized = create_hybrid_retriever(
                 alpha=best_hybrid_config["alpha"],
                 fusion_method="linear",
                 dense_retriever=dense_retriever
             )
         else:
-            # RRF fusion
             hybrid_optimized = create_hybrid_retriever(
                 fusion_method="rrf",
                 rrf_k=best_hybrid_config.get("rrf_k", 30),
                 dense_retriever=dense_retriever
             )
-        
-        hybrid_optimized_result = evaluator.evaluate_retriever(hybrid_optimized, "Hybrid_Optimized", top_k=20)
+        hybrid_optimized_result = evaluator.evaluate_retriever(hybrid_optimized, "Hybrid_Optimized", top_k=10)
         eval_results["hybrid_optimized"] = hybrid_optimized_result
         
-        # 4. Evaluate BM25 retriever with hyperparameter optimization
-        print("Evaluating BM25 retriever with hyperparameter optimization...")
+        # 3. Evaluate BM25 retriever with optimized parameters
+        print("Evaluating BM25 retriever (optimized params)...")
         sys.path.append(str("bm25_retrieval"))
-        from bm25_retriever import BM25Retriever, BM25HyperparameterOptimizer
-        
-        # Run hyperparameter optimization on validation set for BM25
-        val_triples_path = self.training_data_dir / "stratified_splits" / "val_triples.jsonl"
-        if val_triples_path.exists():
-            print(f"Using validation triples for BM25 hyperparameter tuning: {val_triples_path}")
-            bm25_optimizer = BM25HyperparameterOptimizer(val_triples_path)
-            
-            # Run grid search with smaller parameter space for speed
-            k1_values = [0.5, 1.0, 1.2, 1.5, 2.0]
-            b_values = [0.0, 0.3, 0.5, 0.75, 1.0]
-            print(f"Running BM25 grid search: {len(k1_values)} k1 × {len(b_values)} b = {len(k1_values) * len(b_values)} combinations")
-            
-            bm25_results = bm25_optimizer.grid_search(k1_values=k1_values, b_values=b_values, sample_size=100)
-            
-            if bm25_results:
-                best_bm25_params = bm25_results[0]
-                print(f"Best BM25 parameters: k1={best_bm25_params['k1']}, b={best_bm25_params['b']}")
-                print(f"Best BM25 validation score: {best_bm25_params['composite_score']:.4f}")
-                
-                # Create BM25 retriever with optimized parameters
-                bm25_retriever = BM25Retriever(k1=best_bm25_params['k1'], b=best_bm25_params['b'])
-            else:
-                print("BM25 optimization failed, using default parameters")
-                bm25_retriever = BM25Retriever()
-                best_bm25_params = {"k1": 0.5, "b": 1.0}
-        else:
-            print("Validation triples not found, using default BM25 parameters")
-            bm25_retriever = BM25Retriever()
-            best_bm25_params = {"k1": 0.5, "b": 1.0}
-        
-        # Evaluate BM25 on test set
-        bm25_result = evaluator.evaluate_retriever(bm25_retriever, "BM25", top_k=20)
+        from bm25_retriever import BM25Retriever
+        bm25_retriever = BM25Retriever(k1=bm25_best_params.get('k1'), b=bm25_best_params.get('b'))
+        bm25_result = evaluator.evaluate_retriever(bm25_retriever, "BM25", top_k=10)
         eval_results["bm25"] = bm25_result
         
         # Save individual evaluation results
-        eval_file = IMMEDIATE_PARENT / "stratified_results" / "eval" / "evaluation_results.json"
+        eval_file = Path(__file__).resolve().parent / "stratified_results" / "eval" / "evaluation_results.json"
         with open(eval_file, "w") as f:
             json.dump(eval_results, f, indent=2)
-        
         print(f"Evaluation results saved to: {eval_file}")
         
-        return eval_results, best_bm25_params
-    
+        return eval_results, bm25_best_params
+
     def compute_metrics(self, eval_result: Dict) -> Dict:
-        """Extract and compute metrics from evaluation result."""
+        """Extract and compute metrics from evaluation result """
         summary = eval_result["evaluation_summary"]
-        
         metrics = {}
-        
         # Extract recall metrics
-        for k in [1, 5, 10, 20]:
+        for k in [1, 5, 10]:
             recall_key = f"recall@{k}"
             if recall_key in summary:
                 metrics[recall_key] = summary[recall_key]["mean"]
-        
-        # Extract MRR
+        # Extract NDCG metrics
+        for k in [1, 3, 5, 10]:
+            ndcg_key = f"ndcg@{k}"
+            if ndcg_key in summary:
+                metrics[ndcg_key] = summary[ndcg_key]["mean"]
+        # Extract MRR and MRR@k
         if "mrr" in summary:
             metrics["mrr"] = summary["mrr"]["mean"]
-        
-        # Extract latency metrics
+        for k in [1, 3, 5, 10]:
+            mrrk = f"mrr@{k}"
+            if mrrk in summary:
+                metrics[mrrk] = summary[mrrk]["mean"]
+        # Latency
         if "search_time_ms" in summary:
             latency_stats = summary["search_time_ms"]
             metrics["latency"] = {
-                "p50_ms": latency_stats["median"],
-                "p90_ms": latency_stats["median"] + 1.645 * latency_stats["std"],  # Approximate p90
-                "avg_ms": latency_stats["mean"]
+                "p50_ms": latency_stats.get("median", 0),
+                "p90_ms": latency_stats.get("median", 0) + 1.645 * latency_stats.get("std", 0),
+                "avg_ms": latency_stats.get("mean", 0)
             }
-        
         return metrics
-    
+
     def run_pipeline(self):
-        """Run the complete end-to-end pipeline."""
+        """Run the evaluation-only pipeline """
         start_time = time.time()
-        
-        print("Starting PDPA QA System Pipeline")
-        print(f"Device: {device}")
+        print("Starting retriever evaluation pipeline...")
         print(f"Artifacts directory: {self.artifacts_dir}")
-        
-        # Clean up all artifacts to ensure fresh run (disabled for good reasons, pls enable this when absolutely sure)
-        # self._cleanup_artifacts()
-        
         try:
-            # Step 1: Train dense retriever
-            dense_model_path = self.train_dense_retriever()
-            self.build_and_save_faiss_index(corpus_path=self.root / "data" / "corpus" / "corpus_subsection_v1.jsonl")
+            # Load existing fine-tuned dense model
+            dense_model_path = str(self.artifacts_dir / "dense_retriever" / "model")
+            if not Path(dense_model_path).exists():
+                print(f"Warning: Dense model directory not found at {dense_model_path}. Trying fallback path.")
+                fallback_model = Path(__file__).resolve().parents[0] / "dense_retrieval" / "fine_tuned_model"
+                dense_model_path = str(fallback_model)
             
-            # Step 2: Tune hybrid retriever
-            best_hybrid_config = self.tune_hybrid_retriever(dense_model_path)
+            # Load tuning config from file
+            tuning_file = Path(__file__).resolve().parent / "stratified_results" / "tuning" / "hyperparameter_tuning.json"
+            best_hybrid_config = {}
+            if tuning_file.exists():
+                with open(tuning_file, "r", encoding="utf-8") as f:
+                    tuning_json = json.load(f)
+                best_hybrid_config = tuning_json.get("best_config", {})
+            else:
+                print(f"Warning: Tuning file not found at {tuning_file}. Using default hybrid parameters.")
+                best_hybrid_config = {"fusion_method": "rrf", "rrf_k": 30}
             
-            # Step 3: Evaluate all retrievers
-            eval_results, best_bm25_params = self.evaluate_retrievers(dense_model_path, best_hybrid_config)
+            # Evaluate all retrievers (top_k=10, optimized hybrid, optimized BM25)
+            eval_results, bm25_best_params = self.evaluate_retrievers(dense_model_path, best_hybrid_config)
             
-            # Step 4: Compile final results
+            # Compile final results
             print("=" * 60)
             print("STEP 4: Compiling Results")
             print("=" * 60)
-            
-            # Extract metrics for each retriever
             self.results["dense_retriever"] = {
                 "model_dir": str(self.artifacts_dir / "dense_retriever" / "model"),
                 "faiss_index_dir": str(self.artifacts_dir / "dense_retriever" / "faiss"),
-                "metrics": self.compute_metrics(eval_results["dense_finetuned"])
+                "metrics": self.compute_metrics(eval_results["dense_finetuned"]) 
             }
-            
-            self.results["hybrid_default"] = {
-                "params": {"alpha": 0.5, "fusion_method": "rrf", "rrf_k": 30},
-                "metrics": self.compute_metrics(eval_results["hybrid_default"])
-            }
-            
-            # Extract optimized parameters
+            # Optimized Hybrid only
             optimized_params = {}
             if best_hybrid_config.get("fusion_method") == "linear" and best_hybrid_config.get("alpha") is not None:
-                optimized_params = {
-                    "alpha": best_hybrid_config["alpha"],
-                    "fusion_method": "linear"
-                }
+                optimized_params = {"alpha": best_hybrid_config["alpha"], "fusion_method": "linear"}
             else:
-                optimized_params = {
-                    "fusion_method": "rrf",
-                    "rrf_k": best_hybrid_config.get("rrf_k", 30)
-                }
-            
+                optimized_params = {"fusion_method": "rrf", "rrf_k": best_hybrid_config.get("rrf_k")}
             self.results["hybrid_optimized"] = {
                 "best_params": optimized_params,
-                "metrics": self.compute_metrics(eval_results["hybrid_optimized"])
+                "metrics": self.compute_metrics(eval_results["hybrid_optimized"]) 
             }
-            
             self.results["bm25"] = {
-                "best_params": best_bm25_params,
-                "metrics": self.compute_metrics(eval_results["bm25"])
+                "best_params": bm25_best_params,
+                "metrics": self.compute_metrics(eval_results["bm25"]) 
             }
             
             # Save final consolidated results
-            results_file = IMMEDIATE_PARENT / "stratified_results" / "conslidated_results.json"
+            results_file = Path(__file__).resolve().parent / "stratified_results" / "conslidated_results.json"
             with open(results_file, "w") as f:
                 json.dump(self.results, f, indent=2)
-            
-            # Print summary
             total_time = time.time() - start_time
-            print(f"\nPipeline completed successfully in {total_time:.1f} seconds")
+            print(f"\nEvaluation-only pipeline completed successfully in {total_time:.1f} seconds")
             print(f"Final results saved to: {results_file}")
             
             print("\n" + "=" * 60)
-            print("FINAL RESULTS SUMMARY")
+            print("FINAL RESULTS SUMMARY (top_k=10)")
             print("=" * 60)
-            
             for retriever_name, result in [
                 ("Dense Retriever (Fine-tuned)", self.results["dense_retriever"]),
-                ("Hybrid Default", self.results["hybrid_default"]),
-                ("Hybrid Optimized", self.results["hybrid_optimized"])
-            ]:
+                ("Hybrid Optimized", self.results["hybrid_optimized"]),
+                ("BM25 (Optimized)", self.results["bm25"]) ]:
                 print(f"\n{retriever_name}:")
                 metrics = result["metrics"]
-                for k in [1, 5, 10, 20]:
-                    recall_key = f"recall@{k}"
-                    if recall_key in metrics:
-                        print(f"  Recall@{k}: {metrics[recall_key]:.4f}")
+                for k in [1, 5, 10]:
+                    rk = f"recall@{k}"
+                    if rk in metrics:
+                        print(f"  Recall@{k}: {metrics[rk]:.4f}")
+                for k in [1,3,5,10]:
+                    mk = f"mrr@{k}"
+                    if mk in metrics:
+                        print(f"  MRR@{k}: {metrics[mk]:.4f}")
                 if "mrr" in metrics:
                     print(f"  MRR: {metrics['mrr']:.4f}")
                 if "latency" in metrics:
                     print(f"  Avg Latency: {metrics['latency']['avg_ms']:.2f}ms")
-            
         except Exception as e:
             print(f"Pipeline failed: {e}")
             raise
 
 def main():
-    """Main entry point."""
+    """Main entry point (evaluation-only)."""
     pipeline = PDPAPipeline()
     pipeline.run_pipeline()
 

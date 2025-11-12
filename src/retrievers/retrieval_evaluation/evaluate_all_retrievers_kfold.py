@@ -105,41 +105,41 @@ class UnifiedRetrievalEvaluator:
             if chunk_id in relevant_chunks:
                 return 1.0 / i
         return 0.0
-    
+
+    def compute_mrr_at_k(self, retrieved_chunks: List[str], relevant_chunks: Set[str], k: int) -> float:
+        """Compute MRR@k (reciprocal rank truncated at k)."""
+        for i, chunk_id in enumerate(retrieved_chunks[:k], 1):
+            if chunk_id in relevant_chunks:
+                return 1.0 / i
+        return 0.0
+
     def compute_ndcg_at_k(self, retrieved_chunks: List[str], relevant_chunks: Set[str], k: int) -> float:
         """Compute Normalized Discounted Cumulative Gain (NDCG@k)."""
         def dcg(relevances: List[int]) -> float:
             return sum(rel / np.log2(i + 2) for i, rel in enumerate(relevances))
-        
         # Actual DCG
         actual_relevances = [1 if chunk in relevant_chunks else 0 for chunk in retrieved_chunks[:k]]
         actual_dcg = dcg(actual_relevances)
-        
-        # Ideal DCG (perfect ranking)
+        # Ideal DCG
         ideal_relevances = [1] * min(len(relevant_chunks), k) + [0] * max(0, k - len(relevant_chunks))
         ideal_dcg = dcg(ideal_relevances)
-        
         return actual_dcg / ideal_dcg if ideal_dcg > 0 else 0.0
-    
+
     def evaluate_retriever(self, retriever, retriever_name: str, top_k: int = 10) -> Dict:
         """Evaluate a single retriever."""
         print(f"\nEvaluating {retriever_name}...")
-        
         all_results = []
         for i, qa_item in enumerate(self.qa_data):
             if (i + 1) % 100 == 0:
                 print(f"  Processed {i + 1}/{len(self.qa_data)} queries...")
-            
             # Handle both QA dataset format and triples format
             if "question_user" in qa_item:
-                query = qa_item["question_user"]  # QA dataset format
+                query = qa_item["question_user"]
             elif "query" in qa_item:
-                query = qa_item["query"]  # Triples format
+                query = qa_item["query"]
             else:
-                continue  # Skip invalid items
-                
+                continue
             relevant_chunks = self._extract_relevant_chunks(qa_item)
-            
             # Perform retrieval
             start_time = time.time()
             if hasattr(retriever, 'search'):
@@ -149,29 +149,24 @@ class UnifiedRetrievalEvaluator:
                 else:
                     retrieved_chunks = [hit["chunk_id"] for hit in search_result]
             else:
-                # Fallback for different retriever interfaces
                 retrieved_chunks = retriever.retrieve(query, top_k=top_k)
-            
             search_time = time.time() - start_time
-            
             # Compute metrics
             metrics = {}
             for k in [1, 3, 5, 10]:
                 if k <= top_k:
                     metrics[f"recall@{k}"] = self.compute_recall_at_k(retrieved_chunks, relevant_chunks, k)
                     metrics[f"ndcg@{k}"] = self.compute_ndcg_at_k(retrieved_chunks, relevant_chunks, k)
-            
+                    metrics[f"mrr@{k}"] = self.compute_mrr_at_k(retrieved_chunks, relevant_chunks, k)
             metrics["mrr"] = self.compute_mrr(retrieved_chunks, relevant_chunks)
             metrics["search_time_ms"] = search_time * 1000
-            
-            # Handle both QA dataset format and triples format for ID field
+            # Handle ID
             if "id" in qa_item:
-                qa_id = qa_item["id"]  # QA dataset format
+                qa_id = qa_item["id"]
             elif "qid" in qa_item:
-                qa_id = qa_item["qid"]  # Triples format
+                qa_id = qa_item["qid"]
             else:
-                qa_id = f"unknown_{i}"  # Fallback
-            
+                qa_id = f"unknown_{i}"
             all_results.append({
                 "qa_id": qa_id,
                 "query": query,
@@ -179,10 +174,8 @@ class UnifiedRetrievalEvaluator:
                 "retrieved_chunks": retrieved_chunks,
                 "metrics": metrics
             })
-        
         # Aggregate metrics
         aggregated_metrics = self._aggregate_metrics(all_results)
-        
         return {
             "retriever_name": retriever_name,
             "evaluation_summary": aggregated_metrics,

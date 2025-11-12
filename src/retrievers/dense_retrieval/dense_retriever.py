@@ -142,52 +142,51 @@ class DenseRetriever:
     
 
     
-    def encode_query(self, query: str) -> np.ndarray:
-        """Encode a single query into embedding vector."""
-        return self.model.encode([query], normalize_embeddings=True).astype(np.float32)
-    
     def search(self, query: str, top_k: int = 10) -> Dict:
         """
         Search for relevant chunks using dense retrieval.
-        
-        Args:
-            query: Natural language question
-            top_k: Number of results to return
-            
-        Returns:
-            Dict containing results list and search metadata
+        Prefer FAISS index when available; otherwise use precomputed embeddings.
         """
         start_time = time.time()
         
-        # Encode query using fine-tuned model
-        query_embedding = self.encode_query(query)
+        # Encode query using current model
+        query_embedding = self.model.encode([query], normalize_embeddings=True).astype(np.float32)
         
-        # Use pre-computed corpus embeddings
-        similarities = cosine_similarity(query_embedding, self.corpus_embeddings)[0]
-        
-        # Get top-k indices
-        top_indices = np.argsort(similarities)[-top_k:][::-1]
-        
-        # Build results
         results = []
-        for idx in top_indices:
-            chunk_id = self.chunk_ids[idx]
-            result = {
-                "chunk_id": chunk_id,
-                "score": float(similarities[idx]),
-                "text": self.texts[idx],
-                "rank": len(results) + 1
-            }
-            
-            # Add section metadata if available
-            if chunk_id in self.sections_map:
-                result.update(self.sections_map[chunk_id])
-            
-            results.append(result)
+        if self.index is not None:
+            # FAISS path (inner product equals cosine because embeddings are normalized)
+            D, I = self.index.search(query_embedding, top_k)
+            for rank, (row, score) in enumerate(zip(I[0], D[0]), start=1):
+                cid = self.chunk_ids[row]
+                result = {
+                    "chunk_id": cid,
+                    "score": float(score),
+                    "text": self.sections_map.get(cid, {}).get('text', ''),
+                    "rank": rank
+                }
+                if cid in self.sections_map:
+                    result.update(self.sections_map[cid])
+                results.append(result)
+        else:
+            # Ensure embeddings are available
+            if self.corpus_embeddings is None:
+                self._precompute_embeddings()
+            # Cosine similarity with precomputed embeddings
+            similarities = cosine_similarity(query_embedding, self.corpus_embeddings)[0]
+            top_indices = np.argsort(similarities)[-top_k:][::-1]
+            for idx in top_indices:
+                chunk_id = self.chunk_ids[idx]
+                result = {
+                    "chunk_id": chunk_id,
+                    "score": float(similarities[idx]),
+                    "text": self.texts[idx],
+                    "rank": len(results) + 1
+                }
+                if chunk_id in self.sections_map:
+                    result.update(self.sections_map[chunk_id])
+                results.append(result)
         
-        # Add timing info
         search_time = time.time() - start_time
-        
         return {
             "results": results,
             "query": query,
@@ -579,15 +578,90 @@ class DenseRetriever:
         return average_results
 
 def train_dense_retriever():
-    """Train a dense retriever on PDPA data."""
+    """Train a dense retriever on PDPA data (using stratified splits and pipeline configs)."""
     print("=== Dense Retriever Training ===")
     
     # Paths
     root_dir = Path(__file__).resolve().parents[3]
     training_data_dir = root_dir / "data" / "dense_training"
+    strat_train_path = training_data_dir / "stratified_splits" / "train_triples.jsonl"
+    corpus_path = root_dir / "data" / "corpus" / "corpus_subsection_v1.jsonl"
     
-    # Check if training data exists
-    full_train_path = training_data_dir / "full_train_triples.jsonl"
+    if not strat_train_path.exists() or not corpus_path.exists():
+        print(f"Training data not found. Ensure stratified splits exist at {strat_train_path} and corpus at {corpus_path}.")
+        print("Please run dense_chunk_and_extract.py and create_stratified_splits.py first.")
+        return
+    
+    # Initialize retriever in training mode (base model)
+    retriever = DenseRetriever(model_name="sentence-transformers/all-mpnet-base-v2")
+    
+    # Set up training output to artefacts path to align with pipeline
+    output_dir = root_dir / "artefacts" / "dense_retriever" / "model"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Fine-tune the model using pipeline configs
+    model_path = retriever.fine_tune(
+        training_data_path=strat_train_path,
+        output_dir=output_dir,
+        test_queries_path=None,
+        corpus_path=None,
+        epochs=50,
+        batch_size=16,
+        learning_rate=5e-5,
+        warmup_steps=50,
+        early_stopping=False,
+        gradient_accumulation_steps=8,
+        mixed_precision=True,
+        dataloader_num_workers=0,
+        gradient_checkpointing=False,
+        optimizer_type="adamw"
+    )
+    
+    print(f"Training completed! Model saved to: {model_path}")
+    print("Note: FAISS index building is handled by the pipeline (dense_indexer).")
+
+def train_dense_retriever():
+    """Train a dense retriever on PDPA data (using stratified splits and pipeline configs)."""
+    print("=== Dense Retriever Training ===")
+    
+    # Paths
+    root_dir = Path(__file__).resolve().parents[3]
+    training_data_dir = root_dir / "data" / "dense_training"
+    strat_train_path = training_data_dir / "stratified_splits" / "train_triples.jsonl"
+    corpus_path = root_dir / "data" / "corpus" / "corpus_subsection_v1.jsonl"
+    
+    if not strat_train_path.exists() or not corpus_path.exists():
+        print(f"Training data not found. Ensure stratified splits exist at {strat_train_path} and corpus at {corpus_path}.")
+        print("Please run dense_chunk_and_extract.py and create_stratified_splits.py first.")
+        return
+    
+    # Initialize retriever in training mode (base model)
+    retriever = DenseRetriever(model_name="sentence-transformers/all-mpnet-base-v2")
+    
+    # Set up training output to artefacts path to align with pipeline
+    output_dir = root_dir / "artefacts" / "dense_retriever" / "model"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Fine-tune the model using pipeline configs
+    model_path = retriever.fine_tune(
+        training_data_path=strat_train_path,
+        output_dir=output_dir,
+        test_queries_path=None,
+        corpus_path=None,
+        epochs=50,
+        batch_size=16,
+        learning_rate=5e-5,
+        warmup_steps=50,
+        early_stopping=False,
+        gradient_accumulation_steps=8,
+        mixed_precision=True,
+        dataloader_num_workers=0,
+        gradient_checkpointing=False,
+        optimizer_type="adamw"
+    )
+    
+    print(f"Training completed! Model saved to: {model_path}")
+    print("Note: FAISS index building is handled by the pipeline (dense_indexer).")
     if not full_train_path.exists():
         print(f"Training data not found at {full_train_path}")
         print("Please run dense_chunk_and_extract.py first to generate training data.")
