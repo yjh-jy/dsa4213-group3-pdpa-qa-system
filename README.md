@@ -10,6 +10,32 @@ From Corpus Construction to Reliable Legal QA”**.
 
 Our work contributes the first **reproducible, statute-grounded** retrieval-augmented generation (RAG) system and evaluation benchmark dedicated to Singapore’s **Personal Data Protection Act (PDPA)**. The system produces **evidence-backed**, **canonically cited**, and **selectively abstaining** answers to natural-language questions grounded strictly in authoritative PDPA statute text.
 
+## Table of Contents
+- [Citation-Constrained, Abstention-Capable RAG for Singapore’s PDPA](#citation-constrained-abstention-capable-rag-for-singapores-pdpa)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+    - [Key Contributions](#key-contributions)
+  - [Repository Structure](#repository-structure)
+  - [Installation](#installation)
+  - [Setup (Model Artefacts)](#setup-model-artefacts)
+  - [Usage](#usage)
+    - [1. Start the PDPA RAG API Service](#1-start-the-pdpa-rag-api-service)
+    - [2. Interactive API Documentation (FastAPI)](#2-interactive-api-documentation-fastapi)
+    - [3. Query the API via cURL (via command line)](#3-query-the-api-via-curl-via-command-line)
+      - [`/ask` — Full RAG pipeline](#ask--full-rag-pipeline)
+      - [`/ask_no_rag` — SLM-only baseline](#ask_no_rag--slm-only-baseline)
+      - [`/evaluate` — Batch evaluate against PDPABench-Test](#evaluate--batch-evaluate-against-pdpabench-test)
+  - [PDPABench and PDPA Corpus (Data Overview)](#pdpabench-and-pdpa-corpus-data-overview)
+    - [PDPA Corpus](#pdpa-corpus)
+    - [Dense Retriever Training Data](#dense-retriever-training-data)
+    - [Learning-to-Rank (LTR) Data](#learning-to-rank-ltr-data)
+    - [PDPABench (500-sample Legal QA Benchmark)](#pdpabench-500-sample-legal-qa-benchmark)
+  - [Results (PDPABench-Test)](#results-pdpabench-test)
+  - [Reproducibility Notes](#reproducibility-notes)
+  - [Citation](#citation)
+  - [License](#license)
+  - [Acknowledgements](#acknowledgements)
+
 
 ## Overview
 
