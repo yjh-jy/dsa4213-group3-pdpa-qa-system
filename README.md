@@ -103,11 +103,14 @@ DSA4213-GROUP3-PDPA-QA-SYSTEM/
 ## Installation
 
 Tested on **Python 3.10.6**, **macOS/Linux**, and Apple Silicon (M1/M1 Pro).
+
+Ensure [Python 3.10.6](https://www.python.org/downloads/release/python-3106/) is installed in your global environment.
+
 ```bash
 git clone https://github.com/yjh-jy/dsa4213-group3-pdpa-qa-system
 cd dsa4213-group3-pdpa-qa-system
 
-python -m venv .venv
+python -m venv .venv             # or python3 -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
 
 pip install -r requirements.txt
@@ -142,6 +145,14 @@ The API will be available at:
 ```bash
 http://localhost:8000/
 ```
+
+Do give it a while for the initial setup as it will try to checkpoint the SLM model weights from HuggingFace so future runs are faster. Only proceed when you see the following:
+
+```bash
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+```
+
 ---
 ### 2. Interactive API Documentation (FastAPI)
 
@@ -159,6 +170,8 @@ Both allow you to run RAG queries directly in your browser without writing code.
 
 ---
 ### 3. Query the API via cURL (via command line)
+
+> The inital API call might take a while to complete, so feel free to force terminate and rerun the command. Expected latencies are around 15s for non reasoning modes (default) and 52s for reasoning mode enabled. 
 
 #### `/ask` — Full RAG pipeline
 
@@ -181,7 +194,7 @@ curl -s -X POST http://localhost:8000/ask_no_rag \
 ```
 #### `/evaluate` — Batch evaluate against PDPABench-Test
 
-Useful for PDPABench experiments.
+Useful for PDPABench experiments but beware of the long time required to complete the full evaluation.
 
 ```bash
 # Evaluate with RAG
