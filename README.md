@@ -1,67 +1,283 @@
-## PDPA-Grounded Question Answering via Citation-Constrained RAG with Abstention
+# Citation-Constrained, Abstention-Capable RAG for Singapore’s PDPA
 
-**Authors:** Group 3 (Ashley Toh Ke Wei, Sybella Chloe Enriquez Tan, Choy Qi Hui, Yoong Jun Han)
+**Authors:** Ashley Toh Ke Wei, Choy Qi Hui, Sybella Tan, Yoong Jun Han (Group 3).  
+**Institution:** National University of Singapore  
+**Release Date:** November 2025  
 
-## Introduction
+This repository contains the full implementation accompanying the report:  
+**“Citation-Constrained, Abstention-Capable RAG for Singapore’s PDPA:  
+From Corpus Construction to Reliable Legal QA”**.
 
-Privacy policy documents are notoriously long, legally dense, and difficult for the general public to understand (Tan, 2022). As a result, users struggle to extract precise answers, which undermines transparency and informed consent.
+Our work contributes the first **reproducible, statute-grounded** retrieval-augmented generation (RAG) system and evaluation benchmark dedicated to Singapore’s **Personal Data Protection Act (PDPA)**. The system produces **evidence-backed**, **canonically cited**, and **selectively abstaining** answers to natural-language questions grounded strictly in authoritative PDPA statute text.
 
-This project aims to apply Natural Language Processing (NLP) techniques to make privacy policies more accessible by enabling users to query these documents in natural language. Specifically, we focus on the Singapore Personal Data Protection Act (PDPA) (PDPC, 2023), the principal legislation governing the collection, use, and disclosure of personal data by private sector organisations in Singapore. This focus aligns with strong public concern: in a 2016 KPMG survey, 32% of Singaporeans reported being “extremely concerned” about companies’ use of their personal data, with even more expressing broader worry. 
 
-Therefore, we propose a retrieval-augmented QA system that answers PDPA-related questions in plain language with exact section citations and abstains when evidence is insufficient.
+## Overview
 
-## Datasets
+Existing legal NLP benchmarks (LegalBench, LexGLUE, MLEB) do not include Singapore-specific PDPA QA.  
+PDPA-related NLP work focuses on privacy-policy compliance or enforcement decision corpora, but **no publicly documented benchmark or RAG system** exists for PDPA statute question answering.
 
-- Singapore PDPA Document: Official statute text chunked by Section (with Part/Division/Section IDs, titles, character offsets). This will be used as the primary knowledge base for the RAG system and source to create PDPA QAs.
-- PDPA QAs (synthesized): approx. 800 LLM-generated QAs based on the Singapore PDPA document, using PolicyQA as  a seed for question styles. Human validation will be used for quality control (manual filtering, consistency checks). In addition, a golden set of 30 manually crafted QAs will be used as guiding examples for synthesis.
-- PolicyQA Dataset: 714 questions across 115 website privacy policies. This will provide a secondary benchmark QA format for synthesis.
+This repository fills that gap by providing:
 
-## Methods/Models
+### Key Contributions
+1. **Authoritative PDPA Corpus Pipeline**  
+   - Programmatic ingestion of PDPA Parts 1–6 and 9–10 from Singapore Statutes Online.  
+   - Subsection-level chunking with canonical citation labels (e.g., `PDPA s. 4B(1)`).
 
-### Benchmark Model: Prompt-only LLM
+2. **Hybrid Retrieval Stack**  
+   - BM25 + dense retrieval fused via Reciprocal Rank Fusion (RRF).  
+   - Fine-tuned cross-encoder reranker optimised for short legal clauses.
 
-A general GPT-type model (e.g., FLAN-T5-base) grounded with the PDPA document context and is prompted to answer only from provided text, or output “No sufficient basis.”
+3. **Citation-Constrained Generation**  
+   - Qwen3-4B SLM with strict evidence-grounding rules.  
+   - Every claim must cite retrieved statutory text.  
+   - If evidence is insufficient, the model abstains.
 
-### Proposed System: Retrieval Augmented Generation (RAG) with Abstention 
+4. **PDPABench (500 QAs)**  
+   - Canonically cited, section-disjoint, multi-type PDPA QA benchmark.  
+   - Metadata includes QA type, difficulty, canonical citations, and support spans.
 
-- Retrieval: Choose among BM25 (lexical), Dense (E5/MiniLM-style embeddings; cosine similarity), Hybrid (e.g., reciprocal rank fusion or fixed α·BM25 + (1–α)·Dense)
-- Reranking: Choose among Bi-encoder (assuming lexical/hybrid retrieval), Cross-encoder, or none
-- Generation with citation constraints: Generative encoder-decoder model (e.g., FLAN-T5, BART, LLaMA-2, Mistral-7B)  with citation-constrained decoding that must output section IDs used for grounding
-- Plain-language prompting: generative models are prompted to rephrase retrieved PDPA content into simple, non-legal terms 
-- Calibration & abstention: Use confidence/entropy thresholds (and/or max rerank score) to decide between answer vs “No sufficient basis.”
+5. **Reproducible Backend**  
+   - Modular orchestrator for retrieval → reranking → generation.  
+   - Structured logging for auditability.
 
-## Ablation Studies
+An end-to-end architecture diagram is provided in `architectural_diagram.png`.
 
-As mentioned, we will do a series of ablation studies to build our system
 
-- Encoder-decoder model impact: Comparing different underlying encoder-decoder model used (not for reranking)
-- Retriever architecture impact: BM25-only vs embedding-only vs hybrid retriever, to quantify gains from combining lexical and semantic signals.
-- Reranker contribution and architecture: Compare None, Bi-encoder (assuming lexical/hybrid retrieval), and Cross-encoder
+## Repository Structure
 
-## Evaluation
+```
+DSA4213-GROUP3-PDPA-QA-SYSTEM/
+│
+├── artefacts/
+│   ├── bm25_index/           # Sparse index
+│   ├── dense_retriever/      # Dense retriever (fine-tuned)
+│   ├── cross_encoder/        # Cross-encoder reranker
+│   └── ltr_reranker/         # LightGBM LTR model
+│
+├── data/
+│   ├── corpus/               # PDPA chunks with canonical citations
+│   ├── dense_training/       # Dense retriever training triples
+│   ├── ltr_processed/        # Reranker training data
+│   └── qa/                   # PDPABench (Train/Val/Test)
+│
+├── src/
+│   ├── corpus-gen/           # Corpus construction and chunking
+│   ├── generator/            # SLM generation + guardrails
+│   ├── qa-gen/               # QA synthesis, cleaning, validation
+│   ├── rag_service/          # Orchestrator and API entrypoint
+│   ├── rerankers/            # Cross-encoder / LTR rerankers
+│   └── retrievers/           # BM25, dense, hybrid retrievers
+│
+├── checkpoints/              # Optional HuggingFace model weight checkpoints
+│── architectural_diagram.png
+│── requirements.txt
+└── LICENSE              
+````
 
-### Quantitative Metrics
+## Installation
 
-- Retrieval: Recall, MRR, NDCG, latency
-- Reranking: Precision, NDCG, HitRate, latency
-- Answering: EM, F1; Support-F1 (token F1 on cited gold span)
-- Generative Quality: ROUGE-L for overlap with ground-truth answers. (Synthesized PDPA QAs)
-- Citations & Faithfulness: Citation hit-rate, hallucination rate, coverage-accuracy curves, Expected Calibration Error (ECE)
+Tested on **Python 3.10.6**, **macOS/Linux**, and Apple Silicon (M1/M1 Pro).
+```bash
+git clone https://github.com/yjh-jy/dsa4213-group3-pdpa-qa-system
+cd dsa4213-group3-pdpa-qa-system
 
-### Qualitative Metrics (Human raters)
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
 
-#### RAG system in isolation
+pip install -r requirements.txt
+```
 
-We will construct a set of 30 challenging PDPA test questions (distinct from the 30 gold examples used to guide synthesis) and collect double-blind human ratings of the RAG system’s answers on correctness, clarity (plain-language quality), and faithfulness to cited sections using a 5-point scale. We will report inter-rater agreement (e.g., Cohen’s κ or Krippendorff’s α) and provide a concise error taxonomy covering retrieval miss, span mismatch, multi-section reasoning errors, and ambiguity.
+This installs all dependencies. No additional training, preprocessing, or corpus construction is required.
 
-#### Additional Qualitative Comparison (RAG vs. benchmark)
+## Setup (Model Artefacts)
 
-Using the same 30-question set, we will run a separate double-blind, side-by-side comparison in which raters view anonymized pairs of answers produced by the RAG system and the benchmark model. For each question, raters indicate which answer is superior on correctness, clarity, and citation faithfulness, and provide brief justifications, to assess whether RAG’s quantitative gains translate into perceptible improvements for end users.
+The dense retriever includes a large model file (`model.safetensors`) that exceeds GitHub’s file-size limit.  
+To keep the repository manageable, it is stored in ~90 MB chunks.  
+Reassemble the file once before running the API:
+```bash
+cd artefacts/dense_retriever/model
 
-## References
+# reconstruct the full safetensors model
+cat model.safetensors.part.* > model.safetensors
+```
+Once reconstructed, all retrieval and reranking components will load normally.
 
-- Ahmad, et al. (Nov, 2020). PolicyQA: A Reading Comprehension Dataset for Privacy Policies. Retrieved from Association for Computational Linguistics Anthology: https://doi.org/10.18653/v1/2020.findings-emnlp.66 
-- KPMG. (7 Nov, 2016). Crossing the line: Staying on the right side of consumer privacy [Report]. KPMG Corporate Office. https://assets.kpmg.com/content/dam/kpmg/sg/pdf/2016/11/KPMG-Cyber-Security-Privacy-Report.pdf
-- PDPC (3 Nov, 2023). PDPA Overview. Retrieved from PDPC: https://www.pdpc.gov.sg/overview-of-pdpa/the-legislation/personal-data-protection-act
-- Singapore Statutes Online. (2012). Personal Data Protection Act 2012. Retrieved from Singapore Statutes Online: https://sso.agc.gov.sg/Act/PDPA2012
-- Tan, B. (6 Oct, 2022). Commentary: If data privacy is so important, why do we click 'agree' on user agreements without reading? Retrieved from CNA: https://www.channelnewsasia.com/commentary/privacy-agreement-data-breach-policy-too-long-2987651
+
+## Usage
+
+### 1. Start the PDPA RAG API Service
+
+The orchestrator exposes the complete PDPA RAG pipeline (retrieval → reranking → SLM generation → citation constraints → abstention logic).
+```bash
+cd src/rag_service
+uvicorn orchestrator:app --reload --port 8000
+```
+The API will be available at:
+```bash
+http://localhost:8000/
+```
+---
+### 2. Interactive API Documentation (FastAPI)
+
+FastAPI automatically provides interactive testing interfaces:
+
+**Swagger UI (interactive testing):**
+
+    http://localhost:8000/docs
+
+**ReDoc UI (schema-first documentation):**
+
+    http://localhost:8000/redoc
+
+Both allow you to run RAG queries directly in your browser without writing code.
+
+---
+### 3. Query the API via cURL (via command line)
+
+#### `/ask` — Full RAG pipeline
+
+Runs hybrid retrieval, cross-encoder reranking, citation-constrained generation, and abstention.
+
+```bash
+curl -s -X POST http://localhost:8000/ask \
+    -H "Content-Type: application/json" \
+    -d '{"qid":"q1","question":"What penalty applies for improper use of personal data resulting in harm but without proven gain?"}' \
+    | jq .
+```
+#### `/ask_no_rag` — SLM-only baseline
+
+Bypasses retrieval and reranking.
+```bash
+curl -s -X POST http://localhost:8000/ask_no_rag \
+    -H "Content-Type: application/json" \
+    -d '{"qid":"q1","question":"What penalty applies for improper use of personal data resulting in harm but without proven gain?"}' \
+    | jq .
+```
+#### `/evaluate` — Batch evaluate against PDPABench-Test
+
+Useful for PDPABench experiments.
+
+```bash
+# Evaluate with RAG
+curl -s -X POST http://localhost:8000/evaluate \
+            -H "Content-Type: application/json" \
+            -d '{"run_name":"rag","with_rag":"True","test_path":"../../data/dense_training/stratified_splits/test_triples.jsonl"}' \
+            | jq .
+```
+
+```bash
+# Evaluate without RAG
+curl -s -X POST http://localhost:8000/evaluate \
+            -H "Content-Type: application/json" \
+            -d '{"run_name":"no_rag","with_rag":"False","test_path":"../../data/dense_training/stratified_splits/test_triples.jsonl"}' \
+            | jq .        
+```
+Each response returns structured JSON containing:
+- the generated answer (or abstention),
+- retrieved and reranked PDPA evidence,
+- emitted canonical citations,
+- reranker margin signals,
+- latency and metadata.
+
+Quantitative results for `/evaluate` will be generated under the `src/rag_service/eval_runs` folder, where each run's result will create a subfolder with timestamp and whether rag was used or not in its name. Each folder will consist of 2 files: a summary of the eval run, named `summary.json` and the full results for each test question, named `detailed_results.jsonl`.
+
+Qualitative results are under `src/rag_service/eval_runs/qwen_3_4b/qualitative_eval/human`. More details regarding the setup of the qualitative evals are provided in the README_eval.md file under that subdirectory.
+
+
+## PDPABench and PDPA Corpus (Data Overview)
+
+This repository includes a fully curated and citation-grounded dataset supporting our PDPA legal QA system. The data is organised to allow authoritative retrieval, reproducible evaluation, and transparent benchmarking.
+
+### PDPA Corpus
+Located in `data/corpus/`, this corpus contains:
+- **Subsection-level PDPA chunks** with canonical citation IDs (`PDPA s.xx(xx)`),
+- **Raw PDPA text** (pre-processed from Singapore Statutes Online),
+- **Corpus metadata** aligning each chunk to its Part, Section, and Subsection,
+- **Citation-preserving JSONL format** for deterministic retrieval.
+
+All statutory content is derived from the PDPA 2012 (rev. 2020) under the Open Data Licence.
+
+### Dense Retriever Training Data
+Under `data/dense_training/`, we provide:
+- **Five-fold stratified splits** for contrastive retrieval training,
+- **Full training triples** (`query`, `positive`, `negative`),
+- **Section-disjoint splits** to prevent leakage of statutory provisions across train/validation/test.
+
+### Learning-to-Rank (LTR) Data
+Located in `data/ltr_processed/`:
+- Processed relevance judgements for the cross-encoder reranker,
+- Train/validation/test JSONL formatted sets.
+
+These are generated by combining BM25, dense retrieval hits, and human-validated citation labels.
+
+### PDPABench (500-sample Legal QA Benchmark)
+Located in `data/qa/`, PDPABench contains:
+- **500 canonical QA pairs** grounded strictly in PDPA statute,
+- **Gold citation spans** per question,
+- **Four QA types** (pure-definitive, definitive-with-conditions, scenario-ambigious, pure-abstain),
+- **Schema card**, **authoring checklist**, and **dataset manifest**,
+- **Golden30 seed set** used for evaluation sanity checks,
+- **Split structure** (80/10/10) with **section-disjointness guarantees**.
+
+This benchmark supports measurement of:
+- citation correctness (Hit@3, Citation F1),
+- textual quality (BERTScore, ROUGE-L),
+- abstention reliability (confusion matrix),
+- end-to-end RAG performance.
+
+A detailed dataset specification is available in `data/README.md`.
+
+## Results (PDPABench-Test)
+
+| Category              | Metric            | Score      |
+| --------------------- | ----------------- | ---------- |
+| **Citation Fidelity** | Citation Hit Rate | **71.2%**  |
+|                       | Citation Recall   | **0.673**  |
+| **Textual Quality**   | BERTScore F1      | **0.894**  |
+| **Abstention**        | Coverage          | **88.5%**  |
+| **Latency**           | Avg per query     | **15.2 s** |
+
+These results demonstrate substantial improvements over a non-RAG baseline (citation hit rate +69 pp).
+
+All statistics are reproducible via the scripts in `/src/`. Please refer to the README.md under `/src` for more details on the respective components of the RAG system.
+
+## Reproducibility Notes
+
+* **Statutory Source:**
+  Singapore Statutes Online — *Personal Data Protection Act 2012*
+  (Parts 1–6, 9–10; revision as of 2020)
+
+* **Benchmark:**
+  PDPABench (500 QAs), stratified and section-disjoint (80/10/10)
+
+* **Hardware:**
+  Apple M1 / M1 Pro (16 GB RAM)
+
+* **Model:**
+  Qwen3-4B (non-reasoning mode), with strict citation constraints
+
+
+## Citation
+
+Please cite the accompanying paper as:
+
+```
+@inproceedings{2025pdpa_rag,
+  title     = {Citation-Constrained, Abstention-Capable RAG for Singapore’s PDPA:
+               From Corpus Construction to Reliable Legal QA},
+  author    = {Ashley Toh Ke Wei and Choy Qi Hui and Sybella Tan and Yoong Jun Han},
+  institution = {National University of Singapore},
+  year      = {2025},
+  url       = {https://github.com/yjh-jy/dsa4213-group3-pdpa-qa-system}
+}
+```
+
+## License
+
+Released under the **MIT License**.
+PDPA statute text © Government of Singapore, reproduced under the Open Data Licence.
+
+## Acknowledgements
+
+We thank the NUS DSA4213 teaching staff for guidance.
+We also acknowledge public initiatives by the **Singapore Academy of Law** and **IMDA** that motivated the exploration of transparent, statute-grounded legal-AI tools.
