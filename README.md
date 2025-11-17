@@ -4,9 +4,9 @@
 **Institution:** National University of Singapore  
 **Release Date:** November 2025  
 
-This repository contains the full implementation accompanying the report:  
-**“Citation-Constrained, Abstention-Capable RAG for Singapore’s PDPA:  
-From Corpus Construction to Reliable Legal QA”**.
+This repository contains the full implementation accompanying the paper:  
+[**“Citation-Constrained, Abstention-Capable RAG for Singapore’s PDPA:   
+From Corpus Construction to Reliable Legal QA”**](Group03.pdf)
 
 Our work contributes the first **reproducible, statute-grounded** retrieval-augmented generation (RAG) system and evaluation benchmark dedicated to Singapore’s **Personal Data Protection Act (PDPA)**. The system produces **evidence-backed**, **canonically cited**, and **selectively abstaining** answers to natural-language questions grounded strictly in authoritative PDPA statute text.
 
