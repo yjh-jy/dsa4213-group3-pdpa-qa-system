@@ -130,7 +130,7 @@ cd artefacts/dense_retriever/model
 
 # reconstruct the full safetensors model
 cat model.safetensors.part.* > model.safetensors    # bash / zsh
-copy /b model.safetensors.part.* model.safetensor   # cmd or powershell
+copy /b model.safetensors.part.* model.safetensors   # cmd or powershell
 ```
 Once reconstructed, all retrieval and reranking components will load normally.
 
