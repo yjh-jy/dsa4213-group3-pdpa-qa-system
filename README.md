@@ -123,11 +123,14 @@ This installs all dependencies. No additional training, preprocessing, or corpus
 The dense retriever includes a large model file (`model.safetensors`) that exceeds GitHub’s file-size limit.  
 To keep the repository manageable, it is stored in ~90 MB chunks.  
 Reassemble the file once before running the API:
+
+
 ```bash
 cd artefacts/dense_retriever/model
 
 # reconstruct the full safetensors model
-cat model.safetensors.part.* > model.safetensors
+cat model.safetensors.part.* > model.safetensors    # bash / zsh
+copy /b model.safetensors.part.* model.safetensor   # cmd or powershell
 ```
 Once reconstructed, all retrieval and reranking components will load normally.
 
